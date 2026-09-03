@@ -1,0 +1,2179 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>index.html</title>
+
+<style>
+:root{
+    --gold:#d4af37;
+    --gold-light:#ffeaa0;
+    --bg:#070709;
+    --card:#121216;
+    --text:#fff;
+    --muted:#aaa;
+    --border:rgba(212,175,55,.25);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+    radial-gradient(circle at top,#1b1608 0,#070709 38%);
+    color:var(--text);
+    font-family:Arial,Tahoma,sans-serif;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button,
+input,
+select,
+textarea{
+    font:inherit;
+}
+
+.container{
+    width:min(1200px,92%);
+    margin:auto;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(7,7,9,.94);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+}
+
+.header-inner{
+    min-height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-circle{
+    width:48px;
+    height:48px;
+    border:1px solid var(--gold);
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    color:var(--gold-light);
+    font-size:24px;
+    font-weight:bold;
+}
+
+.logo-text strong{
+    display:block;
+    font-size:19px;
+}
+
+.logo-text span{
+    color:var(--gold);
+    font-size:12px;
+}
+
+nav{
+    display:flex;
+    gap:22px;
+}
+
+nav a{
+    color:#ddd;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:var(--gold);
+}
+
+.header-buttons{
+    display:flex;
+    gap:7px;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn{
+    border:1px solid var(--gold);
+    border-radius:10px;
+    padding:11px 17px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.gold-btn{
+    background:linear-gradient(135deg,#e0bd4b,#9b7411);
+    color:#111;
+}
+
+.dark-btn{
+    background:#15151a;
+    color:var(--gold);
+}
+
+.close-btn{
+    background:#222228;
+    color:#fff;
+    border:1px solid #555;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    padding:100px 0 70px;
+    text-align:center;
+}
+
+.hero-small{
+    color:var(--gold);
+    margin-bottom:15px;
+}
+
+.hero h1{
+    font-size:clamp(35px,6vw,70px);
+    margin-bottom:20px;
+    background:linear-gradient(#fff6bd,#d4af37);
+    color:transparent;
+    background-clip:text;
+}
+
+.hero p{
+    max-width:700px;
+    margin:0 auto 30px;
+    color:#bbb;
+    line-height:2;
+}
+
+/* ================= SECTIONS ================= */
+
+section{
+    padding:60px 0;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.section-title h2{
+    color:var(--gold-light);
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.section-title p{
+    color:var(--muted);
+}
+
+/* ================= MATERIALS ================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.card{
+    background:linear-gradient(145deg,#17171c,#0e0e11);
+    border:1px solid var(--border);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 15px 35px #0008;
+}
+
+.card img{
+    width:100%;
+    height:210px;
+    display:block;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:17px;
+}
+
+.card h3{
+    color:var(--gold-light);
+    margin-bottom:8px;
+}
+
+.card p{
+    color:#aaa;
+    line-height:1.7;
+    min-height:50px;
+}
+
+.price{
+    display:block;
+    margin-top:12px;
+    color:var(--gold);
+    font-size:20px;
+    font-weight:bold;
+}
+
+/* ================= SIZES ================= */
+
+.sizes{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+}
+
+.size{
+    min-width:90px;
+    padding:16px;
+    text-align:center;
+    background:#111116;
+    border:1px solid var(--border);
+    border-radius:15px;
+}
+
+.size strong{
+    display:block;
+    color:var(--gold-light);
+    font-size:24px;
+}
+
+/* ================= ORDER ================= */
+
+.order-box{
+    max-width:760px;
+    margin:auto;
+    padding:25px;
+    background:#111116;
+    border:1px solid var(--border);
+    border-radius:22px;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.field{
+    margin-bottom:15px;
+}
+
+.field label{
+    display:block;
+    margin-bottom:7px;
+    color:#ddd;
+}
+
+.field input,
+.field select,
+.field textarea{
+    width:100%;
+    padding:13px;
+    border-radius:10px;
+    border:1px solid #33333b;
+    background:#09090c;
+    color:#fff;
+    outline:none;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+    border-color:var(--gold);
+}
+
+.preview{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin-top:10px;
+}
+
+.preview img{
+    width:100%;
+    height:110px;
+    object-fit:cover;
+    border-radius:10px;
+    border:1px solid var(--border);
+}
+
+/* ================= KOK ================= */
+
+.kok-card{
+    max-width:650px;
+    margin:auto;
+}
+
+.kok-card img{
+    width:100%;
+    height:350px;
+    object-fit:cover;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    text-align:center;
+    padding:35px 15px;
+    color:#888;
+    border-top:1px solid var(--border);
+}
+
+/* ================= WHATSAPP ================= */
+
+.whatsapp{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#25d366;
+    color:white;
+    display:grid;
+    place-items:center;
+    font-size:25px;
+    z-index:200;
+    box-shadow:0 8px 25px #000;
+}
+
+/* ================= MENU ================= */
+
+.menu{
+    position:fixed;
+    top:0;
+    right:-360px;
+    width:340px;
+    max-width:90%;
+    height:100%;
+    background:#0e0e12;
+    border-left:1px solid var(--border);
+    z-index:500;
+    padding:22px;
+    transition:.3s;
+    overflow:auto;
+}
+
+.menu.open{
+    right:0;
+}
+
+.menu a{
+    display:block;
+    padding:15px 8px;
+    border-bottom:1px solid #29292f;
+    color:#ddd;
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:#000b;
+    z-index:400;
+    display:none;
+}
+
+.overlay.show{
+    display:block;
+}
+
+/* ================= ADMIN ================= */
+
+.admin-modal{
+    position:fixed;
+    inset:0;
+    background:#000e;
+    z-index:1000;
+    display:none;
+    overflow:auto;
+    padding:25px;
+}
+
+.admin-modal.show{
+    display:block;
+}
+
+.login-box,
+.admin-box{
+    max-width:1000px;
+    margin:50px auto;
+    background:#101014;
+    border:1px solid var(--gold);
+    border-radius:20px;
+    padding:25px;
+}
+
+.login-box{
+    max-width:420px;
+}
+
+.admin-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding-bottom:15px;
+    margin-bottom:20px;
+    border-bottom:1px solid #333;
+}
+
+.admin-head h2{
+    color:var(--gold-light);
+}
+
+.admin-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.panel{
+    background:#0b0b0f;
+    border:1px solid #292930;
+    border-radius:15px;
+    padding:17px;
+    margin-bottom:15px;
+}
+
+.panel h3{
+    color:var(--gold);
+    margin-bottom:15px;
+}
+
+.notice{
+    background:#201a08;
+    border:1px solid var(--border);
+    color:#e8d99d;
+    padding:12px;
+    border-radius:10px;
+    line-height:1.7;
+    margin-bottom:15px;
+}
+
+.material-row{
+    display:grid;
+    grid-template-columns:100px 1fr auto;
+    gap:12px;
+    align-items:center;
+    border-top:1px solid #29292f;
+    padding:15px 0;
+}
+
+.material-row img{
+    width:100px;
+    height:75px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.material-row input{
+    width:100%;
+    margin-bottom:6px;
+    padding:9px;
+    background:#09090c;
+    color:white;
+    border:1px solid #333;
+    border-radius:8px;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+}
+
+.danger{
+    background:#5b1515;
+    color:white;
+    border:1px solid #a33;
+    padding:9px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.hidden{
+    display:none!important;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:850px){
+
+    nav{
+        display:none;
+    }
+
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .row,
+    .admin-grid{
+        grid-template-columns:1fr;
+    }
+
+    .material-row{
+        grid-template-columns:80px 1fr;
+    }
+
+    .material-row .actions{
+        grid-column:1/-1;
+    }
+}
+
+@media(max-width:520px){
+
+    .container{
+        width:94%;
+    }
+
+    .hero{
+        padding:70px 0 45px;
+    }
+
+    .hero h1{
+        font-size:37px;
+    }
+
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .card img{
+        height:145px;
+    }
+
+    .card-content{
+        padding:12px;
+    }
+
+    .card h3{
+        font-size:15px;
+    }
+
+    .card p{
+        font-size:13px;
+    }
+
+    .price{
+        font-size:16px;
+    }
+
+    .preview{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .preview img{
+        height:100px;
+    }
+
+    .kok-card img{
+        height:250px;
+    }
+
+    .logo-text strong{
+        font-size:16px;
+    }
+
+    .header-inner{
+        min-height:68px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+<div class="container header-inner">
+
+    <div class="logo">
+        <div class="logo-circle">ج</div>
+
+        <div class="logo-text">
+            <strong id="brandName">ورشة الجوكر</strong>
+            <span>للسبح الفاخرة</span>
+        </div>
+    </div>
+
+    <nav>
+        <a href="#materials">الخامات</a>
+        <a href="#sizes">المقاسات</a>
+        <a href="#kok">سبح كوك</a>
+        <a href="#order">اطلب سبحتك</a>
+    </nav>
+
+    <div class="header-buttons">
+        <button class="btn dark-btn" onclick="openMenu()">☰</button>
+        <button class="btn gold-btn" onclick="openAdmin()">Admin</button>
+    </div>
+
+</div>
+</header>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+<div class="container">
+
+    <div class="hero-small">
+        فخامة • جودة • صناعة مميزة
+    </div>
+
+    <h1>ورشة الجوكر للسبح الفاخرة</h1>
+
+    <p>
+        اختار الخامة والمقاس وعدد الحبات،
+        أو ابعت تصميمك ونجهز لك طلبك حسب اختيارك.
+    </p>
+
+    <a href="#order" class="btn gold-btn">
+        اطلب سبحتك الآن
+    </a>
+
+</div>
+</section>
+
+<!-- ================= MATERIALS ================= -->
+
+<section id="materials">
+<div class="container">
+
+    <div class="section-title">
+        <h2>الخامات</h2>
+        <p>تشكيلة الخامات المتاحة حالياً</p>
+    </div>
+
+    <div id="materialsGrid" class="grid"></div>
+
+</div>
+</section>
+
+<!-- ================= KOK ================= -->
+
+<section id="kok">
+<div class="container">
+
+    <div class="section-title">
+        <h2>سبح كوك</h2>
+        <p>قسم خاص لسبح كوك</p>
+    </div>
+
+    <div class="card kok-card">
+
+        <img
+            id="kokImage"
+            src=""
+            alt="سبح كوك"
+        >
+
+        <div class="card-content">
+            <h3>سبح كوك</h3>
+            <p>
+                اختيارات مميزة من سبح كوك.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+<!-- ================= SIZES ================= -->
+
+<section id="sizes">
+<div class="container">
+
+    <div class="section-title">
+        <h2>المقاسات</h2>
+        <p>اختار المقاس المناسب</p>
+    </div>
+
+    <div id="sizesBox" class="sizes"></div>
+
+</div>
+</section>
+
+<!-- ================= ORDER ================= -->
+
+<section id="order">
+<div class="container">
+
+    <div class="section-title">
+        <h2>اطلب سبحتك</h2>
+        <p>
+            املأ البيانات وسيتم تجهيز رسالة واتساب تلقائياً
+        </p>
+    </div>
+
+    <div class="order-box">
+
+        <div class="row">
+
+            <div class="field">
+                <label>الاسم</label>
+                <input id="customerName" type="text">
+            </div>
+
+            <div class="field">
+                <label>رقم واتساب</label>
+                <input id="customerPhone" type="tel">
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="field">
+                <label>الخامة</label>
+                <select id="materialSelect"></select>
+            </div>
+
+            <div class="field">
+                <label>المقاس</label>
+                <select id="sizeSelect"></select>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="field">
+                <label>عدد الحبات</label>
+
+                <select id="countSelect">
+                    <option value="45">45</option>
+                    <option value="51">51</option>
+                    <option value="61">61</option>
+                    <option value="63">63</option>
+                    <option value="99">99</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>السعر التقريبي</label>
+                <input id="priceInput" readonly>
+            </div>
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                ارفع صور أو تصميم
+                <small>(اختياري)</small>
+            </label>
+
+            <input
+                id="photosInput"
+                type="file"
+                accept="image/*"
+                multiple
+            >
+
+            <div id="preview" class="preview"></div>
+
+        </div>
+
+        <div class="field">
+
+            <label>ملاحظات</label>
+
+            <textarea
+                id="notesInput"
+                rows="4"
+                placeholder="اكتب أي تفاصيل إضافية..."
+            ></textarea>
+
+        </div>
+
+        <button
+            class="btn gold-btn"
+            style="width:100%"
+            onclick="sendOrder()"
+        >
+            إرسال الطلب على واتساب 📲
+        </button>
+
+    </div>
+
+</div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+    © 2026 ورشة الجوكر للسبح الفاخرة
+    <br>
+    جميع الحقوق محفوظة
+</footer>
+
+<!-- ================= WHATSAPP ================= -->
+
+<a
+    class="whatsapp"
+    href="https://wa.me/201101121270"
+    target="_blank"
+>
+    ☎
+</a>
+
+<!-- ================= MENU ================= -->
+
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+<aside id="menu" class="menu">
+
+    <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:20px;
+    ">
+
+        <h2 style="color:var(--gold)">
+            القائمة
+        </h2>
+
+        <button
+            class="btn close-btn"
+            onclick="closeMenu()"
+        >
+            ✕
+        </button>
+
+    </div>
+
+    <div id="menuLinks"></div>
+
+</aside>
+
+<!-- ================= ADMIN ================= -->
+
+<div id="adminModal" class="admin-modal">
+
+    <!-- LOGIN -->
+
+    <div id="loginBox" class="login-box">
+
+        <h2 style="color:var(--gold-light);margin-bottom:15px">
+            دخول لوحة التحكم
+        </h2>
+
+        <div class="notice">
+            اسم المستخدم الافتراضي:
+            <b>admin</b>
+            <br>
+            كلمة المرور الافتراضية:
+            <b>Joker@2026</b>
+        </div>
+
+        <div class="field">
+            <label>اسم المستخدم</label>
+            <input id="adminUser">
+        </div>
+
+        <div class="field">
+            <label>كلمة المرور</label>
+            <input id="adminPassword" type="password">
+        </div>
+
+        <button
+            class="btn gold-btn"
+            style="width:100%"
+            onclick="loginAdmin()"
+        >
+            دخول
+        </button>
+
+        <button
+            class="btn close-btn"
+            style="width:100%;margin-top:8px"
+            onclick="closeAdmin()"
+        >
+            إلغاء
+        </button>
+
+    </div>
+
+    <!-- ADMIN PANEL -->
+
+    <div id="adminPanel" class="admin-box hidden">
+
+        <div class="admin-head">
+
+            <h2>
+                لوحة تحكم ورشة الجوكر
+            </h2>
+
+            <div>
+
+                <button
+                    class="btn gold-btn"
+                    onclick="saveSettings()"
+                >
+                    حفظ
+                </button>
+
+                <button
+                    class="btn close-btn"
+                    onclick="closeAdmin()"
+                >
+                    خروج
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="notice">
+            التعديلات الحالية يتم حفظها في المتصفح.
+        </div>
+
+        <div class="admin-grid">
+
+            <!-- SETTINGS -->
+
+            <div class="panel">
+
+                <h3>إعدادات الموقع</h3>
+
+                <div class="field">
+                    <label>اسم الورشة</label>
+                    <input id="siteNameInput">
+                </div>
+
+                <div class="field">
+                    <label>رقم واتساب</label>
+                    <input id="whatsappInput">
+                </div>
+
+                <div class="field">
+                    <label>المقاسات</label>
+                    <input
+                        id="sizesInput"
+                        placeholder="10, 10.5, 11, 11.5"
+                    >
+                </div>
+
+                <div class="field">
+                    <label>تغيير كلمة المرور</label>
+                    <input
+                        id="newPassword"
+                        type="password"
+                        placeholder="اتركها فارغة"
+                    >
+                </div>
+
+                <div class="field">
+                    <label>صورة سبح كوك</label>
+
+                    <input
+                        id="kokImageInput"
+                        type="file"
+                        accept="image/*"
+                    >
+                </div>
+
+            </div>
+
+            <!-- ADD MATERIAL -->
+
+            <div class="panel">
+
+                <h3>إضافة خامة</h3>
+
+                <div class="field">
+                    <label>اسم الخامة</label>
+                    <input id="newMaterialName">
+                </div>
+
+                <div class="field">
+                    <label>الوصف</label>
+                    <input id="newMaterialDesc">
+                </div>
+
+                <div class="field">
+                    <label>السعر</label>
+                    <input
+                        id="newMaterialPrice"
+                        type="number"
+                    >
+                </div>
+
+                <div class="field">
+                    <label>صور الخامة</label>
+
+                    <input
+                        id="newMaterialImages"
+                        type="file"
+                        accept="image/*"
+                        multiple
+                    >
+                </div>
+
+                <button
+                    class="btn gold-btn"
+                    onclick="addMaterial()"
+                >
+                    إضافة الخامة
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <h3>
+                الخامات والأسعار والصور
+            </h3>
+
+            <div id="adminMaterials"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* =====================================================
+   DATA
+===================================================== */
+
+const DATA_KEY = "jokerWorkshopData2026";
+const PASS_KEY = "jokerWorkshopPassword2026";
+
+const defaultData = {
+
+    siteName:"ورشة الجوكر للسبح الفاخرة",
+
+    whatsapp:"201101121270",
+
+    sizes:[
+        10,
+        10.5,
+        11,
+        11.5,
+        12,
+        12.5,
+        13,
+        13.5,
+        14
+    ],
+
+    kok:"",
+
+    materials:[
+
+        {
+            name:"بكالايت منجم",
+            desc:"خامة فاخرة ومميزة",
+            price:1000,
+            images:[]
+        },
+
+        {
+            name:"بكالايت رخامي فيروزي",
+            desc:"رخامي فيروزي بطابع فاخر",
+            price:1200,
+            images:[]
+        },
+
+        {
+            name:"تتاروك صب قديم",
+            desc:"صب قديم بطابع كلاسيكي",
+            price:1300,
+            images:[]
+        },
+
+        {
+            name:"تتاروك عطش",
+            desc:"خامة مميزة بطابع نادر",
+            price:1400,
+            images:[]
+        },
+
+        {
+            name:"صب جديد",
+            desc:"صب جديد بتشطيبات مميزة",
+            price:1100,
+            images:[]
+        }
+
+    ]
+
+};
+
+/* =====================================================
+   LOAD DATA
+===================================================== */
+
+function loadData(){
+
+    try{
+
+        const saved =
+            localStorage.getItem(DATA_KEY);
+
+        if(saved){
+
+            return JSON.parse(saved);
+
+        }
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+    return JSON.parse(
+        JSON.stringify(defaultData)
+    );
+}
+
+let data = loadData();
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+function saveData(){
+
+    try{
+
+        localStorage.setItem(
+            DATA_KEY,
+            JSON.stringify(data)
+        );
+
+    }catch(error){
+
+        alert(
+            "مساحة التخزين في المتصفح ممتلئة. حاول تقليل حجم الصور."
+        );
+
+    }
+
+}
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value).replace(
+        /[&<>"']/g,
+        function(char){
+
+            return {
+
+                "&":"&amp;",
+                "<":"&lt;",
+                ">":"&gt;",
+                '"':"&quot;",
+                "'":"&#039;"
+
+            }[char];
+
+        }
+    );
+
+}
+
+/* =====================================================
+   PLACEHOLDER
+===================================================== */
+
+function placeholder(text="Joker"){
+
+    return "data:image/svg+xml;charset=UTF-8," +
+    encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="700"
+             height="500"
+             viewBox="0 0 700 500">
+
+            <rect width="100%"
+                  height="100%"
+                  fill="#151515"/>
+
+            <text x="50%"
+                  y="50%"
+                  text-anchor="middle"
+                  dominant-baseline="middle"
+                  fill="#d4af37"
+                  font-size="45"
+                  font-family="Arial">
+
+                ${text}
+
+            </text>
+
+        </svg>
+    `);
+
+}
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function render(){
+
+    document.title = data.siteName;
+
+    document.getElementById(
+        "brandName"
+    ).textContent =
+        data.siteName.replace(
+            " للسبح الفاخرة",
+            ""
+        );
+
+    /* MATERIALS */
+
+    const materialsGrid =
+        document.getElementById(
+            "materialsGrid"
+        );
+
+    materialsGrid.innerHTML =
+        data.materials.map(
+            material => `
+
+            <article class="card">
+
+                <img
+                    src="${
+                        material.images[0] ||
+                        placeholder("JOKER")
+                    }"
+                    alt="${escapeHTML(material.name)}"
+                >
+
+                <div class="card-content">
+
+                    <h3>
+                        ${escapeHTML(material.name)}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(material.desc)}
+                    </p>
+
+                    <span class="price">
+                        يبدأ من
+                        ${Number(material.price)
+                            .toLocaleString("en-US")}
+                        ج.م
+                    </span>
+
+                </div>
+
+            </article>
+
+        `
+        ).join("");
+
+    /* SIZES */
+
+    document.getElementById(
+        "sizesBox"
+    ).innerHTML =
+        data.sizes.map(
+            size => `
+
+            <div class="size">
+
+                <strong>${size}</strong>
+
+                mm
+
+            </div>
+
+        `
+        ).join("");
+
+    /* MATERIAL SELECT */
+
+    document.getElementById(
+        "materialSelect"
+    ).innerHTML =
+        data.materials.map(
+            (material,index) => `
+
+            <option value="${index}">
+                ${escapeHTML(material.name)}
+            </option>
+
+        `
+        ).join("");
+
+    /* SIZE SELECT */
+
+    document.getElementById(
+        "sizeSelect"
+    ).innerHTML =
+        data.sizes.map(
+            size => `
+
+            <option value="${size}">
+                ${size} mm
+            </option>
+
+        `
+        ).join("");
+
+    /* MENU */
+
+    document.getElementById(
+        "menuLinks"
+    ).innerHTML =
+
+        data.materials.map(
+            material => `
+
+            <a href="#materials"
+               onclick="closeMenu()">
+
+                ${escapeHTML(material.name)}
+
+            </a>
+
+        `
+        ).join("") +
+
+        `
+        <a href="#kok" onclick="closeMenu()">
+            سبح كوك
+        </a>
+
+        <a href="#sizes" onclick="closeMenu()">
+            المقاسات
+        </a>
+
+        <a href="#order" onclick="closeMenu()">
+            اطلب سبحتك
+        </a>
+        `;
+
+    /* KOK IMAGE */
+
+    document.getElementById(
+        "kokImage"
+    ).src =
+        data.kok ||
+        placeholder("KOK");
+
+    updatePrice();
+
+}
+
+/* =====================================================
+   PRICE
+===================================================== */
+
+function updatePrice(){
+
+    const index =
+        Number(
+            document.getElementById(
+                "materialSelect"
+            ).value
+        );
+
+    const material =
+        data.materials[index];
+
+    document.getElementById(
+        "priceInput"
+    ).value = material
+        ? Number(material.price)
+            .toLocaleString("en-US") +
+          " ج.م"
+        : "";
+
+}
+
+/* =====================================================
+   MENU
+===================================================== */
+
+function openMenu(){
+
+    document
+        .getElementById("menu")
+        .classList.add("open");
+
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+
+}
+
+function closeMenu(){
+
+    document
+        .getElementById("menu")
+        .classList.remove("open");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+
+}
+
+/* =====================================================
+   ADMIN
+===================================================== */
+
+function openAdmin(){
+
+    document
+        .getElementById("adminModal")
+        .classList.add("show");
+
+    document
+        .getElementById("loginBox")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("adminPanel")
+        .classList.add("hidden");
+
+}
+
+function closeAdmin(){
+
+    document
+        .getElementById("adminModal")
+        .classList.remove("show");
+
+}
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+function loginAdmin(){
+
+    const username =
+        document
+        .getElementById("adminUser")
+        .value
+        .trim();
+
+    const password =
+        document
+        .getElementById("adminPassword")
+        .value;
+
+    const correctPassword =
+        localStorage.getItem(PASS_KEY)
+        || "Joker@2026";
+
+    if(
+        username === "admin" &&
+        password === correctPassword
+    ){
+
+        document
+            .getElementById("loginBox")
+            .classList.add("hidden");
+
+        document
+            .getElementById("adminPanel")
+            .classList.remove("hidden");
+
+        loadAdmin();
+
+    }else{
+
+        alert(
+            "اسم المستخدم أو كلمة المرور غير صحيحة"
+        );
+
+    }
+
+}
+
+/* =====================================================
+   LOAD ADMIN
+===================================================== */
+
+function loadAdmin(){
+
+    document.getElementById(
+        "siteNameInput"
+    ).value = data.siteName;
+
+    document.getElementById(
+        "whatsappInput"
+    ).value = data.whatsapp;
+
+    document.getElementById(
+        "sizesInput"
+    ).value =
+        data.sizes.join(", ");
+
+    renderAdmin();
+
+}
+
+/* =====================================================
+   ADMIN MATERIALS
+===================================================== */
+
+function renderAdmin(){
+
+    const box =
+        document.getElementById(
+            "adminMaterials"
+        );
+
+    box.innerHTML =
+        data.materials.map(
+            (material,index) => `
+
+            <div class="material-row">
+
+                <img
+                    src="${
+                        material.images[0] ||
+                        placeholder("IMAGE")
+                    }"
+                    alt=""
+                >
+
+                <div>
+
+                    <input
+                        id="materialName${index}"
+                        value="${escapeHTML(material.name)}"
+                    >
+
+                    <input
+                        id="materialDesc${index}"
+                        value="${escapeHTML(material.desc)}"
+                    >
+
+                    <input
+                        id="materialPrice${index}"
+                        type="number"
+                        value="${material.price}"
+                    >
+
+                </div>
+
+                <div class="actions">
+
+                    <button
+                        class="btn dark-btn"
+                        onclick="
+                            document
+                            .getElementById(
+                                'images${index}'
+                            ).click()
+                        "
+                    >
+                        تغيير الصور
+                    </button>
+
+                    <input
+                        id="images${index}"
+                        class="hidden"
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        onchange="
+                            replaceImages(
+                                ${index},
+                                this.files
+                            )
+                        "
+                    >
+
+                    <button
+                        class="danger"
+                        onclick="
+                            deleteMaterial(${index})
+                        "
+                    >
+                        حذف
+                    </button>
+
+                </div>
+
+            </div>
+
+        `
+        ).join("");
+
+}
+
+/* =====================================================
+   ADD MATERIAL
+===================================================== */
+
+function addMaterial(){
+
+    const name =
+        document
+        .getElementById("newMaterialName")
+        .value
+        .trim();
+
+    const desc =
+        document
+        .getElementById("newMaterialDesc")
+        .value
+        .trim();
+
+    const price =
+        Number(
+            document
+            .getElementById("newMaterialPrice")
+            .value
+        ) || 0;
+
+    const files =
+        [
+            ...
+            document
+            .getElementById(
+                "newMaterialImages"
+            ).files
+        ];
+
+    if(!name){
+
+        alert("اكتب اسم الخامة");
+
+        return;
+
+    }
+
+    Promise
+        .all(
+            files.map(
+                fileToData
+            )
+        )
+        .then(
+            images => {
+
+                data.materials.push({
+
+                    name:name,
+
+                    desc:
+                        desc ||
+                        "خامة فاخرة",
+
+                    price:price,
+
+                    images:images
+
+                });
+
+                saveData();
+
+                document
+                    .getElementById(
+                        "newMaterialName"
+                    ).value = "";
+
+                document
+                    .getElementById(
+                        "newMaterialDesc"
+                    ).value = "";
+
+                document
+                    .getElementById(
+                        "newMaterialPrice"
+                    ).value = "";
+
+                document
+                    .getElementById(
+                        "newMaterialImages"
+                    ).value = "";
+
+                renderAdmin();
+
+                render();
+
+                alert(
+                    "تمت إضافة الخامة بنجاح"
+                );
+
+            }
+        );
+
+}
+
+/* =====================================================
+   DELETE MATERIAL
+===================================================== */
+
+function deleteMaterial(index){
+
+    if(data.materials.length <= 1){
+
+        alert(
+            "لازم تفضل خامة واحدة على الأقل"
+        );
+
+        return;
+
+    }
+
+    if(
+        confirm(
+            "هل تريد حذف هذه الخامة؟"
+        )
+    ){
+
+        data.materials.splice(
+            index,
+            1
+        );
+
+        saveData();
+
+        renderAdmin();
+
+        render();
+
+    }
+
+}
+
+/* =====================================================
+   REPLACE IMAGES
+===================================================== */
+
+function replaceImages(index,files){
+
+    Promise
+        .all(
+            [...files].map(fileToData)
+        )
+        .then(
+            images => {
+
+                data.materials[index]
+                    .images = images;
+
+                saveData();
+
+                renderAdmin();
+
+                render();
+
+            }
+        );
+
+}
+
+/* =====================================================
+   SAVE SETTINGS
+===================================================== */
+
+function saveSettings(){
+
+    data.siteName =
+        document
+        .getElementById(
+            "siteNameInput"
+        )
+        .value
+        .trim()
+        ||
+        data.siteName;
+
+    data.whatsapp =
+        document
+        .getElementById(
+            "whatsappInput"
+        )
+        .value
+        .replace(
+            /\D/g,
+            ""
+        );
+
+    data.sizes =
+        document
+        .getElementById(
+            "sizesInput"
+        )
+        .value
+        .split(",")
+        .map(
+            value =>
+                parseFloat(
+                    value.trim()
+                )
+        )
+        .filter(
+            value =>
+                !isNaN(value)
+        );
+
+    data.materials.forEach(
+        (material,index) => {
+
+            material.name =
+                document
+                .getElementById(
+                    "materialName"+index
+                )
+                .value
+                .trim();
+
+            material.desc =
+                document
+                .getElementById(
+                    "materialDesc"+index
+                )
+                .value
+                .trim();
+
+            material.price =
+                Number(
+                    document
+                    .getElementById(
+                        "materialPrice"+index
+                    )
+                    .value
+                ) || 0;
+
+        }
+    );
+
+    const newPassword =
+        document
+        .getElementById(
+            "newPassword"
+        )
+        .value
+        .trim();
+
+    if(newPassword){
+
+        localStorage.setItem(
+            PASS_KEY,
+            newPassword
+        );
+
+    }
+
+    saveData();
+
+    render();
+
+    loadAdmin();
+
+    document
+        .getElementById(
+            "newPassword"
+        ).value = "";
+
+    alert(
+        "تم حفظ التعديلات بنجاح ✅"
+    );
+
+}
+
+/* =====================================================
+   IMAGE TO DATA
+===================================================== */
+
+function fileToData(file){
+
+    return new Promise(
+        (resolve,reject) => {
+
+            const reader =
+                new FileReader();
+
+            reader.onload =
+                () =>
+                    resolve(
+                        reader.result
+                    );
+
+            reader.onerror =
+                reject;
+
+            reader.readAsDataURL(
+                file
+            );
+
+        }
+    );
+
+}
+
+/* =====================================================
+   KOK IMAGE
+===================================================== */
+
+document
+.getElementById("kokImageInput")
+.addEventListener(
+    "change",
+    function(){
+
+        const file =
+            this.files[0];
+
+        if(!file) return;
+
+        fileToData(file)
+        .then(
+            image => {
+
+                data.kok = image;
+
+                saveData();
+
+                render();
+
+            }
+        );
+
+    }
+);
+
+/* =====================================================
+   PREVIEW CUSTOMER IMAGES
+===================================================== */
+
+document
+.getElementById("photosInput")
+.addEventListener(
+    "change",
+    function(){
+
+        const preview =
+            document.getElementById(
+                "preview"
+            );
+
+        preview.innerHTML = "";
+
+        [
+            ...this.files
+        ]
+        .slice(0,8)
+        .forEach(
+            file => {
+
+                const reader =
+                    new FileReader();
+
+                reader.onload =
+                    function(){
+
+                        const img =
+                            document.createElement(
+                                "img"
+                            );
+
+                        img.src =
+                            reader.result;
+
+                        preview.appendChild(
+                            img
+                        );
+
+                    };
+
+                reader.readAsDataURL(
+                    file
+                );
+
+            }
+        );
+
+    }
+);
+
+/* =====================================================
+   SEND WHATSAPP ORDER
+===================================================== */
+
+function sendOrder(){
+
+    const name =
+        document
+        .getElementById(
+            "customerName"
+        )
+        .value
+        .trim();
+
+    const phone =
+        document
+        .getElementById(
+            "customerPhone"
+        )
+        .value
+        .trim();
+
+    if(!name || !phone){
+
+        alert(
+            "اكتب الاسم ورقم الواتساب"
+        );
+
+        return;
+
+    }
+
+    const materialIndex =
+        Number(
+            document
+            .getElementById(
+                "materialSelect"
+            ).value
+        );
+
+    const material =
+        data.materials[
+            materialIndex
+        ];
+
+    const size =
+        document
+        .getElementById(
+            "sizeSelect"
+        )
+        .value;
+
+    const count =
+        document
+        .getElementById(
+            "countSelect"
+        )
+        .value;
+
+    const price =
+        document
+        .getElementById(
+            "priceInput"
+        )
+        .value;
+
+    const notes =
+        document
+        .getElementById(
+            "notesInput"
+        )
+        .value
+        .trim()
+        ||
+        "لا يوجد";
+
+    const message =
+
+        "طلب جديد من ورشة الجوكر\n\n" +
+
+        "الاسم: " +
+        name +
+        "\n" +
+
+        "رقم واتساب: " +
+        phone +
+        "\n" +
+
+        "الخامة: " +
+        material.name +
+        "\n" +
+
+        "المقاس: " +
+        size +
+        " mm\n" +
+
+        "عدد الحبات: " +
+        count +
+        "\n" +
+
+        "السعر التقريبي: " +
+        price +
+        "\n" +
+
+        "ملاحظات: " +
+        notes;
+
+    const url =
+        "https://wa.me/" +
+        data.whatsapp +
+        "?text=" +
+        encodeURIComponent(
+            message
+        );
+
+    window.open(
+        url,
+        "_blank"
+    );
+
+}
+
+/* =====================================================
+   EVENTS
+===================================================== */
+
+document
+.getElementById(
+    "materialSelect"
+)
+.addEventListener(
+    "change",
+    updatePrice
+);
+
+/* =====================================================
+   START
+===================================================== */
+
+render();
+
+</script>
+
+</body>
+</html>
