@@ -1,0 +1,2460 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ورشة الجوكر للسبح الفاخرة</title>
+
+<style>
+*{box-sizing:border-box}
+:root{
+--gold:#d4af37;
+--gold2:#ffeaa0;
+--bg:#070709;
+--card:#121216;
+--muted:#a1a1aa;
+--line:rgba(212,175,55,.25)
+}
+html{scroll-behavior:smooth}
+body{
+margin:0;
+background:radial-gradient(circle at top,#17130a 0,#070709 35%);
+color:#fff;
+font-family:Arial,Tahoma,sans-serif
+}
+button,input,select,textarea{font:inherit}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:auto;padding:0 18px}
+
+.top{
+position:sticky;
+top:0;
+z-index:30;
+background:rgba(7,7,9,.9);
+backdrop-filter:blur(14px);
+border-bottom:1px solid var(--line)
+}
+header{
+height:76px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px
+}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{
+width:48px;
+height:48px;
+border:1px solid var(--gold);
+border-radius:50%;
+display:grid;
+place-items:center;
+color:var(--gold2);
+font-size:24px;
+font-weight:900;
+cursor:pointer;
+user-select:none
+}
+.brand b{font-size:20px}
+.brand small{display:block;color:var(--gold);margin-top:2px}
+.nav{display:flex;gap:18px;color:#ddd}
+.nav a:hover{color:var(--gold)}
+
+.menuBtn,.adminBtn,.goldBtn{
+border:1px solid var(--gold);
+background:linear-gradient(135deg,#d4af37,#9b7411);
+color:#111;
+font-weight:900;
+border-radius:10px;
+padding:11px 16px;
+cursor:pointer
+}
+.menuBtn{background:#15151a;color:var(--gold)}
+
+.geoDecoration{
+position:absolute;
+width:120px;
+height:120px;
+border:1px solid rgba(212,175,55,.22);
+transform:rotate(45deg);
+pointer-events:none
+}
+.geoDecoration:before{
+content:"";
+position:absolute;
+inset:16px;
+border:1px solid rgba(212,175,55,.18)
+}
+.geoDecoration:after{
+content:"";
+position:absolute;
+inset:32px;
+border:1px solid rgba(212,175,55,.15)
+}
+.hero{
+position:relative;
+overflow:hidden;
+padding:85px 0 55px;
+text-align:center
+}
+.geoDecoration.one{top:35px;right:5%}
+.geoDecoration.two{bottom:20px;left:5%}
+.hero h1{
+font-size:clamp(34px,6vw,70px);
+margin:10px 0;
+background:linear-gradient(#fff6bd,#d4af37);
+color:transparent;
+background-clip:text;
+-webkit-background-clip:text
+}
+.hero p{
+color:#bbb;
+max-width:700px;
+margin:0 auto 25px;
+line-height:1.9
+}
+.section{padding:55px 0}
+.title{text-align:center;margin-bottom:30px}
+.title h2{font-size:30px;color:var(--gold2);margin:0 0 8px}
+.title p{color:var(--muted)}
+
+.materialSection{
+padding:35px 0
+}
+.materialSection+.materialSection{
+border-top:1px solid rgba(212,175,55,.12)
+}
+.materialTitle{text-align:center;margin-bottom:20px}
+.materialTitle h3{
+color:var(--gold2);
+font-size:27px;
+margin:0 0 8px
+}
+.materialTitle p{color:#aaa;margin:0 0 8px}
+.materialImages{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px
+}
+.materialImageCard{
+background:linear-gradient(145deg,#17171c,#0e0e11);
+border:1px solid var(--line);
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 15px 35px #0008
+}
+.materialImageCard img{
+width:100%;
+height:230px;
+object-fit:cover;
+display:block
+}
+.materialInfo{padding:14px;text-align:center}
+.materialInfo .shape{
+display:block;
+color:var(--gold2);
+font-weight:bold;
+margin-bottom:5px
+}
+.materialInfo .desc{
+display:block;
+color:#aaa;
+line-height:1.6
+}
+.price{
+font-size:20px;
+color:var(--gold);
+font-weight:900
+}
+
+.order{
+max-width:760px;
+margin:auto;
+background:#111116;
+border:1px solid var(--line);
+border-radius:22px;
+padding:25px
+}
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px
+}
+.field{margin-bottom:14px}
+.field label{
+display:block;
+color:#ddd;
+margin-bottom:7px
+}
+.field input,.field select,.field textarea{
+width:100%;
+background:#09090c;
+border:1px solid #33333b;
+color:#fff;
+border-radius:10px;
+padding:12px;
+outline:none
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+border-color:var(--gold)
+}
+.preview{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px;
+margin-top:10px
+}
+.preview img{
+width:100%;
+height:110px;
+object-fit:cover;
+border-radius:10px;
+border:1px solid var(--line)
+}
+
+footer{
+text-align:center;
+border-top:1px solid var(--line);
+padding:30px;
+color:#888
+}
+.float{
+position:fixed;
+bottom:18px;
+left:18px;
+width:58px;
+height:58px;
+border-radius:50%;
+display:grid;
+place-items:center;
+background:#25d366;
+color:#fff;
+font-size:25px;
+z-index:25;
+box-shadow:0 8px 25px #000
+}
+
+.drawer{
+position:fixed;
+right:-360px;
+top:0;
+width:340px;
+max-width:90vw;
+height:100%;
+background:#0e0e12;
+border-left:1px solid var(--line);
+z-index:60;
+padding:22px;
+transition:.3s;
+overflow:auto
+}
+.drawer.open{right:0}
+.drawer a{
+display:flex;
+align-items:center;
+gap:10px;
+padding:12px;
+border-bottom:1px solid #25252b
+}
+.drawer img{
+width:52px;
+height:52px;
+border-radius:10px;
+object-fit:cover
+}
+.overlay{
+position:fixed;
+inset:0;
+background:#0009;
+z-index:50;
+display:none
+}
+.overlay.show{display:block}
+
+.adminModal{
+position:fixed;
+inset:0;
+background:#000d;
+z-index:100;
+display:none;
+overflow:auto;
+padding:25px
+}
+.adminModal.show{display:block}
+.adminBox{
+max-width:1000px;
+margin:20px auto;
+background:#101014;
+border:1px solid var(--gold);
+border-radius:20px;
+padding:22px;
+box-shadow:0 30px 80px #000
+}
+.adminHead{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+border-bottom:1px solid #2b2b31;
+padding-bottom:15px;
+margin-bottom:18px
+}
+.adminHead h2{margin:0;color:var(--gold2)}
+.adminGrid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px
+}
+.panel{
+background:#0b0b0f;
+border:1px solid #292930;
+border-radius:15px;
+padding:16px
+}
+.panel h3{color:var(--gold);margin-top:0}
+
+.materialRow{
+border-top:1px solid #26262c;
+padding:18px 0
+}
+.materialMain{
+display:grid;
+grid-template-columns:100px 1fr;
+gap:12px;
+align-items:start
+}
+.materialRow img{
+width:100px;
+height:80px;
+object-fit:cover;
+border-radius:8px
+}
+.materialRow input{
+width:100%;
+background:#09090c;
+color:#fff;
+border:1px solid #333;
+border-radius:8px;
+padding:9px
+}
+.actions{
+display:flex;
+gap:7px;
+flex-wrap:wrap;
+margin-top:10px
+}
+.danger{
+background:#5b1515;
+color:#fff;
+border:1px solid #a33;
+border-radius:8px;
+padding:9px;
+cursor:pointer
+}
+.secondary{
+background:#191920;
+color:#fff;
+border:1px solid #444;
+border-radius:8px;
+padding:9px;
+cursor:pointer
+}
+.close{
+background:#24242a;
+color:#fff;
+border:1px solid #555;
+border-radius:8px;
+padding:9px 14px;
+cursor:pointer
+}
+.login{
+max-width:420px;
+margin:100px auto;
+background:#101014;
+border:1px solid var(--gold);
+border-radius:20px;
+padding:25px
+}
+.notice{
+background:#201a08;
+border:1px solid var(--line);
+color:#e8d99d;
+padding:12px;
+border-radius:10px;
+line-height:1.7;
+margin-bottom:15px
+}
+.hidden{display:none!important}
+
+.shapeBox{
+margin-top:15px;
+padding:14px;
+border:1px solid rgba(212,175,55,.2);
+border-radius:12px;
+background:#111116
+}
+.shapeHead{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+margin-bottom:10px
+}
+.shapeHead strong{color:var(--gold2)}
+.shapeImages{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-top:8px
+}
+.shapeImages img{
+width:70px;
+height:60px;
+object-fit:cover;
+border-radius:8px;
+border:1px solid var(--line)
+}
+
+@media(max-width:850px){
+.materialImages{grid-template-columns:repeat(2,1fr)}
+.nav{display:none}
+.adminGrid,.row{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+.materialImages{grid-template-columns:1fr 1fr}
+.materialImageCard img{height:160px}
+.preview{grid-template-columns:repeat(2,1fr)}
+header{height:68px}
+.brand b{font-size:16px}
+.brand small{font-size:11px}
+.geoDecoration{width:80px;height:80px}
+.materialMain{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="top">
+<div class="wrap">
+<header>
+
+<div class="brand">
+<div class="logo" onclick="adminClick()">ج</div>
+<div>
+<b>ورشة الجوكر</b>
+<small>للسبح الفاخرة</small>
+</div>
+</div>
+
+<nav class="nav">
+<a href="#materials">الخامات</a>
+<a href="#order">اطلب سبحتك</a>
+</nav>
+
+<div style="display:flex;gap:7px">
+<button class="menuBtn" onclick="openMenu()">☰</button>
+
+<button class="adminBtn" onclick="openAdmin()" style="display:none">
+Admin
+</button>
+</div>
+
+</header>
+</div>
+</div>
+
+<main>
+
+<section class="hero">
+<div class="geoDecoration one"></div>
+<div class="geoDecoration two"></div>
+
+<div class="wrap">
+<p style="color:var(--gold)">فخامة • جودة • صناعة مميزة</p>
+
+<h1>ورشة الجوكر للسبح الفاخرة</h1>
+
+<p>
+اختار الخامة والمقاس، أو ابعت تصميمك
+ونجهز لك طلبك حسب اختيارك.
+</p>
+
+<a class="goldBtn" href="#order">اطلب سبحتك الآن</a>
+</div>
+</section>
+
+
+<section class="section" id="materials">
+
+<div class="wrap">
+
+<div class="title">
+<h2>الخامات</h2>
+<p>كل نوع له قسم خاص وصوره الخاصة</p>
+</div>
+
+<div id="materialsGrid"></div>
+
+</div>
+</section>
+
+
+<section class="section" id="order">
+
+<div class="wrap">
+
+<div class="title">
+<h2>اطلب سبحتك</h2>
+<p>املأ البيانات وسيتم تجهيز رسالة واتساب تلقائياً</p>
+</div>
+
+<div class="order">
+
+<div class="row">
+
+<div class="field">
+<label>الاسم</label>
+<input id="name" required>
+</div>
+
+<div class="field">
+<label>رقم واتساب</label>
+<input id="phone" type="tel" required>
+</div>
+
+</div>
+
+
+<div class="row">
+
+<div class="field">
+<label>الخامة</label>
+<select id="material"></select>
+</div>
+
+<div class="field">
+<label>المقاس</label>
+<select id="size"></select>
+</div>
+
+</div>
+
+
+<div class="field">
+<label>السعر التقريبي</label>
+<input id="price" readonly>
+</div>
+
+
+<div class="field">
+<label>ارفع صور/تصميم (اختياري)</label>
+
+<input
+id="photos"
+type="file"
+accept="image/*"
+multiple
+>
+
+<div id="preview" class="preview"></div>
+</div>
+
+
+<div class="field">
+<label>ملاحظات</label>
+<textarea id="notes" rows="4"></textarea>
+</div>
+
+
+<button
+class="goldBtn"
+style="width:100%"
+onclick="sendOrder()"
+>
+إرسال الطلب على واتساب 📲
+</button>
+
+</div>
+</div>
+</section>
+
+</main>
+
+<footer>
+© 2026 ورشة الجوكر للسبح الفاخرة - جميع الحقوق محفوظة
+</footer>
+
+<a
+class="float"
+href="https://wa.me/201101121270"
+target="_blank"
+>
+⌕
+</a>
+
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+<aside id="drawer" class="drawer">
+
+<div style="display:flex;justify-content:space-between;align-items:center">
+
+<h2 style="color:var(--gold)">القائمة</h2>
+
+<button class="close" onclick="closeMenu()">✕</button>
+
+</div>
+
+<div id="menuLinks"></div>
+
+</aside>
+
+
+<div id="adminModal" class="adminModal">
+
+<div id="loginBox" class="login">
+
+<h2 style="color:var(--gold2)">دخول لوحة التحكم</h2>
+
+<div class="notice">
+سجّل الدخول بالبريد الإلكتروني وكلمة المرور
+اللذين ستنشئهما أنت في Supabase.
+</div>
+
+<div class="field">
+<label>البريد الإلكتروني للأدمن</label>
+<input
+id="adminEmail"
+type="email"
+autocomplete="username"
+placeholder="admin@example.com"
+>
+</div>
+
+<div class="field">
+<label>كلمة المرور</label>
+<input id="adminPass" type="password">
+</div>
+
+<button class="goldBtn" style="width:100%" onclick="login()">
+دخول
+</button>
+
+<button
+class="close"
+style="width:100%;margin-top:8px"
+onclick="closeAdmin()"
+>
+إلغاء
+</button>
+
+</div>
+
+
+<div id="adminPanel" class="adminBox hidden">
+
+<div class="adminHead">
+
+<h2>لوحة تحكم ورشة الجوكر</h2>
+
+<div>
+
+<button class="secondary" onclick="saveAll()">
+حفظ التعديلات
+</button>
+
+<button class="close" onclick="logout()">
+خروج
+</button>
+
+</div>
+
+</div>
+
+
+<div class="notice">
+البيانات والصور محفوظة أونلاين في قاعدة البيانات والتخزين.
+كلمة مرور الأدمن تدار من حساب Supabase.
+</div>
+
+
+<div class="adminGrid">
+
+<div class="panel">
+
+<h3>إعدادات الموقع</h3>
+
+<div class="field">
+<label>اسم الورشة</label>
+<input id="siteName">
+</div>
+
+<div class="field">
+<label>رقم واتساب</label>
+<input id="wa">
+</div>
+
+<div class="field">
+<label>المقاسات (افصل بينهم بفاصلة)</label>
+<input id="sizesInput">
+</div>
+
+<div class="field">
+<label>تغيير كلمة مرور الأدمن</label>
+<input
+id="newPass"
+type="password"
+placeholder="اتركها فارغة لو مش عايز تغيرها"
+>
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h3>إضافة خامة</h3>
+
+<div class="field">
+<label>اسم الخامة</label>
+<input id="newName">
+</div>
+
+<div class="field">
+<label>الوصف</label>
+<input id="newDesc">
+</div>
+
+<div class="field">
+<label>السعر الأساسي</label>
+<input id="newPrice" type="number">
+</div>
+
+<div class="field">
+<label>صور الخامة</label>
+<input
+id="newImages"
+type="file"
+accept="image/*"
+multiple
+>
+</div>
+
+<button class="goldBtn" onclick="addMaterial()">
+إضافة الخامة
+</button>
+
+</div>
+
+</div>
+
+
+<div class="panel" style="margin-top:15px">
+
+<h3>الخامات والقصّات والصور</h3>
+
+<div id="adminMaterials"></div>
+
+</div>
+
+</div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+/* ================================
+   Supabase
+================================ */
+
+const SUPABASE_URL =
+"https://ggjgktccemdsrcsqypse.supabase.co";
+
+const SUPABASE_KEY =
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnamdrdGNjZW1kc3Jjc3F5cHNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0NTU2MTIsImV4cCI6MjEwNDAzMTYxMn0.S5fzn0sYlN5QvOzAHJ65q2Ln6F3Z4PVQjL7zslHdJR0";
+
+const sb =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+/* ================================
+   البيانات الافتراضية
+================================ */
+
+const defaults = {
+
+siteName:
+"ورشة الجوكر للسبح الفاخرة",
+
+wa:
+"201101121270",
+
+sizes:[
+10,
+10.5,
+11,
+11.5,
+12,
+12.5,
+13,
+13.5,
+14
+],
+
+materials:[
+
+{
+name:"بكالايت منجم",
+desc:"خامة فاخرة ومميزة",
+price:1000,
+images:[]
+},
+
+{
+name:"بكالايت رخامي فيروزي",
+desc:"رخامي فيروزي بطابع فاخر",
+price:1200,
+images:[]
+},
+
+{
+name:"تتاروك صب قديم",
+desc:"صب قديم بطابع كلاسيكي",
+price:1300,
+images:[]
+},
+
+{
+name:"تتاروك عطش",
+desc:"خامة مميزة بطابع نادر",
+price:1400,
+images:[]
+},
+
+{
+name:"صب جديد",
+desc:"صب جديد بتشطيبات مميزة",
+price:1100,
+images:[]
+}
+
+]
+
+};
+
+let D=structuredClone(defaults);
+
+
+/* ================================
+   أدوات
+================================ */
+
+function isConfigured(){
+return (
+SUPABASE_URL &&
+!SUPABASE_URL.includes("ضع_رابط") &&
+SUPABASE_KEY &&
+!SUPABASE_KEY.includes("ضع_publishable")
+);
+}
+
+function esc(s){
+return String(s??"").replace(
+/[&<>"']/g,
+function(m){
+return{
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[m];
+}
+);
+}
+
+function cleanName(s){
+return String(s||"file")
+.replace(/[^a-zA-Z0-9.-]/g,"")
+.slice(0,80);
+}
+
+function publicUrl(path){
+return sb.storage
+.from("joker-images")
+.getPublicUrl(path)
+.data.publicUrl;
+}
+
+
+/* ================================
+   الصور القديمة والقصص
+================================ */
+
+/*
+  مهم:
+  الصور القديمة تفضل String زي ما هي.
+
+  القصة الجديدة تكون:
+  {
+    type:"shape",
+    name:"اسم القصة",
+    desc:"وصف القصة",
+    images:[...]
+  }
+
+  وبكده مش محتاجين نغير جدول Supabase.
+*/
+
+function isShape(item){
+return item &&
+typeof item==="object" &&
+item.type==="shape";
+}
+
+function normalImages(material){
+return (Array.isArray(material.images)?material.images:[])
+.filter(x=>typeof x==="string");
+}
+
+function shapesOf(material){
+return (Array.isArray(material.images)?material.images:[])
+.filter(isShape);
+}
+
+
+/* ================================
+   تحميل البيانات
+================================ */
+
+async function loadData(){
+
+if(!isConfigured()){
+alert(
+"لازم تحط SUPABASE_URL و SUPABASE_KEY داخل index.html أولاً."
+);
+return;
+}
+
+const[
+{data:settings,error:sErr},
+{data:materials,error:mErr}
+]=await Promise.all([
+
+sb.from("site_settings")
+.select("*")
+.eq("id",1)
+.maybeSingle(),
+
+sb.from("materials")
+.select("*")
+.order("sort_order",{ascending:true})
+
+]);
+
+if(sErr||mErr){
+
+console.error(sErr||mErr);
+
+alert(
+"حصل خطأ في تحميل بيانات الموقع. راجع إعداد Supabase و setup.sql."
+);
+
+render();
+return;
+}
+
+if(settings){
+
+let loadedSizes=[];
+
+try{
+
+loadedSizes=
+Array.isArray(settings.sizes)
+?settings.sizes
+:JSON.parse(settings.sizes||"[]");
+
+}catch(e){
+loadedSizes=defaults.sizes;
+}
+
+D={
+...D,
+
+siteName:
+settings.site_name||D.siteName,
+
+wa:
+settings.whatsapp||D.wa,
+
+sizes:
+loadedSizes.length
+?loadedSizes
+:D.sizes
+};
+
+}
+
+if(materials?.length){
+
+D.materials=
+materials.map(function(m){
+
+return{
+
+id:m.id,
+
+name:m.name,
+
+desc:m.description||"",
+
+price:Number(m.price)||0,
+
+images:
+Array.isArray(m.images)
+?m.images
+:[]
+
+};
+
+});
+
+}
+
+render();
+}
+
+
+/* ================================
+   رفع الصور
+================================ */
+
+async function uploadFile(file,folder){
+
+const path=
+`${folder}/${crypto.randomUUID()}-${cleanName(file.name)}`;
+
+const{error}=
+await sb.storage
+.from("joker-images")
+.upload(
+path,
+file,
+{
+upsert:false,
+contentType:file.type||"image/*"
+}
+);
+
+if(error)throw error;
+
+return publicUrl(path);
+}
+
+
+/* ================================
+   عرض الموقع
+================================ */
+
+async function render(){
+
+document.title=D.siteName;
+
+document.querySelector(".brand b").textContent=
+D.siteName.replace(" للسبح الفاخرة","");
+
+document.querySelector(".brand small").textContent=
+"للسبح الفاخرة";
+
+const g=
+document.getElementById("materialsGrid");
+
+
+g.innerHTML=
+D.materials.map(function(m,materialIndex){
+
+const oldImages=normalImages(m);
+const shapes=shapesOf(m);
+
+let html="";
+
+if(oldImages.length){
+
+html+=oldImages.map(function(image){
+
+return`
+
+<article class="materialImageCard">
+
+<img
+src="${image}"
+alt="${esc(m.name)}"
+>
+
+<div class="materialInfo">
+
+<span class="shape">
+${esc(m.name)}
+</span>
+
+</div>
+
+</article>
+
+`;
+
+}).join("");
+
+}
+
+
+/* القصص الجديدة */
+
+shapes.forEach(function(shape){
+
+const imgs=
+Array.isArray(shape.images)&&shape.images.length
+?shape.images
+:["https://via.placeholder.com/700x500?text=Joker"];
+
+html+=imgs.map(function(image){
+
+return`
+
+<article class="materialImageCard">
+
+<img
+src="${image}"
+alt="${esc(shape.name)}"
+>
+
+<div class="materialInfo">
+
+<span class="shape">
+${esc(shape.name)}
+</span>
+
+<span class="desc">
+${esc(shape.desc)}
+</span>
+
+</div>
+
+</article>
+
+`;
+
+}).join("");
+
+});
+
+
+if(!html){
+
+html=`
+
+<article class="materialImageCard">
+
+<img
+src="https://via.placeholder.com/700x500?text=Joker"
+alt="${esc(m.name)}"
+>
+
+<div class="materialInfo">
+<span class="shape">${esc(m.name)}</span>
+</div>
+
+</article>
+
+`;
+
+}
+
+
+return`
+
+<section
+class="materialSection"
+id="material-${materialIndex}"
+>
+
+<div class="materialTitle">
+
+<h3>${esc(m.name)}</h3>
+
+<p>${esc(m.desc)}</p>
+
+<span class="price">
+يبدأ من
+${Number(m.price).toLocaleString("en-US")}
+ج.م
+</span>
+
+</div>
+
+<div class="materialImages">
+${html}
+</div>
+
+</section>
+
+`;
+
+}).join("");
+
+
+/* الخامة في الطلب */
+
+document.getElementById("material").innerHTML=
+
+D.materials.map(function(m,i){
+
+return`
+
+<option value="${i}">
+${esc(m.name)}
+</option>
+
+`;
+
+}).join("");
+
+
+/* المقاسات */
+
+document.getElementById("size").innerHTML=
+
+D.sizes.map(function(s){
+
+return`
+
+<option>${s}</option>
+
+`;
+
+}).join("");
+
+
+/* القائمة الجانبية */
+
+document.getElementById("menuLinks").innerHTML=
+
+D.materials.map(function(m,i){
+
+const image=
+normalImages(m)[0]||
+(shapesOf(m)[0]?.images?.[0])||
+"https://via.placeholder.com/100?text=J";
+
+return`
+
+<a
+href="#material-${i}"
+onclick="closeMenu()"
+>
+
+<img
+src="${image}"
+alt="${esc(m.name)}"
+>
+
+<span>${esc(m.name)}</span>
+
+</a>
+
+`;
+
+}).join("")+
+
+`
+
+<a href="#order" onclick="closeMenu()">
+اطلب سبحتك
+</a>
+
+`;
+
+updatePrice();
+}
+
+
+/* ================================
+   السعر
+================================ */
+
+function updatePrice(){
+
+const materialSelect=
+document.getElementById("material");
+
+const index=
+Number(materialSelect.value)||0;
+
+const m=D.materials[index];
+
+document.getElementById("price").value=
+m
+?Number(m.price).toLocaleString("en-US")+" ج.م"
+:"";
+}
+
+document.getElementById("material")
+.addEventListener("change",updatePrice);
+
+
+/* ================================
+   القائمة
+================================ */
+
+function openMenu(){
+
+document.getElementById("drawer")
+.classList.add("open");
+
+document.getElementById("overlay")
+.classList.add("show");
+
+}
+
+function closeMenu(){
+
+document.getElementById("drawer")
+.classList.remove("open");
+
+document.getElementById("overlay")
+.classList.remove("show");
+
+}
+
+
+/* ================================
+   الدخول المخفي للأدمن
+================================ */
+
+let adminClicks=0;
+let adminClickTimer;
+
+function adminClick(){
+
+adminClicks++;
+
+clearTimeout(adminClickTimer);
+
+adminClickTimer=setTimeout(
+function(){
+adminClicks=0;
+},
+1500
+);
+
+if(adminClicks>=5){
+
+adminClicks=0;
+
+openAdmin();
+
+}
+
+}
+
+
+/* ================================
+   لوحة التحكم
+================================ */
+
+function openAdmin(){
+
+document.getElementById("adminModal")
+.classList.add("show");
+
+document.getElementById("loginBox")
+.classList.remove("hidden");
+
+document.getElementById("adminPanel")
+.classList.add("hidden");
+
+document.getElementById("adminEmail").value="";
+document.getElementById("adminPass").value="";
+
+}
+
+function closeAdmin(){
+
+document.getElementById("adminModal")
+.classList.remove("show");
+
+}
+
+async function login(){
+
+if(!isConfigured()){
+
+return alert(
+"لسه ما حطتش بيانات Supabase داخل index.html."
+);
+
+}
+
+const email=
+document.getElementById("adminEmail")
+.value.trim();
+
+const password=
+document.getElementById("adminPass").value;
+
+if(!email||!password){
+
+return alert(
+"اكتب البريد الإلكتروني وكلمة المرور."
+);
+
+}
+
+const{error}=
+await sb.auth.signInWithPassword({
+email,
+password
+});
+
+if(error){
+
+console.error(error);
+
+alert(
+"البريد الإلكتروني أو كلمة المرور غير صحيحة."
+);
+
+return;
+}
+
+document.getElementById("loginBox")
+.classList.add("hidden");
+
+document.getElementById("adminPanel")
+.classList.remove("hidden");
+
+await loadAdmin();
+
+}
+
+async function logout(){
+
+await sb.auth.signOut();
+
+closeAdmin();
+
+}
+
+async function loadAdmin(){
+
+document.getElementById("siteName").value=D.siteName;
+
+document.getElementById("wa").value=D.wa;
+
+document.getElementById("sizesInput").value=
+D.sizes.join(", ");
+
+renderAdmin();
+
+}
+
+
+/* ================================
+   لوحة الخامات
+================================ */
+
+function renderAdmin(){
+
+const container=
+document.getElementById("adminMaterials");
+
+container.innerHTML=
+
+D.materials.map(function(m,i){
+
+const firstImage=
+normalImages(m)[0]||
+shapesOf(m)[0]?.images?.[0]||
+"https://via.placeholder.com/200?text=No+Image";
+
+const shapes=shapesOf(m);
+
+return`
+
+<div class="materialRow">
+
+<div class="materialMain">
+
+<img
+src="${firstImage}"
+alt="${esc(m.name)}"
+>
+
+<div>
+
+<input
+id="mn${i}"
+value="${esc(m.name)}"
+placeholder="اسم الخامة"
+>
+
+<input
+id="md${i}"
+value="${esc(m.desc)}"
+style="margin-top:6px"
+placeholder="الوصف"
+>
+
+<input
+id="mp${i}"
+type="number"
+value="${m.price}"
+style="margin-top:6px"
+placeholder="السعر"
+>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="secondary"
+onclick="document.getElementById('mi${i}').click()"
+>
+إضافة صور للخامة
+</button>
+
+<input
+id="mi${i}"
+class="hidden"
+type="file"
+accept="image/*"
+multiple
+onchange="addImagesToMaterial(${i},this.files)"
+>
+
+
+<button
+class="goldBtn"
+onclick="openShapeForm(${i})"
+>
++ إضافة قَصّة
+</button>
+
+
+<button
+class="danger"
+onclick="delMaterial(${i})"
+>
+حذف الخامة
+</button>
+
+</div>
+
+
+<div id="shapeForm${i}"></div>
+
+
+${shapes.map(function(shape,si){
+
+return`
+
+<div class="shapeBox">
+
+<div class="shapeHead">
+
+<strong>
+${esc(shape.name)}
+</strong>
+
+<button
+class="danger"
+onclick="deleteShape(${i},${si})"
+>
+حذف القَصّة
+</button>
+
+</div>
+
+<div style="color:#aaa;margin-bottom:8px">
+${esc(shape.desc)}
+</div>
+
+<div class="shapeImages">
+
+${(shape.images||[]).map(function(img){
+
+return`
+
+<img
+src="${img}"
+alt="${esc(shape.name)}"
+>
+
+`;
+
+}).join("")}
+
+</div>
+
+<div class="actions">
+
+<button
+class="secondary"
+onclick="document.getElementById('shapeImg${i}_${si}').click()"
+>
+إضافة صور للقَصّة
+</button>
+
+<input
+id="shapeImg${i}_${si}"
+class="hidden"
+type="file"
+accept="image/*"
+multiple
+onchange="addImagesToShape(${i},${si},this.files)"
+>
+
+</div>
+
+</div>
+
+`;
+
+}).join("")}
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+/* ================================
+   إضافة قصّة جديدة
+================================ */
+
+function openShapeForm(materialIndex){
+
+const box=
+document.getElementById(
+"shapeForm"+materialIndex
+);
+
+box.innerHTML=`
+
+<div class="shapeBox">
+
+<div class="field">
+
+<label>اسم القَصّة / الشكل</label>
+
+<input
+id="shapeName${materialIndex}"
+placeholder="مثال: مدور"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>وصف القَصّة</label>
+
+<textarea
+id="shapeDesc${materialIndex}"
+rows="3"
+placeholder="اكتب وصف الشكل هنا"
+></textarea>
+
+</div>
+
+
+<div class="field">
+
+<label>صور القَصّة</label>
+
+<input
+id="shapeImages${materialIndex}"
+type="file"
+accept="image/*"
+multiple
+>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="goldBtn"
+onclick="addShape(${materialIndex})"
+>
+حفظ القَصّة
+</button>
+
+<button
+class="close"
+onclick="document.getElementById('shapeForm${materialIndex}').innerHTML=''"
+>
+إلغاء
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* ================================
+   حفظ قصّة
+================================ */
+
+async function addShape(materialIndex){
+
+try{
+
+const material=
+D.materials[materialIndex];
+
+const name=
+document.getElementById(
+"shapeName"+materialIndex
+).value.trim();
+
+const desc=
+document.getElementById(
+"shapeDesc"+materialIndex
+).value.trim();
+
+const fileInput=
+document.getElementById(
+"shapeImages"+materialIndex
+);
+
+if(!name){
+
+return alert("اكتب اسم القَصّة");
+
+}
+
+const files=[...fileInput.files];
+
+const folder=
+`materials/${material.id||crypto.randomUUID()}/shapes`;
+
+const images=
+await Promise.all(
+
+files.map(function(file){
+
+return uploadFile(file,folder);
+
+})
+
+);
+
+
+/*
+  بنضيف القَصّة داخل نفس images
+  من غير ما نعمل سجل خامة جديد.
+*/
+
+if(!Array.isArray(material.images)){
+material.images=[];
+}
+
+material.images.push({
+
+type:"shape",
+
+name:name,
+
+desc:desc||"",
+
+images:images
+
+});
+
+
+await updateMaterialImages(material);
+
+renderAdmin();
+render();
+
+alert("تمت إضافة القَصّة والصور داخل نفس الخامة.");
+
+}catch(e){
+
+console.error(e);
+
+alert(
+"حصل خطأ أثناء إضافة القَصّة: "+e.message
+);
+
+}
+
+}
+
+
+/* ================================
+   إضافة صور للخامة الموجودة
+================================ */
+
+async function addImagesToMaterial(i,files){
+
+try{
+
+if(!files?.length)return;
+
+const material=D.materials[i];
+
+const folder=
+`materials/${material.id||crypto.randomUUID()}`;
+
+const imgs=
+await Promise.all(
+
+[...files].map(function(file){
+
+return uploadFile(file,folder);
+
+})
+
+);
+
+if(!Array.isArray(material.images)){
+material.images=[];
+}
+
+/*
+  الصور الجديدة تضاف للصور القديمة
+  ولا تستبدلها.
+*/
+
+material.images=[
+...material.images,
+...imgs
+];
+
+await updateMaterialImages(material);
+
+renderAdmin();
+render();
+
+alert("تمت إضافة الصور للخامة بدون حذف الصور القديمة.");
+
+}catch(e){
+
+console.error(e);
+
+alert(
+"حصل خطأ أثناء رفع الصور: "+e.message
+);
+
+}
+
+}
+
+
+/* ================================
+   إضافة صور لقَصّة موجودة
+================================ */
+
+async function addImagesToShape(materialIndex,shapeIndex,files){
+
+try{
+
+if(!files?.length)return;
+
+const material=D.materials[materialIndex];
+
+const shapes=shapesOf(material);
+
+const shape=shapes[shapeIndex];
+
+if(!shape)return;
+
+const folder=
+`materials/${material.id||crypto.randomUUID()}/shapes`;
+
+const imgs=
+await Promise.all(
+
+[...files].map(function(file){
+
+return uploadFile(file,folder);
+
+})
+
+);
+
+shape.images=[
+...(shape.images||[]),
+...imgs
+];
+
+await updateMaterialImages(material);
+
+renderAdmin();
+render();
+
+alert("تمت إضافة الصور للقَصّة بدون حذف الصور القديمة.");
+
+}catch(e){
+
+console.error(e);
+
+alert(
+"حصل خطأ أثناء رفع صور القَصّة: "+e.message
+);
+
+}
+
+}
+
+
+/* ================================
+   حذف قَصّة
+================================ */
+
+async function deleteShape(materialIndex,shapeIndex){
+
+if(!confirm("حذف القَصّة دي؟"))return;
+
+try{
+
+const material=D.materials[materialIndex];
+
+let indexInImages=-1;
+let count=0;
+
+for(
+let i=0;
+i<(material.images||[]).length;
+i++
+){
+
+if(isShape(material.images[i])){
+
+if(count===shapeIndex){
+
+indexInImages=i;
+break;
+
+}
+
+count++;
+
+}
+
+}
+
+if(indexInImages>=0){
+
+material.images.splice(indexInImages,1);
+
+await updateMaterialImages(material);
+
+}
+
+renderAdmin();
+render();
+
+}catch(e){
+
+console.error(e);
+
+alert(
+"حصل خطأ أثناء حذف القَصّة: "+e.message
+);
+
+}
+
+}
+
+
+/* ================================
+   تحديث صور خامة
+================================ */
+
+async function updateMaterialImages(material){
+
+if(!material.id)return;
+
+const{error}=
+await sb
+.from("materials")
+.update({
+images:Array.isArray(material.images)
+?material.images
+:[]
+})
+.eq("id",material.id);
+
+if(error)throw error;
+
+}
+
+
+/* ================================
+   حذف خامة
+================================ */
+
+async function delMaterial(i){
+
+if(D.materials.length<=1){
+
+return alert(
+"لازم تفضل خامة واحدة على الأقل"
+);
+
+}
+
+if(!confirm("حذف الخامة؟"))return;
+
+try{
+
+const id=D.materials[i].id;
+
+if(!id){
+
+D.materials.splice(i,1);
+
+renderAdmin();
+render();
+
+return;
+
+}
+
+const{error}=
+await sb
+.from("materials")
+.delete()
+.eq("id",id);
+
+if(error)throw error;
+
+D.materials.splice(i,1);
+
+renderAdmin();
+render();
+
+}catch(e){
+
+console.error(e);
+
+alert(
+"حصل خطأ أثناء الحذف: "+e.message
+);
+
+}
+
+}
+
+
+/* ================================
+   إضافة خامة جديدة
+================================ */
+
+async function addMaterial(){
+
+const newName=
+document.getElementById("newName");
+
+const newDesc=
+document.getElementById("newDesc");
+
+const newPrice=
+document.getElementById("newPrice");
+
+const newImages=
+document.getElementById("newImages");
+
+const n=newName.value.trim();
+
+if(!n){
+
+return alert("اكتب اسم الخامة");
+
+}
+
+try{
+
+const files=[...newImages.files];
+
+const tempId=crypto.randomUUID();
+
+const imgs=
+await Promise.all(
+
+files.map(function(f){
+
+return uploadFile(
+f,
+`materials/${tempId}`
+);
+
+})
+
+);
+
+const description=
+newDesc.value.trim()||
+"خامة فاخرة";
+
+const price=
+Number(newPrice.value)||0;
+
+const{data,error}=
+await sb
+.from("materials")
+.insert({
+
+name:n,
+
+description,
+
+price,
+
+images:imgs,
+
+sort_order:D.materials.length
+
+})
+.select()
+.single();
+
+if(error)throw error;
+
+D.materials.push({
+
+id:data.id,
+
+name:data.name,
+
+desc:data.description||"",
+
+price:Number(data.price)||0,
+
+images:Array.isArray(data.images)
+?data.images
+:[]
+
+});
+
+newName.value="";
+newDesc.value="";
+newPrice.value="";
+newImages.value="";
+
+renderAdmin();
+render();
+
+alert("تمت إضافة الخامة وحفظها أونلاين.");
+
+}catch(e){
+
+console.error(e);
+
+alert(
+"حصل خطأ أثناء إضافة الخامة: "+e.message
+);
+
+}
+
+}
+
+
+/* ================================
+   حفظ كل التعديلات
+================================ */
+
+async function saveAll(){
+
+try{
+
+const siteNameInput=
+document.getElementById("siteName");
+
+const waInput=
+document.getElementById("wa");
+
+const sizesInput=
+document.getElementById("sizesInput");
+
+const newPass=
+document.getElementById("newPass");
+
+D.siteName=
+siteNameInput.value.trim()||
+D.siteName;
+
+D.wa=
+waInput.value.replace(/\D/g,"");
+
+D.sizes=
+sizesInput.value
+.split(",")
+.map(function(x){
+return parseFloat(x.trim());
+})
+.filter(function(x){
+return !isNaN(x);
+});
+
+
+D.materials.forEach(function(m,i){
+
+const nameInput=
+document.getElementById("mn"+i);
+
+const descInput=
+document.getElementById("md"+i);
+
+const priceInput=
+document.getElementById("mp"+i);
+
+if(nameInput)
+m.name=nameInput.value.trim();
+
+if(descInput)
+m.desc=descInput.value.trim();
+
+if(priceInput)
+m.price=
+Number(priceInput.value)||0;
+
+});
+
+
+const{sErr}=await sb
+.from("site_settings")
+.update({
+
+site_name:D.siteName,
+
+whatsapp:D.wa,
+
+sizes:D.sizes
+
+})
+.eq("id",1);
+
+if(sErr)throw sErr;
+
+
+for(const m of D.materials){
+
+if(!m.id)continue;
+
+const{error}=
+await sb
+.from("materials")
+.update({
+
+name:m.name,
+
+description:m.desc,
+
+price:m.price,
+
+images:Array.isArray(m.images)
+?m.images
+:[]
+
+})
+.eq("id",m.id);
+
+if(error)throw error;
+
+}
+
+
+const password=
+newPass.value.trim();
+
+if(password){
+
+const{error}=
+await sb.auth.updateUser({
+password
+});
+
+if(error)throw error;
+
+newPass.value="";
+
+}
+
+render();
+
+loadAdmin();
+
+alert(
+"تم حفظ كل التعديلات بنجاح أونلاين."
+);
+
+}catch(e){
+
+console.error(e);
+
+alert(
+"حصل خطأ أثناء الحفظ: "+e.message
+);
+
+}
+
+}
+
+
+/* ================================
+   معاينة الصور
+================================ */
+
+document
+.getElementById("photos")
+.addEventListener(
+"change",
+function(){
+
+const preview=
+document.getElementById("preview");
+
+preview.innerHTML="";
+
+[...this.files]
+.slice(0,8)
+.forEach(function(f){
+
+const r=new FileReader();
+
+r.onload=function(){
+
+preview.innerHTML+=`
+
+<img src="${r.result}">
+
+`;
+
+};
+
+r.readAsDataURL(f);
+
+});
+
+}
+);
+
+
+/* ================================
+   إرسال الطلب
+================================ */
+
+function sendOrder(){
+
+const name=
+document.getElementById("name")
+.value.trim();
+
+const phone=
+document.getElementById("phone")
+.value.trim();
+
+if(!name||!phone){
+
+return alert(
+"اكتب الاسم ورقم الواتساب"
+);
+
+}
+
+const materialSelect=
+document.getElementById("material");
+
+const sizeSelect=
+document.getElementById("size");
+
+const priceInput=
+document.getElementById("price");
+
+const notesInput=
+document.getElementById("notes");
+
+const m=
+D.materials[
+Number(materialSelect.value)||0
+];
+
+if(!m){
+
+return alert(
+"اختار الخامة أولاً"
+);
+
+}
+
+const msg=
+
+"طلب جديد من ورشة الجوكر"+
+
+"%0Aالاسم:"+
+encodeURIComponent(name)+
+
+"%0Aواتساب:"+
+encodeURIComponent(phone)+
+
+"%0Aالخامة:"+
+encodeURIComponent(m.name)+
+
+"%0Aالمقاس:"+
+encodeURIComponent(sizeSelect.value)+
+" mm"+
+
+"%0Aعدد الحبات:"+
+encodeURIComponent("61")+
+
+"%0Aالسعر التقريبي:"+
+encodeURIComponent(priceInput.value)+
+
+"%0Aملاحظات:"+
+encodeURIComponent(
+notesInput.value||"لا يوجد"
+);
+
+window.open(
+"https://wa.me/"+
+D.wa+
+"?text="+
+msg,
+"_blank"
+);
+
+}
+
+
+/* ================================
+   تشغيل
+================================ */
+
+loadData();
+
+</script>
+
+</body>
+</html>
