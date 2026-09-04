@@ -1,2410 +1,2460 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-   
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-  <title>ورشة الجوكر للسبح الفاخرة</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    :root {
-      --gold: #d4af37;
-      --gold2: #ffeaa0;
-      --bg: #070709;
-      --card: #121216;
-      --muted: #a1a1aa;
-      --line: rgba(212, 175, 55, .25);
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      background: radial-gradient(circle at top, #17130a 0, #070709 35%);
-      color: #fff;
-      font-family: Arial, Tahoma, sans-serif;
-    }
-
-    button,
-    input,
-    select,
-    textarea {
-      font: inherit;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .wrap {
-      max-width: 1200px;
-      margin: auto;
-      padding: 0 18px;
-    }
-
-    .top {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      background: rgba(7, 7, 9, .9);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
-    }
-
-    header {
-      height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo {
-      width: 48px;
-      height: 48px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      color: var(--gold2);
-      font-size: 24px;
-      font-weight: 900;
-    }
-
-    .brand b {
-      font-size: 20px;
-    }
-
-    .brand small {
-      display: block;
-      color: var(--gold);
-      margin-top: 2px;
-    }
-
-    .nav {
-      display: flex;
-      gap: 18px;
-      color: #ddd;
-    }
-
-    .nav a:hover {
-      color: var(--gold);
-    }
-
-    .menuBtn,
-    .adminBtn,
-    .goldBtn {
-      border: 1px solid var(--gold);
-      background: linear-gradient(135deg, #d4af37, #9b7411);
-      color: #111;
-      font-weight: 900;
-      border-radius: 10px;
-      padding: 11px 16px;
-      cursor: pointer;
-    }
-
-    .menuBtn {
-      background: #15151a;
-      color: var(--gold);
-    }
-
-    .hero {
-      padding: 85px 0 55px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: clamp(34px, 6vw, 70px);
-      margin: 10px 0;
-      background: linear-gradient(#fff6bd, #d4af37);
-      color: transparent;
-      background-clip: text;
-      -webkit-background-clip: text;
-    }
-
-    .hero p {
-      color: #bbb;
-      max-width: 700px;
-      margin: 0 auto 25px;
-      line-height: 1.9;
-    }
-
-    .section {
-      padding: 55px 0;
-    }
-
-    .title {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .title h2 {
-      font-size: 30px;
-      color: var(--gold2);
-      margin: 0 0 8px;
-    }
-
-    .title p {
-      color: var(--muted);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-    }
-
-    .card {
-      background: linear-gradient(145deg, #17171c, #0e0e11);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 15px 35px #0008;
-    }
-
-    .card img {
-      width: 100%;
-      height: 210px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .cardBody {
-      padding: 15px;
-    }
-
-    .card h3 {
-      margin: 0 0 7px;
-      color: var(--gold2);
-    }
-
-    .card p {
-      color: #aaa;
-      line-height: 1.7;
-      min-height: 50px;
-    }
-
-    .price {
-      font-size: 20px;
-      color: var(--gold);
-      font-weight: 900;
-    }
-
-    .sizes {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    .size {
-      min-width: 92px;
-      padding: 17px 12px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: #111116;
-      text-align: center;
-    }
-
-    .size b {
-      display: block;
-      font-size: 24px;
-      color: var(--gold2);
-    }
-
-    .order {
-      max-width: 760px;
-      margin: auto;
-      background: #111116;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 25px;
-    }
-
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .field {
-      margin-bottom: 14px;
-    }
-
-    .field label {
-      display: block;
-      color: #ddd;
-      margin-bottom: 7px;
-    }
-
-    .field input,
-    .field select,
-    .field textarea {
-      width: 100%;
-      background: #09090c;
-      border: 1px solid #33333b;
-      color: #fff;
-      border-radius: 10px;
-      padding: 12px;
-      outline: none;
-    }
-
-    .field input:focus,
-    .field select:focus,
-    .field textarea:focus {
-      border-color: var(--gold);
-    }
-
-    .preview {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .preview img {
-      width: 100%;
-      height: 110px;
-      object-fit: cover;
-      border-radius: 10px;
-      border: 1px solid var(--line);
-    }
-
-    footer {
-      text-align: center;
-      border-top: 1px solid var(--line);
-      padding: 30px;
-      color: #888;
-    }
-
-    .float {
-      position: fixed;
-      bottom: 18px;
-      left: 18px;
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: #25d366;
-      color: #fff;
-      font-size: 25px;
-      z-index: 25;
-      box-shadow: 0 8px 25px #000;
-    }
-
-    .drawer {
-      position: fixed;
-      right: -360px;
-      top: 0;
-      width: 340px;
-      max-width: 90vw;
-      height: 100%;
-      background: #0e0e12;
-      border-left: 1px solid var(--line);
-      z-index: 60;
-      padding: 22px;
-      transition: .3s;
-      overflow: auto;
-    }
-
-    .drawer.open {
-      right: 0;
-    }
-
-    .drawer a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px;
-      border-bottom: 1px solid #25252b;
-    }
-
-    .drawer img {
-      width: 52px;
-      height: 52px;
-      border-radius: 10px;
-      object-fit: cover;
-    }
-
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: #0009;
-      z-index: 50;
-      display: none;
-    }
-
-    .overlay.show {
-      display: block;
-    }
-
-    .adminModal {
-      position: fixed;
-      inset: 0;
-      background: #000d;
-      z-index: 100;
-      display: none;
-      overflow: auto;
-      padding: 25px;
-    }
-
-    .adminModal.show {
-      display: block;
-    }
-
-    .adminBox {
-      max-width: 1000px;
-      margin: 20px auto;
-      background: #101014;
-      border: 1px solid var(--gold);
-      border-radius: 20px;
-      padding: 22px;
-      box-shadow: 0 30px 80px #000;
-    }
-
-    .adminHead {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      border-bottom: 1px solid #2b2b31;
-      padding-bottom: 15px;
-      margin-bottom: 18px;
-    }
-
-    .adminHead h2 {
-      margin: 0;
-      color: var(--gold2);
-    }
-
-    .adminGrid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
-
-    .panel {
-      background: #0b0b0f;
-      border: 1px solid #292930;
-      border-radius: 15px;
-      padding: 16px;
-    }
-
-    .panel h3 {
-      color: var(--gold);
-      margin-top: 0;
-    }
-
-    .materialRow {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      border-top: 1px solid #26262c;
-      padding: 13px 0;
-    }
-
-    .materialRow img {
-      width: 90px;
-      height: 70px;
-      object-fit: cover;
-      border-radius: 8px;
-      grid-column: 1 / -1;
-    }
-
-    .actions {
-      display: flex;
-      gap: 7px;
-      flex-wrap: wrap;
-    }
-
-    .danger {
-      background: #5b1515;
-      color: #fff;
-      border: 1px solid #a33;
-      border-radius: 8px;
-      padding: 9px;
-      cursor: pointer;
-    }
-
-    .secondary {
-      background: #191920;
-      color: #fff;
-      border: 1px solid #444;
-      border-radius: 8px;
-      padding: 9px;
-      cursor: pointer;
-    }
-
-    .close {
-      background: #24242a;
-      color: #fff;
-      border: 1px solid #555;
-      border-radius: 8px;
-      padding: 9px 14px;
-      cursor: pointer;
-    }
-
-    .login {
-      max-width: 420px;
-      margin: 100px auto;
-      background: #101014;
-      border: 1px solid var(--gold);
-      border-radius: 20px;
-      padding: 25px;
-    }
-
-    .notice {
-      background: #201a08;
-      border: 1px solid var(--line);
-      color: #e8d99d;
-      padding: 12px;
-      border-radius: 10px;
-      line-height: 1.7;
-      margin-bottom: 15px;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    @media (max-width: 850px) {
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .nav {
-        display: none;
-      }
-
-      .adminGrid,
-      .row {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .card img {
-        height: 150px;
-      }
-
-      .preview {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      header {
-        height: 68px;
-      }
-
-      .brand b {
-        font-size: 16px;
-      }
-
-      .brand small {
-        font-size: 11px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ورشة الجوكر للسبح الفاخرة</title>
+
+<style>
+*{box-sizing:border-box}
+:root{
+--gold:#d4af37;
+--gold2:#ffeaa0;
+--bg:#070709;
+--card:#121216;
+--muted:#a1a1aa;
+--line:rgba(212,175,55,.25)
+}
+html{scroll-behavior:smooth}
+body{
+margin:0;
+background:radial-gradient(circle at top,#17130a 0,#070709 35%);
+color:#fff;
+font-family:Arial,Tahoma,sans-serif
+}
+button,input,select,textarea{font:inherit}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:auto;padding:0 18px}
+
+.top{
+position:sticky;
+top:0;
+z-index:30;
+background:rgba(7,7,9,.9);
+backdrop-filter:blur(14px);
+border-bottom:1px solid var(--line)
+}
+header{
+height:76px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px
+}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{
+width:48px;
+height:48px;
+border:1px solid var(--gold);
+border-radius:50%;
+display:grid;
+place-items:center;
+color:var(--gold2);
+font-size:24px;
+font-weight:900;
+cursor:pointer;
+user-select:none
+}
+.brand b{font-size:20px}
+.brand small{display:block;color:var(--gold);margin-top:2px}
+.nav{display:flex;gap:18px;color:#ddd}
+.nav a:hover{color:var(--gold)}
+
+.menuBtn,.adminBtn,.goldBtn{
+border:1px solid var(--gold);
+background:linear-gradient(135deg,#d4af37,#9b7411);
+color:#111;
+font-weight:900;
+border-radius:10px;
+padding:11px 16px;
+cursor:pointer
+}
+.menuBtn{background:#15151a;color:var(--gold)}
+
+.geoDecoration{
+position:absolute;
+width:120px;
+height:120px;
+border:1px solid rgba(212,175,55,.22);
+transform:rotate(45deg);
+pointer-events:none
+}
+.geoDecoration:before{
+content:"";
+position:absolute;
+inset:16px;
+border:1px solid rgba(212,175,55,.18)
+}
+.geoDecoration:after{
+content:"";
+position:absolute;
+inset:32px;
+border:1px solid rgba(212,175,55,.15)
+}
+.hero{
+position:relative;
+overflow:hidden;
+padding:85px 0 55px;
+text-align:center
+}
+.geoDecoration.one{top:35px;right:5%}
+.geoDecoration.two{bottom:20px;left:5%}
+.hero h1{
+font-size:clamp(34px,6vw,70px);
+margin:10px 0;
+background:linear-gradient(#fff6bd,#d4af37);
+color:transparent;
+background-clip:text;
+-webkit-background-clip:text
+}
+.hero p{
+color:#bbb;
+max-width:700px;
+margin:0 auto 25px;
+line-height:1.9
+}
+.section{padding:55px 0}
+.title{text-align:center;margin-bottom:30px}
+.title h2{font-size:30px;color:var(--gold2);margin:0 0 8px}
+.title p{color:var(--muted)}
+
+.materialSection{
+padding:35px 0
+}
+.materialSection+.materialSection{
+border-top:1px solid rgba(212,175,55,.12)
+}
+.materialTitle{text-align:center;margin-bottom:20px}
+.materialTitle h3{
+color:var(--gold2);
+font-size:27px;
+margin:0 0 8px
+}
+.materialTitle p{color:#aaa;margin:0 0 8px}
+.materialImages{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px
+}
+.materialImageCard{
+background:linear-gradient(145deg,#17171c,#0e0e11);
+border:1px solid var(--line);
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 15px 35px #0008
+}
+.materialImageCard img{
+width:100%;
+height:230px;
+object-fit:cover;
+display:block
+}
+.materialInfo{padding:14px;text-align:center}
+.materialInfo .shape{
+display:block;
+color:var(--gold2);
+font-weight:bold;
+margin-bottom:5px
+}
+.materialInfo .desc{
+display:block;
+color:#aaa;
+line-height:1.6
+}
+.price{
+font-size:20px;
+color:var(--gold);
+font-weight:900
+}
+
+.order{
+max-width:760px;
+margin:auto;
+background:#111116;
+border:1px solid var(--line);
+border-radius:22px;
+padding:25px
+}
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px
+}
+.field{margin-bottom:14px}
+.field label{
+display:block;
+color:#ddd;
+margin-bottom:7px
+}
+.field input,.field select,.field textarea{
+width:100%;
+background:#09090c;
+border:1px solid #33333b;
+color:#fff;
+border-radius:10px;
+padding:12px;
+outline:none
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+border-color:var(--gold)
+}
+.preview{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px;
+margin-top:10px
+}
+.preview img{
+width:100%;
+height:110px;
+object-fit:cover;
+border-radius:10px;
+border:1px solid var(--line)
+}
+
+footer{
+text-align:center;
+border-top:1px solid var(--line);
+padding:30px;
+color:#888
+}
+.float{
+position:fixed;
+bottom:18px;
+left:18px;
+width:58px;
+height:58px;
+border-radius:50%;
+display:grid;
+place-items:center;
+background:#25d366;
+color:#fff;
+font-size:25px;
+z-index:25;
+box-shadow:0 8px 25px #000
+}
+
+.drawer{
+position:fixed;
+right:-360px;
+top:0;
+width:340px;
+max-width:90vw;
+height:100%;
+background:#0e0e12;
+border-left:1px solid var(--line);
+z-index:60;
+padding:22px;
+transition:.3s;
+overflow:auto
+}
+.drawer.open{right:0}
+.drawer a{
+display:flex;
+align-items:center;
+gap:10px;
+padding:12px;
+border-bottom:1px solid #25252b
+}
+.drawer img{
+width:52px;
+height:52px;
+border-radius:10px;
+object-fit:cover
+}
+.overlay{
+position:fixed;
+inset:0;
+background:#0009;
+z-index:50;
+display:none
+}
+.overlay.show{display:block}
+
+.adminModal{
+position:fixed;
+inset:0;
+background:#000d;
+z-index:100;
+display:none;
+overflow:auto;
+padding:25px
+}
+.adminModal.show{display:block}
+.adminBox{
+max-width:1000px;
+margin:20px auto;
+background:#101014;
+border:1px solid var(--gold);
+border-radius:20px;
+padding:22px;
+box-shadow:0 30px 80px #000
+}
+.adminHead{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+border-bottom:1px solid #2b2b31;
+padding-bottom:15px;
+margin-bottom:18px
+}
+.adminHead h2{margin:0;color:var(--gold2)}
+.adminGrid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px
+}
+.panel{
+background:#0b0b0f;
+border:1px solid #292930;
+border-radius:15px;
+padding:16px
+}
+.panel h3{color:var(--gold);margin-top:0}
+
+.materialRow{
+border-top:1px solid #26262c;
+padding:18px 0
+}
+.materialMain{
+display:grid;
+grid-template-columns:100px 1fr;
+gap:12px;
+align-items:start
+}
+.materialRow img{
+width:100px;
+height:80px;
+object-fit:cover;
+border-radius:8px
+}
+.materialRow input{
+width:100%;
+background:#09090c;
+color:#fff;
+border:1px solid #333;
+border-radius:8px;
+padding:9px
+}
+.actions{
+display:flex;
+gap:7px;
+flex-wrap:wrap;
+margin-top:10px
+}
+.danger{
+background:#5b1515;
+color:#fff;
+border:1px solid #a33;
+border-radius:8px;
+padding:9px;
+cursor:pointer
+}
+.secondary{
+background:#191920;
+color:#fff;
+border:1px solid #444;
+border-radius:8px;
+padding:9px;
+cursor:pointer
+}
+.close{
+background:#24242a;
+color:#fff;
+border:1px solid #555;
+border-radius:8px;
+padding:9px 14px;
+cursor:pointer
+}
+.login{
+max-width:420px;
+margin:100px auto;
+background:#101014;
+border:1px solid var(--gold);
+border-radius:20px;
+padding:25px
+}
+.notice{
+background:#201a08;
+border:1px solid var(--line);
+color:#e8d99d;
+padding:12px;
+border-radius:10px;
+line-height:1.7;
+margin-bottom:15px
+}
+.hidden{display:none!important}
+
+.shapeBox{
+margin-top:15px;
+padding:14px;
+border:1px solid rgba(212,175,55,.2);
+border-radius:12px;
+background:#111116
+}
+.shapeHead{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+margin-bottom:10px
+}
+.shapeHead strong{color:var(--gold2)}
+.shapeImages{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-top:8px
+}
+.shapeImages img{
+width:70px;
+height:60px;
+object-fit:cover;
+border-radius:8px;
+border:1px solid var(--line)
+}
+
+@media(max-width:850px){
+.materialImages{grid-template-columns:repeat(2,1fr)}
+.nav{display:none}
+.adminGrid,.row{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+.materialImages{grid-template-columns:1fr 1fr}
+.materialImageCard img{height:160px}
+.preview{grid-template-columns:repeat(2,1fr)}
+header{height:68px}
+.brand b{font-size:16px}
+.brand small{font-size:11px}
+.geoDecoration{width:80px;height:80px}
+.materialMain{grid-template-columns:1fr}
+}
+</style>
 </head>
 
 <body>
 
-  <div class="top">
-    <div class="wrap">
-      <header>
+<div class="top">
+<div class="wrap">
+<header>
 
-        <div class="brand">
-          <div class="logo">ج</div>
+<div class="brand">
+<div class="logo" onclick="adminClick()">ج</div>
+<div>
+<b>ورشة الجوكر</b>
+<small>للسبح الفاخرة</small>
+</div>
+</div>
 
-          <div>
-            <b>ورشة الجوكر</b>
-            <small>للسبح الفاخرة</small>
-          </div>
-        </div>
+<nav class="nav">
+<a href="#materials">الخامات</a>
+<a href="#order">اطلب سبحتك</a>
+</nav>
 
-        <nav class="nav">
-          <a href="#materials">الخامات</a>
-          <a href="#sizes">المقاسات</a>
-          <a href="#kok">سبح كوك</a>
-          <a href="#order">اطلب سبحتك</a>
-        </nav>
+<div style="display:flex;gap:7px">
+<button class="menuBtn" onclick="openMenu()">☰</button>
 
-        <div style="display:flex;gap:7px">
-          <button class="menuBtn" onclick="openMenu()">☰</button>
-          <button class="adminBtn" onclick="openAdmin()">Admin</button>
-        </div>
+<button class="adminBtn" onclick="openAdmin()" style="display:none">
+Admin
+</button>
+</div>
 
-      </header>
-    </div>
-  </div>
+</header>
+</div>
+</div>
 
+<main>
 
-  <main>
+<section class="hero">
+<div class="geoDecoration one"></div>
+<div class="geoDecoration two"></div>
 
-    <section class="hero">
-      <div class="wrap">
+<div class="wrap">
+<p style="color:var(--gold)">فخامة • جودة • صناعة مميزة</p>
 
-        <p style="color:var(--gold)">
-          فخامة • جودة • صناعة مميزة
-        </p>
+<h1>ورشة الجوكر للسبح الفاخرة</h1>
 
-        <h1>ورشة الجوكر للسبح الفاخرة</h1>
+<p>
+اختار الخامة والمقاس، أو ابعت تصميمك
+ونجهز لك طلبك حسب اختيارك.
+</p>
 
-        <p>
-          اختار الخامة والمقاس وعدد الحبات، أو ابعت تصميمك
-          ونجهز لك طلبك حسب اختيارك.
-        </p>
+<a class="goldBtn" href="#order">اطلب سبحتك الآن</a>
+</div>
+</section>
 
-        <a class="goldBtn" href="#order">
-          اطلب سبحتك الآن
-        </a>
 
-      </div>
-    </section>
+<section class="section" id="materials">
 
+<div class="wrap">
 
-    <section class="section" id="materials">
-      <div class="wrap">
+<div class="title">
+<h2>الخامات</h2>
+<p>كل نوع له قسم خاص وصوره الخاصة</p>
+</div>
 
-        <div class="title">
-          <h2>الخامات</h2>
-          <p>تشكيلة الخامات المتاحة حالياً</p>
-        </div>
+<div id="materialsGrid"></div>
 
-        <div id="materialsGrid" class="grid"></div>
+</div>
+</section>
 
-      </div>
-    </section>
 
+<section class="section" id="order">
 
-    <section class="section" id="kok">
-      <div class="wrap">
+<div class="wrap">
 
-        <div class="title">
-          <h2>سبح كوك</h2>
-          <p>قسم خاص لسبح كوك</p>
-        </div>
+<div class="title">
+<h2>اطلب سبحتك</h2>
+<p>املأ البيانات وسيتم تجهيز رسالة واتساب تلقائياً</p>
+</div>
 
-        <div class="card" style="max-width:600px;margin:auto">
+<div class="order">
 
-          <img
-            id="kokImg"
-            src="images/kok.jpg"
-            onerror="this.src='https://via.placeholder.com/700x500?text=KOK'"
-          >
+<div class="row">
 
-          <div class="cardBody">
-            <h3>سبح كوك</h3>
-            <p>اختيارات مميزة من سبح كوك.</p>
-          </div>
+<div class="field">
+<label>الاسم</label>
+<input id="name" required>
+</div>
 
-        </div>
+<div class="field">
+<label>رقم واتساب</label>
+<input id="phone" type="tel" required>
+</div>
 
-      </div>
-    </section>
+</div>
 
 
-    <section class="section" id="sizes">
-      <div class="wrap">
+<div class="row">
 
-        <div class="title">
-          <h2>المقاسات</h2>
-          <p>اختار المقاس المناسب</p>
-        </div>
+<div class="field">
+<label>الخامة</label>
+<select id="material"></select>
+</div>
 
-        <div id="sizesBox" class="sizes"></div>
+<div class="field">
+<label>المقاس</label>
+<select id="size"></select>
+</div>
 
-      </div>
-    </section>
+</div>
 
 
-    <section class="section" id="order">
-      <div class="wrap">
+<div class="field">
+<label>السعر التقريبي</label>
+<input id="price" readonly>
+</div>
 
-        <div class="title">
-          <h2>اطلب سبحتك</h2>
-          <p>
-            املأ البيانات وسيتم تجهيز رسالة واتساب تلقائياً
-          </p>
-        </div>
 
-        <div class="order">
+<div class="field">
+<label>ارفع صور/تصميم (اختياري)</label>
 
-          <div class="row">
+<input
+id="photos"
+type="file"
+accept="image/*"
+multiple
+>
 
-            <div class="field">
-              <label>الاسم</label>
-              <input id="name" required>
-            </div>
+<div id="preview" class="preview"></div>
+</div>
 
-            <div class="field">
-              <label>رقم واتساب</label>
-              <input id="phone" type="tel" required>
-            </div>
 
-          </div>
+<div class="field">
+<label>ملاحظات</label>
+<textarea id="notes" rows="4"></textarea>
+</div>
 
 
-          <div class="row">
+<button
+class="goldBtn"
+style="width:100%"
+onclick="sendOrder()"
+>
+إرسال الطلب على واتساب 📲
+</button>
 
-            <div class="field">
-              <label>الخامة</label>
-              <select id="material"></select>
-            </div>
+</div>
+</div>
+</section>
 
-            <div class="field">
-              <label>المقاس</label>
-              <select id="size"></select>
-            </div>
+</main>
 
-          </div>
+<footer>
+© 2026 ورشة الجوكر للسبح الفاخرة - جميع الحقوق محفوظة
+</footer>
 
+<a
+class="float"
+href="https://wa.me/201101121270"
+target="_blank"
+>
+⌕
+</a>
 
-          <div class="row">
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
 
-            <div class="field">
-              <label>عدد الحبات</label>
+<aside id="drawer" class="drawer">
 
-              <select id="count">
-                <option>45</option>
-                <option>51</option>
-                <option>61</option>
-                <option>63</option>
-                <option>99</option>
-              </select>
-            </div>
+<div style="display:flex;justify-content:space-between;align-items:center">
 
-            <div class="field">
-              <label>السعر التقريبي</label>
-              <input id="price" readonly>
-            </div>
+<h2 style="color:var(--gold)">القائمة</h2>
 
-          </div>
+<button class="close" onclick="closeMenu()">✕</button>
 
+</div>
 
-          <div class="field">
+<div id="menuLinks"></div>
 
-            <label>ارفع صور/تصميم (اختياري)</label>
+</aside>
 
-            <input
-              id="photos"
-              type="file"
-              accept="image/*"
-              multiple
-            >
 
-            <div id="preview" class="preview"></div>
+<div id="adminModal" class="adminModal">
 
-          </div>
+<div id="loginBox" class="login">
 
+<h2 style="color:var(--gold2)">دخول لوحة التحكم</h2>
 
-          <div class="field">
-            <label>ملاحظات</label>
-            <textarea id="notes" rows="4"></textarea>
-          </div>
+<div class="notice">
+سجّل الدخول بالبريد الإلكتروني وكلمة المرور
+اللذين ستنشئهما أنت في Supabase.
+</div>
 
+<div class="field">
+<label>البريد الإلكتروني للأدمن</label>
+<input
+id="adminEmail"
+type="email"
+autocomplete="username"
+placeholder="admin@example.com"
+>
+</div>
 
-          <button
-            class="goldBtn"
-            style="width:100%"
-            onclick="sendOrder()"
-          >
-            إرسال الطلب على واتساب 📲
-          </button>
+<div class="field">
+<label>كلمة المرور</label>
+<input id="adminPass" type="password">
+</div>
 
-        </div>
+<button class="goldBtn" style="width:100%" onclick="login()">
+دخول
+</button>
 
-      </div>
-    </section>
+<button
+class="close"
+style="width:100%;margin-top:8px"
+onclick="closeAdmin()"
+>
+إلغاء
+</button>
 
-  </main>
+</div>
 
 
-  <footer>
-    © 2026 ورشة الجوكر للسبح الفاخرة - جميع الحقوق محفوظة
-  </footer>
+<div id="adminPanel" class="adminBox hidden">
 
+<div class="adminHead">
 
-  <a
-    class="float"
-    href="https://wa.me/201101121270"
-    target="_blank"
-  >
-    ⌕
-  </a>
+<h2>لوحة تحكم ورشة الجوكر</h2>
 
+<div>
 
-  <div
-    id="overlay"
-    class="overlay"
-    onclick="closeMenu()"
-  ></div>
+<button class="secondary" onclick="saveAll()">
+حفظ التعديلات
+</button>
 
+<button class="close" onclick="logout()">
+خروج
+</button>
 
-  <aside id="drawer" class="drawer">
+</div>
 
-    <div
-      style="display:flex;justify-content:space-between;align-items:center"
-    >
+</div>
 
-      <h2 style="color:var(--gold)">
-        القائمة
-      </h2>
 
-      <button
-        class="close"
-        onclick="closeMenu()"
-      >
-        ✕
-      </button>
+<div class="notice">
+البيانات والصور محفوظة أونلاين في قاعدة البيانات والتخزين.
+كلمة مرور الأدمن تدار من حساب Supabase.
+</div>
 
-    </div>
 
-    <div id="menuLinks"></div>
+<div class="adminGrid">
 
-  </aside>
+<div class="panel">
 
+<h3>إعدادات الموقع</h3>
 
-  <div id="adminModal" class="adminModal">
+<div class="field">
+<label>اسم الورشة</label>
+<input id="siteName">
+</div>
 
-    <div id="loginBox" class="login">
+<div class="field">
+<label>رقم واتساب</label>
+<input id="wa">
+</div>
 
-      <h2 style="color:var(--gold2)">
-        دخول لوحة التحكم
-      </h2>
+<div class="field">
+<label>المقاسات (افصل بينهم بفاصلة)</label>
+<input id="sizesInput">
+</div>
 
-      <div class="notice">
-        سجّل الدخول بالبريد الإلكتروني وكلمة المرور
-        اللذين ستنشئهما أنت في Supabase.
-      </div>
+<div class="field">
+<label>تغيير كلمة مرور الأدمن</label>
+<input
+id="newPass"
+type="password"
+placeholder="اتركها فارغة لو مش عايز تغيرها"
+>
+</div>
 
-      <div class="field">
-        <label>البريد الإلكتروني للأدمن</label>
+</div>
 
-        <input
-          id="adminEmail"
-          type="email"
-          autocomplete="username"
-          placeholder="admin@example.com"
-        >
-      </div>
 
-      <div class="field">
-        <label>كلمة المرور</label>
-        <input id="adminPass" type="password">
-      </div>
+<div class="panel">
 
-      <button
-        class="goldBtn"
-        style="width:100%"
-        onclick="login()"
-      >
-        دخول
-      </button>
+<h3>إضافة خامة</h3>
 
-      <button
-        class="close"
-        style="width:100%;margin-top:8px"
-        onclick="closeAdmin()"
-      >
-        إلغاء
-      </button>
+<div class="field">
+<label>اسم الخامة</label>
+<input id="newName">
+</div>
 
-    </div>
+<div class="field">
+<label>الوصف</label>
+<input id="newDesc">
+</div>
 
+<div class="field">
+<label>السعر الأساسي</label>
+<input id="newPrice" type="number">
+</div>
 
-    <div id="adminPanel" class="adminBox hidden">
+<div class="field">
+<label>صور الخامة</label>
+<input
+id="newImages"
+type="file"
+accept="image/*"
+multiple
+>
+</div>
 
-      <div class="adminHead">
+<button class="goldBtn" onclick="addMaterial()">
+إضافة الخامة
+</button>
 
-        <h2>
-          لوحة تحكم ورشة الجوكر
-        </h2>
+</div>
 
-        <div>
+</div>
 
-          <button
-            class="secondary"
-            onclick="saveAll()"
-          >
-            حفظ التعديلات
-          </button>
 
-          <button
-            class="close"
-            onclick="logout()"
-          >
-            خروج
-          </button>
+<div class="panel" style="margin-top:15px">
 
-        </div>
+<h3>الخامات والقصّات والصور</h3>
 
-      </div>
+<div id="adminMaterials"></div>
 
+</div>
 
-      <div class="notice">
-        البيانات والصور محفوظة أونلاين في قاعدة البيانات والتخزين.
-        كلمة مرور الأدمن تدار من حساب Supabase.
-      </div>
+</div>
+</div>
 
 
-      <div class="adminGrid">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
 
-        <div class="panel">
+/* ================================
+   Supabase
+================================ */
 
-          <h3>إعدادات الموقع</h3>
+const SUPABASE_URL =
+"https://ggjgktccemdsrcsqypse.supabase.co";
 
-          <div class="field">
-            <label>اسم الورشة</label>
-            <input id="siteName">
-          </div>
+const SUPABASE_KEY =
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnamdrdGNjZW1kc3Jjc3F5cHNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0NTU2MTIsImV4cCI6MjEwNDAzMTYxMn0.S5fzn0sYlN5QvOzAHJ65q2Ln6F3Z4PVQjL7zslHdJR0";
 
-          <div class="field">
-            <label>رقم واتساب</label>
-            <input id="wa">
-          </div>
+const sb =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
 
-          <div class="field">
-            <label>صورة سبح كوك</label>
-            <input
-              id="kokInput"
-              type="file"
-              accept="image/*"
-            >
-          </div>
 
-          <div class="field">
-            <label>
-              المقاسات (افصل بينهم بفاصلة)
-            </label>
+/* ================================
+   البيانات الافتراضية
+================================ */
 
-            <input id="sizesInput">
-          </div>
+const defaults = {
 
-          <div class="field">
-            <label>تغيير كلمة مرور الأدمن</label>
+siteName:
+"ورشة الجوكر للسبح الفاخرة",
 
-            <input
-              id="newPass"
-              type="password"
-              placeholder="اتركها فارغة لو مش عايز تغيرها"
-            >
-          </div>
+wa:
+"201101121270",
 
-        </div>
+sizes:[
+10,
+10.5,
+11,
+11.5,
+12,
+12.5,
+13,
+13.5,
+14
+],
 
+materials:[
 
-        <div class="panel">
+{
+name:"بكالايت منجم",
+desc:"خامة فاخرة ومميزة",
+price:1000,
+images:[]
+},
 
-          <h3>إضافة خامة</h3>
+{
+name:"بكالايت رخامي فيروزي",
+desc:"رخامي فيروزي بطابع فاخر",
+price:1200,
+images:[]
+},
 
-          <div class="field">
-            <label>اسم الخامة</label>
-            <input id="newName">
-          </div>
+{
+name:"تتاروك صب قديم",
+desc:"صب قديم بطابع كلاسيكي",
+price:1300,
+images:[]
+},
 
-          <div class="field">
-            <label>الوصف</label>
-            <input id="newDesc">
-          </div>
+{
+name:"تتاروك عطش",
+desc:"خامة مميزة بطابع نادر",
+price:1400,
+images:[]
+},
 
-          <div class="field">
-            <label>السعر الأساسي</label>
-            <input id="newPrice" type="number">
-          </div>
+{
+name:"صب جديد",
+desc:"صب جديد بتشطيبات مميزة",
+price:1100,
+images:[]
+}
 
-          <div class="field">
-            <label>صور الخامة</label>
+]
 
-            <input
-              id="newImages"
-              type="file"
-              accept="image/*"
-              multiple
-            >
-          </div>
+};
 
-          <button
-            class="goldBtn"
-            onclick="addMaterial()"
-          >
-            إضافة الخامة
-          </button>
+let D=structuredClone(defaults);
 
-        </div>
 
-      </div>
+/* ================================
+   أدوات
+================================ */
 
+function isConfigured(){
+return (
+SUPABASE_URL &&
+!SUPABASE_URL.includes("ضع_رابط") &&
+SUPABASE_KEY &&
+!SUPABASE_KEY.includes("ضع_publishable")
+);
+}
 
-      <div
-        class="panel"
-        style="margin-top:15px"
-      >
+function esc(s){
+return String(s??"").replace(
+/[&<>"']/g,
+function(m){
+return{
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[m];
+}
+);
+}
 
-        <h3>الخامات والأسعار والصور</h3>
+function cleanName(s){
+return String(s||"file")
+.replace(/[^a-zA-Z0-9.-]/g,"")
+.slice(0,80);
+}
 
-        <div id="adminMaterials"></div>
+function publicUrl(path){
+return sb.storage
+.from("joker-images")
+.getPublicUrl(path)
+.data.publicUrl;
+}
 
-      </div>
 
-    </div>
+/* ================================
+   الصور القديمة والقصص
+================================ */
 
-  </div>
+/*
+  مهم:
+  الصور القديمة تفضل String زي ما هي.
 
+  القصة الجديدة تكون:
+  {
+    type:"shape",
+    name:"اسم القصة",
+    desc:"وصف القصة",
+    images:[...]
+  }
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  وبكده مش محتاجين نغير جدول Supabase.
+*/
 
+function isShape(item){
+return item &&
+typeof item==="object" &&
+item.type==="shape";
+}
 
-  <script>
+function normalImages(material){
+return (Array.isArray(material.images)?material.images:[])
+.filter(x=>typeof x==="string");
+}
 
-    /* ================================
-       Supabase
-       ================================ */
+function shapesOf(material){
+return (Array.isArray(material.images)?material.images:[])
+.filter(isShape);
+}
 
-    const SUPABASE_URL =
-      "https://ggjgktccemdsrcsqypse.supabase.co";
 
-    const SUPABASE_KEY =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnamdrdGNjZW1kc3Jjc3F5cHNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0NTU2MTIsImV4cCI6MjEwNDAzMTYxMn0.S5fzn0sYlN5QvOzAHJ65q2Ln6F3Z4PVQjL7zslHdJR0";
+/* ================================
+   تحميل البيانات
+================================ */
 
-    const sb =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-      );
+async function loadData(){
 
+if(!isConfigured()){
+alert(
+"لازم تحط SUPABASE_URL و SUPABASE_KEY داخل index.html أولاً."
+);
+return;
+}
 
-    /* ================================
-       البيانات الافتراضية
-       ================================ */
+const[
+{data:settings,error:sErr},
+{data:materials,error:mErr}
+]=await Promise.all([
 
-    const defaults = {
+sb.from("site_settings")
+.select("*")
+.eq("id",1)
+.maybeSingle(),
 
-      siteName:
-        "ورشة الجوكر للسبح الفاخرة",
+sb.from("materials")
+.select("*")
+.order("sort_order",{ascending:true})
 
-      wa:
-        "201101121270",
+]);
 
-      sizes: [
-        10,
-        10.5,
-        11,
-        11.5,
-        12,
-        12.5,
-        13,
-        13.5,
-        14
-      ],
+if(sErr||mErr){
 
-      kok:
-        "",
+console.error(sErr||mErr);
 
-      materials: [
+alert(
+"حصل خطأ في تحميل بيانات الموقع. راجع إعداد Supabase و setup.sql."
+);
 
-        {
-          name: "بكالايت منجم",
-          desc: "خامة فاخرة ومميزة",
-          price: 1000,
-          images: []
-        },
+render();
+return;
+}
 
-        {
-          name: "بكالايت رخامي فيروزي",
-          desc: "رخامي فيروزي بطابع فاخر",
-          price: 1200,
-          images: []
-        },
+if(settings){
 
-        {
-          name: "تتاروك صب قديم",
-          desc: "صب قديم بطابع كلاسيكي",
-          price: 1300,
-          images: []
-        },
+let loadedSizes=[];
 
-        {
-          name: "تتاروك عطش",
-          desc: "خامة مميزة بطابع نادر",
-          price: 1400,
-          images: []
-        },
+try{
 
-        {
-          name: "صب جديد",
-          desc: "صب جديد بتشطيبات مميزة",
-          price: 1100,
-          images: []
-        }
+loadedSizes=
+Array.isArray(settings.sizes)
+?settings.sizes
+:JSON.parse(settings.sizes||"[]");
 
-      ]
+}catch(e){
+loadedSizes=defaults.sizes;
+}
 
-    };
+D={
+...D,
 
+siteName:
+settings.site_name||D.siteName,
 
-    let D = structuredClone(defaults);
+wa:
+settings.whatsapp||D.wa,
 
+sizes:
+loadedSizes.length
+?loadedSizes
+:D.sizes
+};
 
-    function isConfigured() {
+}
 
-      return (
-        SUPABASE_URL &&
-        !SUPABASE_URL.includes("ضع_رابط") &&
-        SUPABASE_KEY &&
-        !SUPABASE_KEY.includes("ضع_publishable")
-      );
+if(materials?.length){
 
-    }
+D.materials=
+materials.map(function(m){
 
+return{
 
-    function esc(s) {
+id:m.id,
 
-      return String(s ?? "")
-        .replace(/[&<>"']/g, function (m) {
+name:m.name,
 
-          return {
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            '"': "&quot;",
-            "'": "&#039;"
-          }[m];
+desc:m.description||"",
 
-        });
+price:Number(m.price)||0,
 
-    }
+images:
+Array.isArray(m.images)
+?m.images
+:[]
 
+};
 
-    function cleanName(s) {
+});
 
-      return String(s || "file")
-        .replace(/[^a-zA-Z0-9.-]/g, "")
-        .slice(0, 80);
+}
 
-    }
+render();
+}
 
 
-    function publicUrl(path) {
+/* ================================
+   رفع الصور
+================================ */
 
-      return sb
-        .storage
-        .from("joker-images")
-        .getPublicUrl(path)
-        .data
-        .publicUrl;
+async function uploadFile(file,folder){
 
-    }
+const path=
+`${folder}/${crypto.randomUUID()}-${cleanName(file.name)}`;
 
+const{error}=
+await sb.storage
+.from("joker-images")
+.upload(
+path,
+file,
+{
+upsert:false,
+contentType:file.type||"image/*"
+}
+);
 
-    /* ================================
-       تحميل البيانات
-       ================================ */
+if(error)throw error;
 
-    async function loadData() {
+return publicUrl(path);
+}
 
-      if (!isConfigured()) {
 
-        alert(
-          "لازم تحط SUPABASE_URL و SUPABASE_KEY داخل index.html أولاً."
-        );
+/* ================================
+   عرض الموقع
+================================ */
 
-        return;
-      }
+async function render(){
 
+document.title=D.siteName;
 
-      const [
-        { data: settings, error: sErr },
-        { data: materials, error: mErr }
-      ] = await Promise.all([
+document.querySelector(".brand b").textContent=
+D.siteName.replace(" للسبح الفاخرة","");
 
-        sb
-          .from("site_settings")
-          .select("*")
-          .eq("id", 1)
-          .maybeSingle(),
+document.querySelector(".brand small").textContent=
+"للسبح الفاخرة";
 
-        sb
-          .from("materials")
-          .select("*")
-          .order("sort_order", {
-            ascending: true
-          })
+const g=
+document.getElementById("materialsGrid");
 
-      ]);
 
+g.innerHTML=
+D.materials.map(function(m,materialIndex){
 
-      if (sErr || mErr) {
+const oldImages=normalImages(m);
+const shapes=shapesOf(m);
 
-        console.error(sErr || mErr);
+let html="";
 
-        alert(
-          "حصل خطأ في تحميل بيانات الموقع. راجع إعداد Supabase و setup.sql."
-        );
+if(oldImages.length){
 
-        render();
+html+=oldImages.map(function(image){
 
-        return;
-      }
+return`
 
+<article class="materialImageCard">
 
-      if (settings) {
+<img
+src="${image}"
+alt="${esc(m.name)}"
+>
 
-        let loadedSizes = [];
+<div class="materialInfo">
 
-        try {
+<span class="shape">
+${esc(m.name)}
+</span>
 
-          loadedSizes =
-            Array.isArray(settings.sizes)
-              ? settings.sizes
-              : JSON.parse(settings.sizes || "[]");
+</div>
 
-        } catch (e) {
+</article>
 
-          loadedSizes = defaults.sizes;
+`;
 
-        }
+}).join("");
 
+}
 
-        D = {
-          ...D,
-          siteName:
-            settings.site_name || D.siteName,
 
-          wa:
-            settings.whatsapp || D.wa,
+/* القصص الجديدة */
 
-          sizes:
-            loadedSizes.length
-              ? loadedSizes
-              : D.sizes,
+shapes.forEach(function(shape){
 
-          kok:
-            settings.kok_url || ""
-        };
+const imgs=
+Array.isArray(shape.images)&&shape.images.length
+?shape.images
+:["https://via.placeholder.com/700x500?text=Joker"];
 
-      }
+html+=imgs.map(function(image){
 
+return`
 
-      if (materials?.length) {
+<article class="materialImageCard">
 
-        D.materials =
-          materials.map(function (m) {
+<img
+src="${image}"
+alt="${esc(shape.name)}"
+>
 
-            return {
+<div class="materialInfo">
 
-              id: m.id,
+<span class="shape">
+${esc(shape.name)}
+</span>
 
-              name: m.name,
+<span class="desc">
+${esc(shape.desc)}
+</span>
 
-              desc:
-                m.description || "",
+</div>
 
-              price:
-                Number(m.price) || 0,
+</article>
 
-              images:
-                Array.isArray(m.images)
-                  ? m.images
-                  : []
+`;
 
-            };
+}).join("");
 
-          });
+});
 
-      }
 
+if(!html){
 
-      render();
+html=`
 
-    }
+<article class="materialImageCard">
 
+<img
+src="https://via.placeholder.com/700x500?text=Joker"
+alt="${esc(m.name)}"
+>
 
-    /* ================================
-       رفع الصور
-       ================================ */
+<div class="materialInfo">
+<span class="shape">${esc(m.name)}</span>
+</div>
 
-    async function uploadFile(file, folder) {
+</article>
 
-      const path =
-        `${folder}/${crypto.randomUUID()}-${cleanName(file.name)}`;
+`;
 
+}
 
-      const { error } =
-        await sb
-          .storage
-          .from("joker-images")
-          .upload(
-            path,
-            file,
-            {
-              upsert: false,
-              contentType:
-                file.type || "image/*"
-            }
-          );
 
+return`
 
-      if (error) {
+<section
+class="materialSection"
+id="material-${materialIndex}"
+>
 
-        throw error;
+<div class="materialTitle">
 
-      }
+<h3>${esc(m.name)}</h3>
 
+<p>${esc(m.desc)}</p>
 
-      return publicUrl(path);
+<span class="price">
+يبدأ من
+${Number(m.price).toLocaleString("en-US")}
+ج.م
+</span>
 
-    }
+</div>
 
+<div class="materialImages">
+${html}
+</div>
 
-    /* ================================
-       عرض الموقع
-       ================================ */
+</section>
 
-    async function render() {
+`;
 
-      document.title = D.siteName;
+}).join("");
 
 
-      document
-        .querySelector(".brand b")
-        .textContent =
-          D.siteName.replace(
-            " للسبح الفاخرة",
-            ""
-          );
+/* الخامة في الطلب */
 
+document.getElementById("material").innerHTML=
 
-      document
-        .querySelector(".brand small")
-        .textContent =
-          "للسبح الفاخرة";
+D.materials.map(function(m,i){
 
+return`
 
-      const g =
-        document.getElementById(
-          "materialsGrid"
-        );
+<option value="${i}">
+${esc(m.name)}
+</option>
 
+`;
 
-      g.innerHTML =
-        D.materials
-          .map(function (m) {
+}).join("");
 
-            const image =
-              m.images?.[0] ||
-              "https://via.placeholder.com/700x500?text=Joker";
 
+/* المقاسات */
 
-            return `
-              <article class="card">
+document.getElementById("size").innerHTML=
 
-                <img src="${image}">
+D.sizes.map(function(s){
 
-                <div class="cardBody">
+return`
 
-                  <h3>
-                    ${esc(m.name)}
-                  </h3>
+<option>${s}</option>
 
-                  <p>
-                    ${esc(m.desc)}
-                  </p>
+`;
 
-                  <span class="price">
-                    يبدأ من
-                    ${Number(m.price).toLocaleString("en-US")}
-                    ج.م
-                  </span>
+}).join("");
 
-                </div>
 
-              </article>
-            `;
+/* القائمة الجانبية */
 
-          })
-          .join("");
+document.getElementById("menuLinks").innerHTML=
 
+D.materials.map(function(m,i){
 
-      document.getElementById("sizesBox").innerHTML =
-        D.sizes
-          .map(function (s) {
+const image=
+normalImages(m)[0]||
+(shapesOf(m)[0]?.images?.[0])||
+"https://via.placeholder.com/100?text=J";
 
-            return `
-              <div class="size">
-                <b>${s}</b>
-                mm
-              </div>
-            `;
+return`
 
-          })
-          .join("");
+<a
+href="#material-${i}"
+onclick="closeMenu()"
+>
 
+<img
+src="${image}"
+alt="${esc(m.name)}"
+>
 
-      document.getElementById("material").innerHTML =
-        D.materials
-          .map(function (m, i) {
+<span>${esc(m.name)}</span>
 
-            return `
-              <option value="${i}">
-                ${esc(m.name)}
-              </option>
-            `;
+</a>
 
-          })
-          .join("");
+`;
 
+}).join("")+
 
-      document.getElementById("size").innerHTML =
-        D.sizes
-          .map(function (s) {
+`
 
-            return `
-              <option>${s}</option>
-            `;
+<a href="#order" onclick="closeMenu()">
+اطلب سبحتك
+</a>
 
-          })
-          .join("");
+`;
 
+updatePrice();
+}
 
-      document.getElementById("menuLinks").innerHTML =
-        D.materials
-          .map(function (m) {
 
-            const image =
-              m.images?.[0] ||
-              "https://via.placeholder.com/100?text=J";
+/* ================================
+   السعر
+================================ */
 
+function updatePrice(){
 
-            return `
-              <a
-                href="#materials"
-                onclick="closeMenu()"
-              >
+const materialSelect=
+document.getElementById("material");
 
-                <img src="${image}">
+const index=
+Number(materialSelect.value)||0;
 
-                <span>
-                  ${esc(m.name)}
-                </span>
+const m=D.materials[index];
 
-              </a>
-            `;
+document.getElementById("price").value=
+m
+?Number(m.price).toLocaleString("en-US")+" ج.م"
+:"";
+}
 
-          })
-          .join("")
-        +
-        `
-          <a href="#kok" onclick="closeMenu()">
-            سبح كوك
-          </a>
+document.getElementById("material")
+.addEventListener("change",updatePrice);
 
-          <a href="#sizes" onclick="closeMenu()">
-            المقاسات
-          </a>
 
-          <a href="#order" onclick="closeMenu()">
-            اطلب سبحتك
-          </a>
-        `;
+/* ================================
+   القائمة
+================================ */
 
+function openMenu(){
 
-      document.getElementById("kokImg").src =
-        D.kok ||
-        "https://via.placeholder.com/700x500?text=KOK";
+document.getElementById("drawer")
+.classList.add("open");
 
+document.getElementById("overlay")
+.classList.add("show");
 
-      updatePrice();
+}
 
-    }
+function closeMenu(){
 
+document.getElementById("drawer")
+.classList.remove("open");
 
-    /* ================================
-       السعر
-       ================================ */
+document.getElementById("overlay")
+.classList.remove("show");
 
-    function updatePrice() {
+}
 
-      const materialSelect =
-        document.getElementById("material");
 
+/* ================================
+   الدخول المخفي للأدمن
+================================ */
 
-      const index =
-        Number(materialSelect.value) || 0;
+let adminClicks=0;
+let adminClickTimer;
 
+function adminClick(){
 
-      const m =
-        D.materials[index];
+adminClicks++;
 
+clearTimeout(adminClickTimer);
 
-      document.getElementById("price").value =
-        m
-          ? Number(m.price).toLocaleString("en-US") + " ج.م"
-          : "";
+adminClickTimer=setTimeout(
+function(){
+adminClicks=0;
+},
+1500
+);
 
-    }
+if(adminClicks>=5){
 
+adminClicks=0;
 
-    document
-      .getElementById("material")
-      .addEventListener(
-        "change",
-        updatePrice
-      );
+openAdmin();
 
+}
 
-    /* ================================
-       القائمة
-       ================================ */
+}
 
-    function openMenu() {
 
-      document
-        .getElementById("drawer")
-        .classList.add("open");
+/* ================================
+   لوحة التحكم
+================================ */
 
-      document
-        .getElementById("overlay")
-        .classList.add("show");
+function openAdmin(){
 
-    }
+document.getElementById("adminModal")
+.classList.add("show");
 
+document.getElementById("loginBox")
+.classList.remove("hidden");
 
-    function closeMenu() {
+document.getElementById("adminPanel")
+.classList.add("hidden");
 
-      document
-        .getElementById("drawer")
-        .classList.remove("open");
+document.getElementById("adminEmail").value="";
+document.getElementById("adminPass").value="";
 
-      document
-        .getElementById("overlay")
-        .classList.remove("show");
+}
 
-    }
+function closeAdmin(){
 
+document.getElementById("adminModal")
+.classList.remove("show");
 
-    /* ================================
-       لوحة التحكم
-       ================================ */
+}
 
-    function openAdmin() {
+async function login(){
 
-      document
-        .getElementById("adminModal")
-        .classList.add("show");
+if(!isConfigured()){
 
+return alert(
+"لسه ما حطتش بيانات Supabase داخل index.html."
+);
 
-      document
-        .getElementById("loginBox")
-        .classList.remove("hidden");
+}
 
+const email=
+document.getElementById("adminEmail")
+.value.trim();
 
-      document
-        .getElementById("adminPanel")
-        .classList.add("hidden");
+const password=
+document.getElementById("adminPass").value;
 
+if(!email||!password){
 
-      document.getElementById("adminEmail").value = "";
-      document.getElementById("adminPass").value = "";
+return alert(
+"اكتب البريد الإلكتروني وكلمة المرور."
+);
 
-    }
+}
 
+const{error}=
+await sb.auth.signInWithPassword({
+email,
+password
+});
 
-    function closeAdmin() {
+if(error){
 
-      document
-        .getElementById("adminModal")
-        .classList.remove("show");
+console.error(error);
 
-    }
+alert(
+"البريد الإلكتروني أو كلمة المرور غير صحيحة."
+);
 
+return;
+}
 
-    async function login() {
+document.getElementById("loginBox")
+.classList.add("hidden");
 
-      if (!isConfigured()) {
+document.getElementById("adminPanel")
+.classList.remove("hidden");
 
-        return alert(
-          "لسه ما حطتش بيانات Supabase داخل index.html."
-        );
+await loadAdmin();
 
-      }
+}
 
+async function logout(){
 
-      const email =
-        document
-          .getElementById("adminEmail")
-          .value
-          .trim();
+await sb.auth.signOut();
 
+closeAdmin();
 
-      const password =
-        document.getElementById("adminPass").value;
+}
 
+async function loadAdmin(){
 
-      if (!email || !password) {
+document.getElementById("siteName").value=D.siteName;
 
-        return alert(
-          "اكتب البريد الإلكتروني وكلمة المرور."
-        );
+document.getElementById("wa").value=D.wa;
 
-      }
+document.getElementById("sizesInput").value=
+D.sizes.join(", ");
 
+renderAdmin();
 
-      const { error } =
-        await sb.auth.signInWithPassword({
-          email,
-          password
-        });
+}
 
 
-      if (error) {
+/* ================================
+   لوحة الخامات
+================================ */
 
-        console.error(error);
+function renderAdmin(){
 
-        alert(
-          "البريد الإلكتروني أو كلمة المرور غير صحيحة."
-        );
+const container=
+document.getElementById("adminMaterials");
 
-        return;
-      }
+container.innerHTML=
 
+D.materials.map(function(m,i){
 
-      document
-        .getElementById("loginBox")
-        .classList.add("hidden");
+const firstImage=
+normalImages(m)[0]||
+shapesOf(m)[0]?.images?.[0]||
+"https://via.placeholder.com/200?text=No+Image";
 
+const shapes=shapesOf(m);
 
-      document
-        .getElementById("adminPanel")
-        .classList.remove("hidden");
+return`
 
+<div class="materialRow">
 
-      await loadAdmin();
+<div class="materialMain">
 
-    }
+<img
+src="${firstImage}"
+alt="${esc(m.name)}"
+>
 
+<div>
 
-    async function logout() {
+<input
+id="mn${i}"
+value="${esc(m.name)}"
+placeholder="اسم الخامة"
+>
 
-      await sb.auth.signOut();
+<input
+id="md${i}"
+value="${esc(m.desc)}"
+style="margin-top:6px"
+placeholder="الوصف"
+>
 
-      closeAdmin();
+<input
+id="mp${i}"
+type="number"
+value="${m.price}"
+style="margin-top:6px"
+placeholder="السعر"
+>
 
-    }
+</div>
 
+</div>
 
-    async function loadAdmin() {
 
-      document.getElementById("siteName").value =
-        D.siteName;
+<div class="actions">
 
+<button
+class="secondary"
+onclick="document.getElementById('mi${i}').click()"
+>
+إضافة صور للخامة
+</button>
 
-      document.getElementById("wa").value =
-        D.wa;
+<input
+id="mi${i}"
+class="hidden"
+type="file"
+accept="image/*"
+multiple
+onchange="addImagesToMaterial(${i},this.files)"
+>
 
 
-      document.getElementById("sizesInput").value =
-        D.sizes.join(", ");
+<button
+class="goldBtn"
+onclick="openShapeForm(${i})"
+>
++ إضافة قَصّة
+</button>
 
 
-      renderAdmin();
+<button
+class="danger"
+onclick="delMaterial(${i})"
+>
+حذف الخامة
+</button>
 
-    }
+</div>
 
 
-    /* ================================
-       عرض الخامات في لوحة التحكم
-       ================================ */
+<div id="shapeForm${i}"></div>
 
-    function renderAdmin() {
 
-      const container =
-        document.getElementById(
-          "adminMaterials"
-        );
+${shapes.map(function(shape,si){
 
+return`
 
-      container.innerHTML =
-        D.materials
-          .map(function (m, i) {
+<div class="shapeBox">
 
-            const image =
-              m.images?.[0] ||
-              "https://via.placeholder.com/200?text=No+Image";
+<div class="shapeHead">
 
+<strong>
+${esc(shape.name)}
+</strong>
 
-            return `
-              <div class="materialRow">
+<button
+class="danger"
+onclick="deleteShape(${i},${si})"
+>
+حذف القَصّة
+</button>
 
-                <img src="${image}">
+</div>
 
-                <div>
+<div style="color:#aaa;margin-bottom:8px">
+${esc(shape.desc)}
+</div>
 
-                  <input
-                    id="mn${i}"
-                    value="${esc(m.name)}"
-                    placeholder="اسم الخامة"
-                  >
+<div class="shapeImages">
 
-                  <input
-                    id="md${i}"
-                    value="${esc(m.desc)}"
-                    style="margin-top:6px"
-                    placeholder="الوصف"
-                  >
+${(shape.images||[]).map(function(img){
 
-                  <input
-                    id="mp${i}"
-                    type="number"
-                    value="${m.price}"
-                    style="margin-top:6px"
-                    placeholder="السعر"
-                  >
+return`
 
-                </div>
+<img
+src="${img}"
+alt="${esc(shape.name)}"
+>
 
+`;
 
-                <div class="actions">
+}).join("")}
 
-                  <button
-                    class="secondary"
-                    onclick="document.getElementById('mi${i}').click()"
-                  >
-                    تغيير الصور
-                  </button>
+</div>
 
+<div class="actions">
 
-                  <input
-                    id="mi${i}"
-                    class="hidden"
-                    type="file"
-                    accept="image/*"
-                    multiple
-                    onchange="replaceImages(${i}, this.files)"
-                  >
+<button
+class="secondary"
+onclick="document.getElementById('shapeImg${i}_${si}').click()"
+>
+إضافة صور للقَصّة
+</button>
 
+<input
+id="shapeImg${i}_${si}"
+class="hidden"
+type="file"
+accept="image/*"
+multiple
+onchange="addImagesToShape(${i},${si},this.files)"
+>
 
-                  <button
-                    class="danger"
-                    onclick="delMaterial(${i})"
-                  >
-                    حذف
-                  </button>
+</div>
 
-                </div>
+</div>
 
-              </div>
-            `;
+`;
 
-          })
-          .join("");
+}).join("")}
 
-    }
+</div>
 
+`;
 
-    /* ================================
-       تغيير صور خامة
-       ================================ */
+}).join("");
 
-    async function replaceImages(i, files) {
+}
 
-      try {
 
-        if (!files?.length) {
-          return;
-        }
+/* ================================
+   إضافة قصّة جديدة
+================================ */
 
+function openShapeForm(materialIndex){
 
-        const material =
-          D.materials[i];
+const box=
+document.getElementById(
+"shapeForm"+materialIndex
+);
 
+box.innerHTML=`
 
-        const folder =
-          `materials/${material.id || crypto.randomUUID()}`;
+<div class="shapeBox">
 
+<div class="field">
 
-        const imgs =
-          await Promise.all(
-            [...files].map(function (f) {
+<label>اسم القَصّة / الشكل</label>
 
-              return uploadFile(
-                f,
-                folder
-              );
+<input
+id="shapeName${materialIndex}"
+placeholder="مثال: مدور"
+>
 
-            })
-          );
+</div>
 
 
-        D.materials[i].images =
-          imgs;
+<div class="field">
 
+<label>وصف القَصّة</label>
 
-        if (D.materials[i].id) {
+<textarea
+id="shapeDesc${materialIndex}"
+rows="3"
+placeholder="اكتب وصف الشكل هنا"
+></textarea>
 
-          const { error } =
-            await sb
-              .from("materials")
-              .update({
-                images: imgs
-              })
-              .eq(
-                "id",
-                D.materials[i].id
-              );
+</div>
 
 
-          if (error) {
-            throw error;
-          }
+<div class="field">
 
-        }
+<label>صور القَصّة</label>
 
+<input
+id="shapeImages${materialIndex}"
+type="file"
+accept="image/*"
+multiple
+>
 
-        renderAdmin();
-        render();
+</div>
 
 
-        alert(
-          "تم رفع الصور وحفظها أونلاين."
-        );
+<div class="actions">
 
-      } catch (e) {
+<button
+class="goldBtn"
+onclick="addShape(${materialIndex})"
+>
+حفظ القَصّة
+</button>
 
-        console.error(e);
+<button
+class="close"
+onclick="document.getElementById('shapeForm${materialIndex}').innerHTML=''"
+>
+إلغاء
+</button>
 
-        alert(
-          "حصل خطأ أثناء رفع الصور: " +
-          e.message
-        );
+</div>
 
-      }
+</div>
 
-    }
+`;
 
+}
 
-    /* ================================
-       حذف خامة
-       ================================ */
 
-    async function delMaterial(i) {
+/* ================================
+   حفظ قصّة
+================================ */
 
-      if (D.materials.length <= 1) {
+async function addShape(materialIndex){
 
-        return alert(
-          "لازم تفضل خامة واحدة على الأقل"
-        );
+try{
 
-      }
+const material=
+D.materials[materialIndex];
 
+const name=
+document.getElementById(
+"shapeName"+materialIndex
+).value.trim();
 
-      if (!confirm("حذف الخامة؟")) {
-        return;
-      }
+const desc=
+document.getElementById(
+"shapeDesc"+materialIndex
+).value.trim();
 
+const fileInput=
+document.getElementById(
+"shapeImages"+materialIndex
+);
 
-      try {
+if(!name){
 
-        const id =
-          D.materials[i].id;
+return alert("اكتب اسم القَصّة");
 
+}
 
-        if (!id) {
+const files=[...fileInput.files];
 
-          D.materials.splice(i, 1);
+const folder=
+`materials/${material.id||crypto.randomUUID()}/shapes`;
 
-          renderAdmin();
-          render();
+const images=
+await Promise.all(
 
-          return;
-        }
+files.map(function(file){
 
+return uploadFile(file,folder);
 
-        const { error } =
-          await sb
-            .from("materials")
-            .delete()
-            .eq("id", id);
+})
 
+);
 
-        if (error) {
-          throw error;
-        }
 
+/*
+  بنضيف القَصّة داخل نفس images
+  من غير ما نعمل سجل خامة جديد.
+*/
 
-        D.materials.splice(i, 1);
+if(!Array.isArray(material.images)){
+material.images=[];
+}
 
-        renderAdmin();
-        render();
+material.images.push({
 
-      } catch (e) {
+type:"shape",
 
-        console.error(e);
+name:name,
 
-        alert(
-          "حصل خطأ أثناء الحذف: " +
-          e.message
-        );
+desc:desc||"",
 
-      }
+images:images
 
-    }
+});
 
 
-    /* ================================
-       إضافة خامة
-       ================================ */
+await updateMaterialImages(material);
 
-    async function addMaterial() {
+renderAdmin();
+render();
 
-      const newName =
-        document.getElementById("newName");
+alert("تمت إضافة القَصّة والصور داخل نفس الخامة.");
 
-      const newDesc =
-        document.getElementById("newDesc");
+}catch(e){
 
-      const newPrice =
-        document.getElementById("newPrice");
+console.error(e);
 
-      const newImages =
-        document.getElementById("newImages");
+alert(
+"حصل خطأ أثناء إضافة القَصّة: "+e.message
+);
 
+}
 
-      const n =
-        newName.value.trim();
+}
 
 
-      if (!n) {
+/* ================================
+   إضافة صور للخامة الموجودة
+================================ */
 
-        return alert(
-          "اكتب اسم الخامة"
-        );
+async function addImagesToMaterial(i,files){
 
-      }
+try{
 
+if(!files?.length)return;
 
-      try {
+const material=D.materials[i];
 
-        const files =
-          [...newImages.files];
+const folder=
+`materials/${material.id||crypto.randomUUID()}`;
 
+const imgs=
+await Promise.all(
 
-        const tempId =
-          crypto.randomUUID();
+[...files].map(function(file){
 
+return uploadFile(file,folder);
 
-        const imgs =
-          await Promise.all(
-            files.map(function (f) {
+})
 
-              return uploadFile(
-                f,
-                `materials/${tempId}`
-              );
+);
 
-            })
-          );
+if(!Array.isArray(material.images)){
+material.images=[];
+}
 
+/*
+  الصور الجديدة تضاف للصور القديمة
+  ولا تستبدلها.
+*/
 
-        const description =
-          newDesc.value.trim() ||
-          "خامة فاخرة";
+material.images=[
+...material.images,
+...imgs
+];
 
+await updateMaterialImages(material);
 
-        const price =
-          Number(newPrice.value) || 0;
+renderAdmin();
+render();
 
+alert("تمت إضافة الصور للخامة بدون حذف الصور القديمة.");
 
-        const { data, error } =
-          await sb
-            .from("materials")
-            .insert({
-              name: n,
-              description,
-              price,
-              images: imgs,
-              sort_order: D.materials.length
-            })
-            .select()
-            .single();
+}catch(e){
 
+console.error(e);
 
-        if (error) {
+alert(
+"حصل خطأ أثناء رفع الصور: "+e.message
+);
 
-          throw error;
+}
 
-        }
+}
 
 
-        D.materials.push({
+/* ================================
+   إضافة صور لقَصّة موجودة
+================================ */
 
-          id: data.id,
+async function addImagesToShape(materialIndex,shapeIndex,files){
 
-          name: data.name,
+try{
 
-          desc:
-            data.description || "",
+if(!files?.length)return;
 
-          price:
-            Number(data.price) || 0,
+const material=D.materials[materialIndex];
 
-          images:
-            Array.isArray(data.images)
-              ? data.images
-              : []
+const shapes=shapesOf(material);
 
-        });
+const shape=shapes[shapeIndex];
 
+if(!shape)return;
 
-        newName.value = "";
-        newDesc.value = "";
-        newPrice.value = "";
-        newImages.value = "";
+const folder=
+`materials/${material.id||crypto.randomUUID()}/shapes`;
 
+const imgs=
+await Promise.all(
 
-        renderAdmin();
-        render();
+[...files].map(function(file){
 
+return uploadFile(file,folder);
 
-        alert(
-          "تمت إضافة الخامة وحفظها أونلاين."
-        );
+})
 
-      } catch (e) {
+);
 
-        console.error(e);
+shape.images=[
+...(shape.images||[]),
+...imgs
+];
 
-        alert(
-          "حصل خطأ أثناء إضافة الخامة: " +
-          e.message
-        );
+await updateMaterialImages(material);
 
-      }
+renderAdmin();
+render();
 
-    }
+alert("تمت إضافة الصور للقَصّة بدون حذف الصور القديمة.");
 
+}catch(e){
 
-    /* ================================
-       حفظ كل التعديلات
-       ================================ */
+console.error(e);
 
-    async function saveAll() {
+alert(
+"حصل خطأ أثناء رفع صور القَصّة: "+e.message
+);
 
-      try {
+}
 
-        const siteNameInput =
-          document.getElementById("siteName");
+}
 
-        const waInput =
-          document.getElementById("wa");
 
-        const sizesInput =
-          document.getElementById("sizesInput");
+/* ================================
+   حذف قَصّة
+================================ */
 
-        const newPass =
-          document.getElementById("newPass");
+async function deleteShape(materialIndex,shapeIndex){
 
+if(!confirm("حذف القَصّة دي؟"))return;
 
-        D.siteName =
-          siteNameInput.value.trim() ||
-          D.siteName;
+try{
 
+const material=D.materials[materialIndex];
 
-        D.wa =
-          waInput.value.replace(/\D/g, "");
+let indexInImages=-1;
+let count=0;
 
+for(
+let i=0;
+i<(material.images||[]).length;
+i++
+){
 
-        D.sizes =
-          sizesInput.value
-            .split(",")
-            .map(function (x) {
-              return parseFloat(x.trim());
-            })
-            .filter(function (x) {
-              return !isNaN(x);
-            });
+if(isShape(material.images[i])){
 
+if(count===shapeIndex){
 
-        D.materials.forEach(
-          function (m, i) {
+indexInImages=i;
+break;
 
-            const nameInput =
-              document.getElementById(
-                "mn" + i
-              );
+}
 
-            const descInput =
-              document.getElementById(
-                "md" + i
-              );
+count++;
 
-            const priceInput =
-              document.getElementById(
-                "mp" + i
-              );
+}
 
+}
 
-            if (nameInput) {
-              m.name =
-                nameInput.value.trim();
-            }
+if(indexInImages>=0){
 
+material.images.splice(indexInImages,1);
 
-            if (descInput) {
-              m.desc =
-                descInput.value.trim();
-            }
+await updateMaterialImages(material);
 
+}
 
-            if (priceInput) {
-              m.price =
-                Number(priceInput.value) || 0;
-            }
+renderAdmin();
+render();
 
-          }
-        );
+}catch(e){
 
+console.error(e);
 
-        const { error: sErr } =
-          await sb
-            .from("site_settings")
-            .update({
-              site_name: D.siteName,
-              whatsapp: D.wa,
-              sizes: D.sizes,
-              kok_url: D.kok || null
-            })
-            .eq("id", 1);
+alert(
+"حصل خطأ أثناء حذف القَصّة: "+e.message
+);
 
+}
 
-        if (sErr) {
-          throw sErr;
-        }
+}
 
 
-        for (const m of D.materials) {
+/* ================================
+   تحديث صور خامة
+================================ */
 
-          if (!m.id) {
-            continue;
-          }
+async function updateMaterialImages(material){
 
+if(!material.id)return;
 
-          const { error } =
-            await sb
-              .from("materials")
-              .update({
+const{error}=
+await sb
+.from("materials")
+.update({
+images:Array.isArray(material.images)
+?material.images
+:[]
+})
+.eq("id",material.id);
 
-                name: m.name,
+if(error)throw error;
 
-                description: m.desc,
+}
 
-                price: m.price,
 
-                images:
-                  Array.isArray(m.images)
-                    ? m.images
-                    : []
+/* ================================
+   حذف خامة
+================================ */
 
-              })
-              .eq("id", m.id);
+async function delMaterial(i){
 
+if(D.materials.length<=1){
 
-          if (error) {
-            throw error;
-          }
+return alert(
+"لازم تفضل خامة واحدة على الأقل"
+);
 
-        }
+}
 
+if(!confirm("حذف الخامة؟"))return;
 
-        const password =
-          newPass.value.trim();
+try{
 
+const id=D.materials[i].id;
 
-        if (password) {
+if(!id){
 
-          const { error } =
-            await sb.auth.updateUser({
-              password
-            });
+D.materials.splice(i,1);
 
+renderAdmin();
+render();
 
-          if (error) {
-            throw error;
-          }
+return;
 
+}
 
-          newPass.value = "";
+const{error}=
+await sb
+.from("materials")
+.delete()
+.eq("id",id);
 
-        }
+if(error)throw error;
 
+D.materials.splice(i,1);
 
-        render();
+renderAdmin();
+render();
 
-        loadAdmin();
+}catch(e){
 
+console.error(e);
 
-        alert(
-          "تم حفظ كل التعديلات بنجاح أونلاين."
-        );
+alert(
+"حصل خطأ أثناء الحذف: "+e.message
+);
 
-      } catch (e) {
+}
 
-        console.error(e);
+}
 
-        alert(
-          "حصل خطأ أثناء الحفظ: " +
-          e.message
-        );
 
-      }
+/* ================================
+   إضافة خامة جديدة
+================================ */
 
-    }
+async function addMaterial(){
 
+const newName=
+document.getElementById("newName");
 
-    /* ================================
-       معاينة الصور
-       ================================ */
+const newDesc=
+document.getElementById("newDesc");
 
-    document
-      .getElementById("photos")
-      .addEventListener(
-        "change",
-        function () {
+const newPrice=
+document.getElementById("newPrice");
 
-          const preview =
-            document.getElementById(
-              "preview"
-            );
+const newImages=
+document.getElementById("newImages");
 
+const n=newName.value.trim();
 
-          preview.innerHTML = "";
+if(!n){
 
+return alert("اكتب اسم الخامة");
 
-          [...this.files]
-            .slice(0, 8)
-            .forEach(function (f) {
+}
 
-              const r =
-                new FileReader();
+try{
 
+const files=[...newImages.files];
 
-              r.onload =
-                function () {
+const tempId=crypto.randomUUID();
 
-                  preview.innerHTML += `
-                    <img src="${r.result}">
-                  `;
+const imgs=
+await Promise.all(
 
-                };
+files.map(function(f){
 
+return uploadFile(
+f,
+`materials/${tempId}`
+);
 
-              r.readAsDataURL(f);
+})
 
-            });
+);
 
-        }
-      );
+const description=
+newDesc.value.trim()||
+"خامة فاخرة";
 
+const price=
+Number(newPrice.value)||0;
 
-    /* ================================
-       صورة سبح كوك
-       ================================ */
+const{data,error}=
+await sb
+.from("materials")
+.insert({
 
-    document
-      .getElementById("kokInput")
-      .addEventListener(
-        "change",
-        async function () {
+name:n,
 
-          try {
+description,
 
-            const f =
-              this.files[0];
+price,
 
+images:imgs,
 
-            if (!f) {
-              return;
-            }
+sort_order:D.materials.length
 
+})
+.select()
+.single();
 
-            const url =
-              await uploadFile(
-                f,
-                "kok"
-              );
+if(error)throw error;
 
+D.materials.push({
 
-            D.kok = url;
+id:data.id,
 
+name:data.name,
 
-            const { error } =
-              await sb
-                .from("site_settings")
-                .update({
-                  kok_url: url
-                })
-                .eq("id", 1);
+desc:data.description||"",
 
+price:Number(data.price)||0,
 
-            if (error) {
-              throw error;
-            }
+images:Array.isArray(data.images)
+?data.images
+:[]
 
+});
 
-            render();
+newName.value="";
+newDesc.value="";
+newPrice.value="";
+newImages.value="";
 
+renderAdmin();
+render();
 
-            alert(
-              "تم رفع صورة سبح كوك وحفظها أونلاين."
-            );
+alert("تمت إضافة الخامة وحفظها أونلاين.");
 
-          } catch (e) {
+}catch(e){
 
-            console.error(e);
+console.error(e);
 
-            alert(
-              "حصل خطأ أثناء رفع الصورة: " +
-              e.message
-            );
+alert(
+"حصل خطأ أثناء إضافة الخامة: "+e.message
+);
 
-          }
+}
 
-        }
-      );
+}
 
 
-    /* ================================
-       إرسال الطلب على واتساب
-       ================================ */
+/* ================================
+   حفظ كل التعديلات
+================================ */
 
-    function sendOrder() {
+async function saveAll(){
 
-      const name =
-        document
-          .getElementById("name")
-          .value
-          .trim();
+try{
 
+const siteNameInput=
+document.getElementById("siteName");
 
-      const phone =
-        document
-          .getElementById("phone")
-          .value
-          .trim();
+const waInput=
+document.getElementById("wa");
 
+const sizesInput=
+document.getElementById("sizesInput");
 
-      if (!name || !phone) {
+const newPass=
+document.getElementById("newPass");
 
-        return alert(
-          "اكتب الاسم ورقم الواتساب"
-        );
+D.siteName=
+siteNameInput.value.trim()||
+D.siteName;
 
-      }
+D.wa=
+waInput.value.replace(/\D/g,"");
 
+D.sizes=
+sizesInput.value
+.split(",")
+.map(function(x){
+return parseFloat(x.trim());
+})
+.filter(function(x){
+return !isNaN(x);
+});
 
-      const materialSelect =
-        document.getElementById(
-          "material"
-        );
 
+D.materials.forEach(function(m,i){
 
-      const sizeSelect =
-        document.getElementById(
-          "size"
-        );
+const nameInput=
+document.getElementById("mn"+i);
 
+const descInput=
+document.getElementById("md"+i);
 
-      const countSelect =
-        document.getElementById(
-          "count"
-        );
+const priceInput=
+document.getElementById("mp"+i);
 
+if(nameInput)
+m.name=nameInput.value.trim();
 
-      const priceInput =
-        document.getElementById(
-          "price"
-        );
+if(descInput)
+m.desc=descInput.value.trim();
 
+if(priceInput)
+m.price=
+Number(priceInput.value)||0;
 
-      const notesInput =
-        document.getElementById(
-          "notes"
-        );
+});
 
 
-      const m =
-        D.materials[
-          Number(materialSelect.value) || 0
-        ];
+const{sErr}=await sb
+.from("site_settings")
+.update({
 
+site_name:D.siteName,
 
-      if (!m) {
+whatsapp:D.wa,
 
-        return alert(
-          "اختار الخامة أولاً"
-        );
+sizes:D.sizes
 
-      }
+})
+.eq("id",1);
 
+if(sErr)throw sErr;
 
-      const msg =
-        "طلب جديد من ورشة الجوكر" +
-        "%0Aالاسم: " +
-        encodeURIComponent(name) +
-        "%0Aواتساب: " +
-        encodeURIComponent(phone) +
-        "%0Aالخامة: " +
-        encodeURIComponent(m.name) +
-        "%0Aالمقاس: " +
-        encodeURIComponent(sizeSelect.value) +
-        " mm" +
-        "%0Aعدد الحبات: " +
-        encodeURIComponent(countSelect.value) +
-        "%0Aالسعر التقريبي: " +
-        encodeURIComponent(priceInput.value) +
-        "%0Aملاحظات: " +
-        encodeURIComponent(
-          notesInput.value || "لا يوجد"
-        );
 
+for(const m of D.materials){
 
-      window.open(
-        "https://wa.me/" +
-        D.wa +
-        "?text=" +
-        msg,
-        "_blank"
-      );
+if(!m.id)continue;
 
-    }
+const{error}=
+await sb
+.from("materials")
+.update({
 
+name:m.name,
 
-    /* ================================
-       تشغيل الموقع
-       ================================ */
+description:m.desc,
 
-    loadData();
+price:m.price,
 
-  </script>
+images:Array.isArray(m.images)
+?m.images
+:[]
+
+})
+.eq("id",m.id);
+
+if(error)throw error;
+
+}
+
+
+const password=
+newPass.value.trim();
+
+if(password){
+
+const{error}=
+await sb.auth.updateUser({
+password
+});
+
+if(error)throw error;
+
+newPass.value="";
+
+}
+
+render();
+
+loadAdmin();
+
+alert(
+"تم حفظ كل التعديلات بنجاح أونلاين."
+);
+
+}catch(e){
+
+console.error(e);
+
+alert(
+"حصل خطأ أثناء الحفظ: "+e.message
+);
+
+}
+
+}
+
+
+/* ================================
+   معاينة الصور
+================================ */
+
+document
+.getElementById("photos")
+.addEventListener(
+"change",
+function(){
+
+const preview=
+document.getElementById("preview");
+
+preview.innerHTML="";
+
+[...this.files]
+.slice(0,8)
+.forEach(function(f){
+
+const r=new FileReader();
+
+r.onload=function(){
+
+preview.innerHTML+=`
+
+<img src="${r.result}">
+
+`;
+
+};
+
+r.readAsDataURL(f);
+
+});
+
+}
+);
+
+
+/* ================================
+   إرسال الطلب
+================================ */
+
+function sendOrder(){
+
+const name=
+document.getElementById("name")
+.value.trim();
+
+const phone=
+document.getElementById("phone")
+.value.trim();
+
+if(!name||!phone){
+
+return alert(
+"اكتب الاسم ورقم الواتساب"
+);
+
+}
+
+const materialSelect=
+document.getElementById("material");
+
+const sizeSelect=
+document.getElementById("size");
+
+const priceInput=
+document.getElementById("price");
+
+const notesInput=
+document.getElementById("notes");
+
+const m=
+D.materials[
+Number(materialSelect.value)||0
+];
+
+if(!m){
+
+return alert(
+"اختار الخامة أولاً"
+);
+
+}
+
+const msg=
+
+"طلب جديد من ورشة الجوكر"+
+
+"%0Aالاسم:"+
+encodeURIComponent(name)+
+
+"%0Aواتساب:"+
+encodeURIComponent(phone)+
+
+"%0Aالخامة:"+
+encodeURIComponent(m.name)+
+
+"%0Aالمقاس:"+
+encodeURIComponent(sizeSelect.value)+
+" mm"+
+
+"%0Aعدد الحبات:"+
+encodeURIComponent("61")+
+
+"%0Aالسعر التقريبي:"+
+encodeURIComponent(priceInput.value)+
+
+"%0Aملاحظات:"+
+encodeURIComponent(
+notesInput.value||"لا يوجد"
+);
+
+window.open(
+"https://wa.me/"+
+D.wa+
+"?text="+
+msg,
+"_blank"
+);
+
+}
+
+
+/* ================================
+   تشغيل
+================================ */
+
+loadData();
+
+</script>
 
 </body>
-</html>  
+</html>
