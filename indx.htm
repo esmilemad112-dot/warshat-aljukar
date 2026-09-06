@@ -1299,7 +1299,7 @@ onclick="openMenu()"
 </p>
 
 <h1>
-      الجوكر للسبح الفاخرة
+ الجوكر للسبح الفاخرة
 </h1>
 
 <p>
@@ -1437,16 +1437,10 @@ onclick="openCart()"
 
 </footer>
 
-<!-- واتساب ديناميكي من الأدمن -->
-
 <a
-id="waFloat"
 class="float"
-data-wa-link
-href="#"
+href="https://wa.me/201101121270"
 target="_blank"
-rel="noopener"
-title="تواصل معنا على واتساب"
 >
 ⌕
 </a>
@@ -1674,17 +1668,10 @@ onclick="logout()"
 <div class="field">
 
 <label>
-رقم واتساب</label>
+رقم واتساب
+</label>
 
-<input
-id="wa"
-type="tel"
-placeholder="مثال: 01012405512"
->
-
-<div style="color:#888;font-size:12px;margin-top:6px;line-height:1.6">
-اكتب الرقم المصري عادي مثل 01012405512 أو بصيغة دولية 201012405512، وسيتم ضبطه تلقائياً.
-</div>
+<input id="wa">
 
 </div>
 
@@ -1816,7 +1803,7 @@ const SUPABASE_URL =
 "https://ggjgktccemdsrcsqypse.supabase.co";
 
 const SUPABASE_KEY =
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJndmdrZGNjZW1kc3Jjc3F5cHNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ1NTU2MTIsImV4cCI6MjEwNDAzMTYxMn0.S5fzn0sYlN5QvOzAHJ65q2Ln6F3Z4PVQjL7zslHdJR0";
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnamdrdGNjZW1kc3Jjc3F5cHNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0NTU2MTIsImV4cCI6MjEwNDAzMTYxMn0.S5fzn0sYlN5QvOzAHJ65q2Ln6F3Z4PVQjL7zslHdJR0";
 
 const sb =
 window.supabase.createClient(
@@ -1833,11 +1820,8 @@ const defaults={
 siteName:
 "ورشة الجوكر للسبح الفاخرة",
 
-/*
-  الرقم الجديد المطلوب
-*/
 wa:
-"201012405512",
+"201101121270",
 
 sizes:[
 10,
@@ -1962,67 +1946,6 @@ return sb.storage
 }
 
 /* =========================
-   WHATSAPP
-========================= */
-
-function normalizeWhatsApp(value){
-
-let number =
-String(value || "")
-.replace(/\D/g,"");
-
-/*
-  00xxxxxxxxxx
-  تتحول إلى xxxxxxxxxx
-*/
-if(number.startsWith("00")){
-number =
-number.slice(2);
-}
-
-/*
-  010xxxxxxxx
-  تتحول إلى 2010xxxxxxxx
-*/
-if(number.startsWith("0")){
-number =
-"20"+number.slice(1);
-}
-
-return number;
-}
-
-function getWhatsAppUrl(){
-
-const number =
-normalizeWhatsApp(D.wa);
-
-if(!number)
-return "";
-
-return "https://wa.me/"+number;
-}
-
-function updateWhatsAppLinks(){
-
-const url =
-getWhatsAppUrl();
-
-document
-.querySelectorAll("[data-wa-link]")
-.forEach(link=>{
-
-link.href =
-url || "#";
-
-link.target="_blank";
-link.rel="noopener";
-
-});
-
-}
-
-/* =========================
    LOAD DATA
 ========================= */
 
@@ -2143,8 +2066,6 @@ Array.isArray(m.variants)
 }
 
 render();
-
-updateWhatsAppLinks();
 
 }
 
@@ -2437,7 +2358,6 @@ onclick="closeMenu()"
 }
 
 updateCartCount();
-updateWhatsAppLinks();
 
 }
 
@@ -2883,30 +2803,10 @@ document.getElementById(
 ).value =
 D.siteName;
 
-/*
-  عرض الرقم بصيغة مصرية عادية
-*/
-const currentWa =
-normalizeWhatsApp(D.wa);
-
-if(
-currentWa.startsWith("20") &&
-currentWa.length>=12
-){
-
-document.getElementById(
-"wa"
-).value =
-"0"+currentWa.slice(2);
-
-}else{
-
 document.getElementById(
 "wa"
 ).value =
 D.wa;
-
-}
 
 document.getElementById(
 "sizesInput"
@@ -3886,7 +3786,6 @@ e.message
 
 /* =========================
    SAVE ALL
-   تم إصلاح حفظ الواتساب
 ========================= */
 
 async function saveAll(){
@@ -3913,59 +3812,22 @@ document.getElementById(
 "newPass"
 );
 
-/* اسم الموقع */
-
 D.siteName =
 siteNameInput.value.trim()
 ||
 D.siteName;
 
-/* =========================
-   رقم واتساب
-========================= */
-
-/*
-  المستخدم يكتب:
-  01012405512
-
-  ويتم التخزين:
-  201012405512
-*/
-
 D.wa =
-normalizeWhatsApp(
-waInput.value
+waInput.value.replace(
+/\D/g,
+""
 );
 
-if(
-!D.wa ||
-D.wa.length < 10
-){
-
-return alert(
-"اكتب رقم واتساب صحيح.\nمثال: 01012405512"
-);
-
-}
-
-/* المقاسات */
-
-const enteredSizes =
+D.sizes =
 sizesInput.value
 .split(",")
 .map(x=>parseFloat(x.trim()))
 .filter(x=>!isNaN(x));
-
-if(enteredSizes.length){
-
-D.sizes =
-enteredSizes;
-
-}
-
-/* =========================
-   تحديث الخامات محلياً
-========================= */
 
 D.materials.forEach(
 (m,i)=>{
@@ -3999,14 +3861,7 @@ Number(priceInput.value)||0;
 
 });
 
-/* =========================
-   حفظ إعدادات الموقع
-========================= */
-
-const {
-data:settingsData,
-error:sErr
-} =
+const {error:sErr} =
 await sb
 .from("site_settings")
 .update({
@@ -4018,52 +3873,21 @@ whatsapp:D.wa,
 sizes:D.sizes
 
 })
-.eq("id",1)
-.select()
-.single();
+.eq("id",1);
 
-if(sErr){
+if(sErr)
+throw sErr;
 
-console.error(
-"Supabase site_settings error:",
-sErr
-);
-
-throw new Error(
-sErr.message ||
-sErr.details ||
-sErr.hint ||
-"فشل حفظ إعدادات الموقع"
-);
-
-}
-
-if(!settingsData){
-
-throw new Error(
-"لم يتم العثور على إعدادات الموقع id=1 في جدول site_settings."
-);
-
-}
-
-/* =========================
-   تحديث الواتساب فوراً
-========================= */
-
-updateWhatsAppLinks();
-
-/* =========================
-   حفظ الخامات
-========================= */
+/*
+  تحديث الخامات بدون حذف الصور والقَصّات
+*/
 
 for(const m of D.materials){
 
 if(!m.id)
 continue;
 
-const {
-error
-} =
+const {error} =
 await sb
 .from("materials")
 .update({
@@ -4090,83 +3914,45 @@ Array.isArray(m.variants)
 m.id
 );
 
-if(error){
-
-console.error(
-"Supabase materials error:",
-error
-);
-
-throw new Error(
-error.message ||
-error.details ||
-error.hint ||
-"فشل حفظ الخامة"
-);
+if(error)
+throw error;
 
 }
 
-}
-
-/* =========================
-   تغيير كلمة المرور
-========================= */
+/* تغيير كلمة المرور */
 
 const password =
 newPass.value.trim();
 
 if(password){
 
-const {
-error
-} =
+const {error} =
 await sb.auth.updateUser({
 password
 });
 
-if(error){
-
-throw new Error(
-error.message ||
-"فشل تغيير كلمة المرور"
-);
-
-}
+if(error)
+throw error;
 
 newPass.value="";
 
 }
 
-/* =========================
-   إعادة العرض
-========================= */
-
 render();
 
 await loadAdmin();
 
-updateWhatsAppLinks();
-
 alert(
-"تم حفظ كل التعديلات بنجاح أونلاين.\n\nرقم الواتساب المحفوظ:\n"+
-D.wa
+"تم حفظ كل التعديلات بنجاح أونلاين."
 );
 
 }catch(e){
 
-console.error(
-"خطأ كامل في saveAll:",
-e
-);
+console.error(e);
 
 alert(
-"حصل خطأ أثناء الحفظ:\n\n"+
-(
-e?.message ||
-e?.details ||
-e?.hint ||
-String(e)
-)
+"حصل خطأ أثناء الحفظ: "+
+(e.message||e)
 );
 
 }
@@ -4183,17 +3969,6 @@ if(!cart.length)
 return alert(
 "السلة فاضية. أضف سبحة واحدة على الأقل."
 );
-
-const whatsapp =
-normalizeWhatsApp(D.wa);
-
-if(!whatsapp){
-
-return alert(
-"رقم الواتساب غير مضبوط من لوحة الأدمن."
-);
-
-}
 
 const name =
 document.getElementById(
@@ -4292,7 +4067,7 @@ cartTotal()
 window.open(
 
 "https://wa.me/"+
-whatsapp+
+D.wa+
 "?text="+
 msg,
 
