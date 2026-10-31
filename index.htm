@@ -1,0 +1,1771 @@
+HTML
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ورشة الجوكر للسبح الفاخرة</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+:root{
+  --bg:#090909;
+  --panel:#151515;
+  --gold:#d4af37;
+  --muted:#aaa;
+  --line:#34302a;
+  --white:#f7f3e9;
+  --green:#25a56a;
+  --red:#d34b4b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--white);
+  font-family:Tajawal,Arial,sans-serif;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.wrap{max-width:1180px;margin:auto;padding:0 18px}
+
+.top{
+  position:sticky;
+  top:0;
+  z-index:5;
+  background:#090909ed;
+  border-bottom:1px solid #302817;
+  backdrop-filter:blur(12px);
+}
+.nav{
+  min-height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  cursor:pointer;
+  user-select:none;
+}
+.logo{
+  width:46px;
+  height:46px;
+  border:1px solid var(--gold);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:var(--gold);
+  font-size:22px;
+  font-weight:800;
+}
+.brand strong{
+  display:block;
+  color:var(--gold);
+  font-size:20px;
+}
+.brand small{color:#aaa}
+.links{display:flex;gap:18px;flex-wrap:wrap}
+.links a{color:#eee;text-decoration:none}
+.links a:hover{color:var(--gold)}
+
+.hero{
+  padding:76px 0 54px;
+  text-align:center;
+  background:radial-gradient(ellipse at top,#3a2d0c66,transparent 60%);
+}
+.eyebrow{color:var(--gold);letter-spacing:1px}
+.hero h1{font-size:clamp(32px,6vw,58px);margin:12px 0}
+.hero p{
+  color:#c6c0b3;
+  font-size:18px;
+  max-width:650px;
+  margin:0 auto 24px;
+  line-height:1.8;
+}
+.btn{
+  border:1px solid var(--gold);
+  background:var(--gold);
+  color:#111;
+  padding:11px 20px;
+  border-radius:9px;
+  font-weight:800;
+  transition:transform .25s,box-shadow .25s,background .25s;
+}
+.btn.alt{background:transparent;color:var(--gold)}
+.btn.danger{border-color:var(--red);background:var(--red);color:white}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn:hover:not(:disabled){
+  transform:translateY(-3px);
+  box-shadow:0 8px 22px #d4af3744;
+}
+.section{padding:42px 0}
+.section h2{color:var(--gold);font-size:30px;margin:0 0 8px}
+.sub{color:var(--muted);margin:0 0 22px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+.card{
+  background:linear-gradient(145deg,#191919,#101010);
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+  transition:transform .25s,box-shadow .25s,border-color .25s;
+}
+.card:hover{
+  transform:translateY(-5px);
+  border-color:var(--gold);
+  box-shadow:0 12px 28px #d4af3722;
+}
+.card img{
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  background:#222;
+  transition:transform .35s;
+}
+.card:hover img{transform:scale(1.035)}
+.cardbody{padding:15px}
+.card h3{margin:0 0 8px;color:#f3df9b}
+.price{color:var(--gold);font-weight:800;font-size:19px}
+.muted{color:var(--muted)}
+
+.formbox,.adminbox{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:20px;
+}
+.fields{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+.field label{color:#d9c78c}
+.field input,.field select,.field textarea{
+  width:100%;
+  padding:11px;
+  background:#0b0b0b;
+  color:white;
+  border:1px solid #45403a;
+  border-radius:8px;
+  outline:none;
+}
+.field textarea{min-height:90px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--gold);
+}
+.notice{
+  padding:12px;
+  border-radius:8px;
+  background:#242014;
+  color:#e8d69b;
+  margin:12px 0;
+  line-height:1.8;
+}
+.footer{
+  border-top:1px solid var(--line);
+  padding:25px 0;
+  color:#aaa;
+  text-align:center;
+  margin-top:35px;
+}
+.hidden{display:none!important}
+.admin-shell{min-height:100vh;background:#0b0b0b}
+.admin-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:18px 0;
+  border-bottom:1px solid var(--line);
+}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.tabs button{
+  background:#1b1b1b;
+  color:#ddd;
+  border:1px solid var(--line);
+  padding:9px 14px;
+  border-radius:8px;
+}
+.tabs button.active{
+  background:var(--gold);
+  color:#111;
+  border-color:var(--gold);
+  font-weight:800;
+}
+.tablewrap{overflow:auto}
+.tbl{
+  width:100%;
+  border-collapse:collapse;
+  min-width:700px;
+}
+.tbl th,.tbl td{
+  padding:11px;
+  border-bottom:1px solid var(--line);
+  text-align:right;
+  vertical-align:middle;
+}
+.tbl th{color:var(--gold)}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;
+  margin:16px 0;
+}
+.stat{
+  background:#171717;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:16px;
+}
+.stat b{display:block;font-size:25px;color:var(--gold)}
+.actions{display:flex;gap:7px;flex-wrap:wrap}
+.small{padding:6px 10px;font-size:14px}
+.login{max-width:420px;margin:9vh auto}
+.login h2{color:var(--gold)}
+.right{display:flex;gap:8px;align-items:center}
+.status{
+  padding:4px 9px;
+  border-radius:20px;
+  background:#262116;
+  color:#e8d69b;
+  font-size:13px;
+}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+.gallery-card .gallery-photo{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:contain;
+  background:#080808;
+  display:block;
+}
+.gallery-card .cardbody{min-height:145px}
+.gallery-card .price{margin:10px 0}
+.gallery-empty{
+  padding:22px;
+  border:1px dashed #66552b;
+  border-radius:12px;
+  color:#aaa;
+}
+.whatsapp-float{
+  position:fixed;
+  bottom:22px;
+  left:20px;
+  z-index:20;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:#20bd67;
+  color:white;
+  text-decoration:none;
+  font-size:27px;
+  box-shadow:0 5px 20px #0008;
+  transition:transform .2s;
+}
+.whatsapp-float:hover{transform:scale(1.1)}
+.table-input{
+  width:100px;
+  padding:7px;
+  background:#111;
+  color:white;
+  border:1px solid #555;
+  border-radius:6px;
+}
+@media(max-width:760px){
+  .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:480px){
+  .gallery-grid{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+  .nav{align-items:flex-start;padding:12px 0;flex-direction:column}
+  .links{gap:12px}
+  .hero{padding:52px 0 38px}
+  .fields{grid-template-columns:1fr}
+  .admin-head{align-items:flex-start;flex-direction:column}
+}
+
+/* شاشة البداية */
+#amIntro{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:radial-gradient(circle at center,#241c08 0%,#080808 58%,#000 100%);
+  display:grid;
+  place-items:center;
+  transition:opacity .8s ease,visibility .8s ease;
+}
+#amIntro.out{opacity:0;visibility:hidden;pointer-events:none}
+.am-wrap{
+  position:relative;
+  width:210px;
+  height:210px;
+  display:grid;
+  place-items:center;
+}
+.am-ring{
+  position:absolute;
+  inset:4px;
+  border:2px solid transparent;
+  border-top-color:#f4dc83;
+  border-right-color:#d4af37;
+  border-radius:50%;
+  filter:drop-shadow(0 0 12px #d4af3788);
+  animation:amSpin 3s linear infinite;
+}
+.am-ring:before{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border:1px solid #d4af3777;
+  border-bottom-color:#f6e6a7;
+  border-radius:50%;
+  animation:amSpin 5s linear infinite reverse;
+}
+.am-letters{
+  font:800 76px/1 Tajawal,Arial,sans-serif;
+  letter-spacing:-9px;
+  color:#f4df9a;
+  text-shadow:0 0 10px #d4af37,0 0 35px #d4af3788;
+  animation:amGlow 2s ease-in-out infinite alternate;
+}
+.am-letters span{display:inline-block}
+.am-letters span:first-child{animation:amLetterA .9s .2s both}
+.am-letters span:last-child{animation:amLetterM .9s .2s both}
+.am-caption{
+  position:absolute;
+  top:calc(100% + 28px);
+  white-space:nowrap;
+  color:#d4af37;
+  font:700 14px Tajawal;
+  letter-spacing:3px;
+  opacity:0;
+  animation:amCaption 1s 1s forwards;
+}
+@keyframes amSpin{to{transform:rotate(360deg)}}
+@keyframes amGlow{
+  from{filter:brightness(.8)}
+  to{filter:brightness(1.35)}
+}
+@keyframes amLetterA{
+  from{opacity:0;transform:translateX(-120px) scale(.7)}
+  to{opacity:1;transform:translateX(0) scale(1)}
+}
+@keyframes amLetterM{
+  from{opacity:0;transform:translateX(120px) scale(.7)}
+  to{opacity:1;transform:translateX(0) scale(1)}
+}
+@keyframes amCaption{to{opacity:1;letter-spacing:2px}}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    scroll-behavior:auto!important;
+    animation:none!important;
+    transition:none!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="amIntro" aria-label="AM - ورشة الجوكر">
+  <div class="am-wrap">
+    <div class="am-ring"></div>
+    <div class="am-letters"><span>A</span><span>M</span></div>
+    <div class="am-caption">AL JOKER ROSARIES</div>
+  </div>
+</div>
+
+<div id="store">
+<header class="top">
+  <div class="wrap nav">
+    <div class="brand" id="jokerLogo" title="ورشة الجوكر">
+      <div class="logo">AM</div>
+      <div>
+        <strong>ورشة الجوكر</strong>
+        <small>للسبح الفاخرة</small>
+      </div>
+    </div>
+
+    <nav class="links">
+      <a href="#home">الرئيسية</a>
+      <a href="#products">الخامات</a>
+      <a href="#gallery">معرض السبح</a>
+      <a href="#order">اطلب الآن</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="eyebrow">صناعة يدوية • جودة مميزة</div>
+    <h1>ورشة الجوكر للسبح الفاخرة</h1>
+    <p>
+      اختار الخامة والمقاس المناسب، أو اطلب تصنيع سبحتك بخامتك الخاصة.
+      بنهتم بالتفاصيل عشان توصلك سبحة تليق بيك.
+    </p>
+    <a class="btn" href="#order">اطلب سبحتك الآن</a>
+  </div>
+</section>
+
+<section class="section wrap" id="products">
+  <h2>الخامات والمقاسات</h2>
+  <p class="sub">تصفح الخامات المتاحة وشوف بعض التفاصيل والأسعار.</p>
+  <div id="materialCards" class="grid">
+    <p class="muted">جاري تحميل الخامات...</p>
+  </div>
+</section>
+
+<section class="section wrap" id="gallery">
+  <h2>معرض السبح الفاخرة</h2>
+  <p class="sub">تصفح السبح واختر التصميم اللي يناسبك.</p>
+  <div id="galleryCards" class="gallery-grid">
+    <p class="muted">جاري تحميل المعرض...</p>
+  </div>
+</section>
+
+<section class="section wrap" id="order">
+  <h2>تسجيل طلب جديد</h2>
+  <p class="sub">اكتب مواصفات السبحة وحدد مكان التوصيل.</p>
+
+  <div class="formbox">
+    <form id="orderForm">
+      <div class="fields">
+
+        <div class="field">
+          <label>الاسم بالكامل *</label>
+          <input name="customer_name" required maxlength="100">
+        </div>
+
+        <div class="field">
+          <label>رقم الموبايل مع كود الدولة *</label>
+          <input name="phone" required inputmode="tel" maxlength="25"
+            placeholder="مثال: 201xxxxxxxxx">
+        </div>
+
+        <div class="field">
+          <label>الدولة *</label>
+          <select name="country" required>
+            <option value="">اختار الدولة</option>
+            <option>مصر</option>
+            <option>السعودية</option>
+            <option>الإمارات</option>
+            <option>الكويت</option>
+            <option>قطر</option>
+            <option>البحرين</option>
+            <option>عُمان</option>
+            <option>الأردن</option>
+            <option>العراق</option>
+            <option>لبنان</option>
+            <option>سوريا</option>
+            <option>فلسطين</option>
+            <option>اليمن</option>
+            <option>المغرب</option>
+            <option>الجزائر</option>
+            <option>تونس</option>
+            <option>ليبيا</option>
+            <option>السودان</option>
+            <option>موريتانيا</option>
+            <option>الصومال</option>
+            <option>جيبوتي</option>
+            <option>جزر القمر</option>
+            <option>تركيا</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>المدينة / المحافظة *</label>
+          <input name="governorate" required maxlength="100">
+        </div>
+
+        <div class="field">
+          <label>مصدر الخامة *</label>
+          <select name="material_source" id="materialSource" required>
+            <option value="من الورشة">الخامة من الورشة</option>
+            <option value="من عند العميل">الخامة من عندي</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>نوع الخامة المطلوبة *</label>
+          <input name="material_name" required maxlength="150"
+            placeholder="اكتب نوع الخامة">
+        </div>
+
+        <div class="field">
+          <label>المقاس المطلوب *</label>
+          <input name="size_name" required maxlength="100"
+            placeholder="اكتب المقاس المطلوب">
+        </div>
+
+        <div class="field">
+          <label>الكمية *</label>
+          <input name="quantity" type="number" min="1" max="100"
+            value="1" required>
+        </div>
+
+        <div class="field full">
+          <label>العنوان بالتفصيل *</label>
+          <input name="address" required maxlength="300"
+            placeholder="الشارع ورقم المبنى وأي تفاصيل تساعد في التوصيل">
+        </div>
+
+        <div class="field full">
+          <label>تفاصيل إضافية</label>
+          <textarea name="details" maxlength="1000"
+            placeholder="اكتب أي تفاصيل تخص تصميم السبحة أو الخامة أو التصنيع"></textarea>
+        </div>
+
+        <div class="field">
+          <label>طريقة الدفع</label>
+          <select name="payment_method">
+            <option>الدفع عند الاستلام</option>
+            <option>Vodafone Cash</option>
+            <option>InstaPay</option>
+            <option>تحويل بنكي</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>صورة إثبات الدفع (اختياري)</label>
+          <input name="payment_proof" type="file" accept="image/*">
+        </div>
+
+      </div>
+
+      <div class="notice">
+        <strong>التصنيع بخامة العميل:</strong>
+        لو هتبعت خامتك الخاصة، الورشة بتحدد عمولة التصنيع حسب نوع الخامة
+        وطبيعة الشغل، وهنبلغك بالتكلفة قبل البدء.
+        <br>
+        <strong>التوصيل:</strong>
+        متاح طلب التوصيل للدول الموجودة بالقائمة، وسيتم تأكيد إمكانية الشحن
+        والتكلفة حسب الدولة والعنوان قبل اعتماد الطلب.
+      </div>
+
+      <button class="btn" id="submitOrder" type="submit">إرسال الطلب</button>
+      <span id="orderMsg" class="muted" style="margin-right:12px"></span>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="footer">© ورشة الجوكر للسبح الفاخرة</footer>
+</div>
+
+<a id="whatsappFloat" class="whatsapp-float"
+  target="_blank" rel="noopener" aria-label="تواصل واتساب">☎</a>
+
+<div id="admin" class="admin-shell hidden">
+  <div class="wrap">
+
+    <div id="loginView" class="login formbox">
+      <h2>دخول الإدارة</h2>
+      <p class="muted">سجّل الدخول بحساب الإدارة المعتمد.</p>
+
+      <form id="loginForm">
+        <div class="field">
+          <label>البريد الإلكتروني</label>
+          <input name="email" type="email" required autocomplete="username">
+        </div>
+
+        <div class="field" style="margin-top:12px">
+          <label>كلمة المرور</label>
+          <input name="password" type="password" required autocomplete="current-password">
+        </div>
+
+        <p id="loginMsg" class="muted"></p>
+        <button class="btn" type="submit">تسجيل الدخول</button>
+        <button type="button" class="btn alt" id="backStore" style="margin-right:8px">
+          رجوع للموقع
+        </button>
+      </form>
+    </div>
+
+    <div id="dashboard" class="hidden">
+      <div class="admin-head">
+        <div>
+          <h2 style="color:var(--gold);margin:0">لوحة تحكم الجوكر</h2>
+          <small class="muted">إدارة الموقع والطلبات والمبيعات</small>
+        </div>
+        <div class="right">
+          <span id="adminEmail" class="status"></span>
+          <button class="btn alt small" id="logoutBtn">تسجيل خروج</button>
+        </div>
+      </div>
+
+      <div class="tabs" id="tabs">
+        <button data-tab="overview" class="active">الرئيسية</button>
+        <button data-tab="materials">الخامات</button>
+        <button data-tab="gallery">معرض السبح</button>
+        <button data-tab="sizes">المقاسات</button>
+        <button data-tab="orders">الطلبات</button>
+        <button data-tab="sales">المبيعات</button>
+        <button data-tab="settings">الإعدادات</button>
+      </div>
+
+      <div id="panel"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* إعداد الاتصال - لا تضع service_role هنا */
+const SUPABASE_URL = "https://xgpxsvbqpfnavkiowlga.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_IZPRcZiFYuDjYviF0HtNmw_lv4nSw1A";
+const BUCKET = "site-media";
+
+const db = window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+const $ = s => document.querySelector(s);
+
+let materials=[];
+let sizes=[];
+let orders=[];
+let galleryItems=[];
+let clickCount=0;
+let clickTimer=null;
+let currentTab="overview";
+let editingCatalog=null;
+let editingGalleryId=null;
+
+let siteSettings={whatsapp:"",hero_image:""};
+
+const defaultCopy={
+  eyebrow:"صناعة يدوية • جودة مميزة",
+  heroTitle:"ورشة الجوكر للسبح الفاخرة",
+  heroText:"اختار الخامة والمقاس المناسب، أو اطلب تصنيع سبحتك بخامتك الخاصة. بنهتم بالتفاصيل عشان توصلك سبحة تليق بيك.",
+  productsTitle:"الخامات والمقاسات",
+  productsText:"تصفح الخامات المتاحة وشوف بعض التفاصيل والأسعار.",
+  orderTitle:"تسجيل طلب جديد",
+  orderText:"اكتب مواصفات السبحة وحدد مكان التوصيل.",
+  footerText:"© ورشة الجوكر للسبح الفاخرة"
+};
+
+let siteCopy={...defaultCopy};
+
+function applyCopy(){
+  const set=(sel,val)=>{
+    const el=$(sel);
+    if(el)el.textContent=val;
+  };
+
+  set(".eyebrow",siteCopy.eyebrow);
+  set(".hero h1",siteCopy.heroTitle);
+  set(".hero p",siteCopy.heroText);
+  set("#products h2",siteCopy.productsTitle);
+  set("#products .sub",siteCopy.productsText);
+  set("#order h2",siteCopy.orderTitle);
+  set("#order .sub",siteCopy.orderText);
+  set(".footer",siteCopy.footerText);
+
+  document.title=siteCopy.heroTitle||defaultCopy.heroTitle;
+}
+
+function applyHeroImage(url){
+  const hero=$(".hero");
+  if(!hero)return;
+
+  if(url){
+    const safeUrl=String(url).replace(/["\\]/g,"");
+    hero.style.backgroundImage=
+      `linear-gradient(#090909aa,#090909cc),url("${safeUrl}")`;
+    hero.style.backgroundSize="cover";
+    hero.style.backgroundPosition="center";
+  }else{
+    hero.style.backgroundImage="";
+  }
+}
+
+function applyWhatsapp(number){
+  const link=$("#whatsappFloat");
+  const clean=String(number||"").replace(/[^\d]/g,"");
+
+  if(clean){
+    link.href="https://wa.me/"+clean;
+    link.style.display="flex";
+  }else{
+    link.removeAttribute("href");
+    link.style.display="none";
+  }
+}
+
+function hideIntro(){
+  const el=$("#amIntro");
+  if(el){
+    el.classList.add("out");
+    setTimeout(()=>el.remove(),900);
+  }
+}
+setTimeout(hideIntro,3000);
+
+const money=n=>"$"+(Number(n)||0).toLocaleString("en-US",{
+  minimumFractionDigits:2,
+  maximumFractionDigits:2
+});
+
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#39;"
+}[c]));
+
+function say(el,msg){
+  if(el)el.textContent=msg;
+}
+
+/* صلاحية الأدمن */
+function adminUser(user){
+  return user?.app_metadata?.role==="admin";
+}
+
+/* فتح لوحة الإدارة بعد 10 ضغطات على AM */
+$("#jokerLogo").addEventListener("click",()=>{
+  clickCount++;
+  clearTimeout(clickTimer);
+
+  clickTimer=setTimeout(()=>clickCount=0,1800);
+
+  if(clickCount>=10){
+    clickCount=0;
+    openAdmin();
+  }
+});
+
+function openAdmin(){
+  $("#store").classList.add("hidden");
+  $("#admin").classList.remove("hidden");
+  checkSession();
+}
+
+$("#backStore").onclick=()=>{
+  $("#admin").classList.add("hidden");
+  $("#store").classList.remove("hidden");
+};
+
+async function checkSession(){
+  try{
+    const {data,error}=await db.auth.getSession();
+    if(error)throw error;
+
+    const session=data?.session;
+
+    if(session&&adminUser(session.user)){
+      await showDashboard(session.user);
+    }else{
+      $("#loginView").classList.remove("hidden");
+      $("#dashboard").classList.add("hidden");
+    }
+  }catch(err){
+    console.error("Session check error:",err);
+    $("#loginView").classList.remove("hidden");
+    $("#dashboard").classList.add("hidden");
+    say($("#loginMsg"),"تعذر التحقق من الجلسة: "+(err.message||"خطأ اتصال"));
+  }
+}
+
+$("#loginForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+
+  const form=e.currentTarget;
+  const f=new FormData(form);
+  const msg=$("#loginMsg");
+  const button=form.querySelector('button[type="submit"]');
+
+  const email=String(f.get("email")||"").trim();
+  const password=String(f.get("password")||"");
+
+  if(!email||!password){
+    say(msg,"اكتب البريد الإلكتروني وكلمة المرور.");
+    return;
+  }
+
+  button.disabled=true;
+  button.textContent="جاري التحقق...";
+  say(msg,"");
+
+  try{
+    const {data,error}=await db.auth.signInWithPassword({email,password});
+    if(error)throw error;
+
+    if(!data?.user){
+      say(msg,"لم يتم إرجاع بيانات الحساب.");
+      return;
+    }
+
+    if(!adminUser(data.user)){
+      await db.auth.signOut();
+      say(msg,"الحساب غير مفعّل كمدير. يلزم تعيين app_metadata.role = admin من صلاحيات آمنة في Supabase.");
+      return;
+    }
+
+    await showDashboard(data.user);
+  }catch(err){
+    console.error("Login error:",err);
+    say(msg,"تعذر تسجيل الدخول: "+(err.message||"راجع البيانات."));
+  }finally{
+    button.disabled=false;
+    button.textContent="تسجيل الدخول";
+  }
+});
+
+async function showDashboard(user){
+  $("#loginView").classList.add("hidden");
+  $("#dashboard").classList.remove("hidden");
+  say($("#adminEmail"),user.email||"مدير");
+
+  try{
+    await loadAdmin();
+  }catch(err){
+    console.error(err);
+    alert("حصلت مشكلة أثناء تحميل لوحة الإدارة: "+err.message);
+  }
+}
+
+$("#logoutBtn").onclick=async()=>{
+  await db.auth.signOut();
+  $("#dashboard").classList.add("hidden");
+  $("#loginView").classList.remove("hidden");
+};
+
+$("#tabs").addEventListener("click",e=>{
+  const b=e.target.closest("button[data-tab]");
+  if(!b)return;
+
+  currentTab=b.dataset.tab;
+
+  $("#tabs").querySelectorAll("button").forEach(x=>{
+    x.classList.toggle("active",x===b);
+  });
+
+  renderPanel();
+});
+
+/* تحميل بيانات الموقع */
+async function loadPublic(){
+  const [m,s,g,c]=await Promise.all([
+    db.from("materials").select("*").eq("is_active",true).order("sort_order"),
+    db.from("sizes").select("*").eq("is_active",true).order("sort_order"),
+    db.from("gallery_items").select("*").eq("is_active",true).order("sort_order"),
+    db.from("app_settings").select("setting_key,setting_value")
+  ]);
+
+  if(m.error)console.error("materials:",m.error.message);
+  else materials=m.data||[];
+
+  if(s.error)console.error("sizes:",s.error.message);
+  else sizes=s.data||[];
+
+  if(g.error)console.error("gallery:",g.error.message);
+  else galleryItems=g.data||[];
+
+  if(!c.error){
+    for(const row of c.data||[]){
+      if(row.setting_key.startsWith("copy_")){
+        const k=row.setting_key.slice(5);
+        if(k in defaultCopy){
+          siteCopy[k]=row.setting_value??defaultCopy[k];
+        }
+      }
+
+      if(row.setting_key==="hero_image"){
+        siteSettings.hero_image=row.setting_value||"";
+      }
+
+      if(row.setting_key==="whatsapp"){
+        siteSettings.whatsapp=row.setting_value||"";
+      }
+    }
+  }else{
+    console.error("app_settings:",c.error.message);
+  }
+
+  renderPublic();
+  applyCopy();
+  applyHeroImage(siteSettings.hero_image);
+  applyWhatsapp(siteSettings.whatsapp);
+}
+
+function renderPublic(){
+  $("#materialCards").innerHTML=materials.length
+    ?materials.map(m=>`
+      <article class="card">
+        ${m.image_url
+          ?`<img src="${esc(m.image_url)}" alt="${esc(m.name)}" loading="lazy">`
+          :""}
+        <div class="cardbody">
+          <h3>${esc(m.name)}</h3>
+          <p class="muted">${esc(m.description||"")}</p>
+          <div class="price">${money(m.price)}</div>
+        </div>
+      </article>
+    `).join("")
+    :'<p class="muted">لا توجد خامات مضافة حاليًا.</p>';
+
+  $("#galleryCards").innerHTML=galleryItems.length
+    ?galleryItems.map(item=>`
+      <article class="card gallery-card">
+        <img class="gallery-photo"
+          src="${esc(item.image_url)}"
+          alt="${esc(item.name)}" loading="lazy">
+        <div class="cardbody">
+          <h3>${esc(item.name)}</h3>
+          <p class="muted">${esc(item.description||"")}</p>
+          <div class="price">${money(item.price)}</div>
+          <button class="btn alt" type="button"
+            onclick="orderGalleryItem(${JSON.stringify(String(item.name))})">
+            اطلب السبحة دي
+          </button>
+        </div>
+      </article>
+    `).join("")
+    :'<div class="gallery-empty">المعرض هيتعرض هنا أول ما الأدمن يضيف صور السبح.</div>';
+}
+
+function orderGalleryItem(name){
+  const details=$("#orderForm [name=details]");
+  if(details){
+    details.value=`السبحة المطلوبة من المعرض: ${name}`;
+  }
+  location.hash="#order";
+}
+
+/* التحقق من مقاسات صور المعرض */
+async function validateSquareImage(file){
+  if(!file||!file.type.startsWith("image/")){
+    throw new Error("اختار ملف صورة صحيح.");
+  }
+
+  const bitmap=await createImageBitmap(file);
+  const w=bitmap.width;
+  const h=bitmap.height;
+  const ok=w===h&&(w===1000||w===1024);
+  bitmap.close?.();
+
+  if(!ok){
+    throw new Error(
+      `مقاس الصورة لازم يكون 1000×1000 أو 1024×1024 بكسل. مقاس الصورة الحالية ${w}×${h}`
+    );
+  }
+}
+
+/* رفع الملفات إلى Supabase Storage */
+async function uploadFile(file){
+  if(!file)return null;
+
+  const ext=(file.name.split(".").pop()||"jpg")
+    .replace(/[^a-z0-9]/gi,"");
+
+  const path=Date.now()+"-"+Math.random().toString(36).slice(2)+"."+ext;
+
+  const {error}=await db.storage.from(BUCKET).upload(path,file,{
+    upsert:false,
+    contentType:file.type
+  });
+
+  if(error)throw error;
+
+  const {data}=db.storage.from(BUCKET).getPublicUrl(path);
+  return data.publicUrl;
+}
+
+/* إرسال الطلب */
+$("#orderForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+
+  const btn=$("#submitOrder");
+  const msg=$("#orderMsg");
+
+  btn.disabled=true;
+  say(msg,"جاري إرسال الطلب...");
+
+  try{
+    const f=new FormData(e.currentTarget);
+
+    let proof=null;
+    const file=f.get("payment_proof");
+
+    if(file&&file.size){
+      proof=await uploadFile(file);
+    }
+
+    const payload={
+      customer_name:String(f.get("customer_name")||"").trim(),
+      phone:String(f.get("phone")||"").trim(),
+      country:String(f.get("country")||""),
+      material_source:String(f.get("material_source")||"من الورشة"),
+      material_name:String(f.get("material_name")||"").trim(),
+      size_name:String(f.get("size_name")||"").trim(),
+      quantity:Number(f.get("quantity")),
+      governorate:String(f.get("governorate")||"").trim(),
+      address:String(f.get("address")||"").trim(),
+      details:String(f.get("details")||""),
+      payment_method:String(f.get("payment_method")||""),
+      payment_status:proof?"في انتظار المراجعة":"غير مدفوع",
+      payment_proof_url:proof,
+      commission_amount:0,
+      status:"جديد"
+    };
+
+    const {error}=await db.from("orders").insert(payload);
+    if(error)throw error;
+
+    e.currentTarget.reset();
+
+    say(msg,"تم إرسال طلبك بنجاح. هنتواصل معاك لتأكيد التفاصيل والعمولة والشحن.");
+  }catch(err){
+    console.error("Order error:",err);
+    say(msg,"حصلت مشكلة أثناء إرسال الطلب: "+err.message);
+  }finally{
+    btn.disabled=false;
+  }
+});
+
+/* تحميل لوحة الإدارة */
+async function loadAdmin(){
+  await Promise.all([
+    loadPublic(),
+    loadOrders(),
+    loadGalleryAdmin()
+  ]);
+
+  renderPanel();
+}
+
+async function loadGalleryAdmin(){
+  const {data,error}=await db.from("gallery_items")
+    .select("*").order("sort_order");
+
+  if(error){
+    console.error("gallery_items:",error.message);
+    galleryItems=[];
+  }else{
+    galleryItems=data||[];
+  }
+}
+
+async function loadOrders(){
+  const {data,error}=await db.from("orders")
+    .select("*")
+    .order("created_at",{ascending:false});
+
+  if(error){
+    orders=[];
+    console.error(error);
+  }else{
+    orders=data||[];
+  }
+}
+
+/* عرض صفحات لوحة الإدارة */
+function renderPanel(){
+  const p=$("#panel");
+
+  if(currentTab==="overview"){
+    p.innerHTML=`
+      <div class="stats">
+        <div class="stat">إجمالي الطلبات<b>${orders.length}</b></div>
+        <div class="stat">طلبات جديدة<b>${orders.filter(o=>o.status==="جديد").length}</b></div>
+        <div class="stat">عدد الخامات<b>${materials.length}</b></div>
+        <div class="stat">عدد المقاسات<b>${sizes.length}</b></div>
+      </div>
+
+      <div class="formbox">
+        <h3>مرحبًا بك في لوحة الإدارة</h3>
+        <p class="muted">
+          تقدر تدير الخامات والمعرض والطلبات والعمولات والمبيعات وإعدادات الموقع.
+        </p>
+        <button class="btn" onclick="switchTab('orders')">عرض الطلبات</button>
+      </div>
+    `;
+  }
+
+  if(currentTab==="materials")renderCatalog(p,"materials");
+  if(currentTab==="gallery")renderGalleryAdmin(p);
+  if(currentTab==="sizes")renderCatalog(p,"sizes");
+  if(currentTab==="orders")renderOrders(p);
+
+  if(currentTab==="sales"){
+    const completed=orders.filter(o=>
+      ["تم التسليم","مكتمل"].includes(o.status)
+    );
+
+    const total=completed.reduce((a,o)=>
+      a+(Number(o.quantity)||0)*(Number(o.unit_price)||0),0
+    );
+
+    const commissions=completed.reduce((a,o)=>
+      a+(Number(o.commission_amount)||0),0
+    );
+
+    p.innerHTML=`
+      <div class="stats">
+        <div class="stat">طلبات مكتملة<b>${completed.length}</b></div>
+        <div class="stat">إجمالي قيمة مسجلة<b>${money(total)}</b></div>
+        <div class="stat">إجمالي العمولات المسجلة<b>${money(commissions)}</b></div>
+      </div>
+      <p class="muted">
+        قيمة المبيعات تعتمد على unit_price المسجل في الطلب.
+        والعمولات تعرض من قيمة commission_amount المسجلة.
+      </p>
+    `;
+  }
+
+  if(currentTab==="settings")renderSettings(p);
+}
+
+function switchTab(t){
+  currentTab=t;
+
+  $("#tabs").querySelectorAll("button").forEach(x=>{
+    x.classList.toggle("active",x.dataset.tab===t);
+  });
+
+  renderPanel();
+}
+
+/* إدارة الخامات والمقاسات */
+function renderCatalog(p,table){
+  const isM=table==="materials";
+  const arr=isM?materials:sizes;
+
+  p.innerHTML=`
+    <div class="formbox">
+      <h3>${editingCatalog?.table===table?"تعديل عنصر":"إضافة "+(isM?"خامة":"مقاس")}</h3>
+
+      <form id="catalogForm">
+        <div class="fields">
+          <div class="field">
+            <label>الاسم *</label>
+            <input name="name" required>
+          </div>
+
+          <div class="field">
+            <label>السعر</label>
+            <input name="price" type="number" min="0" step="0.01" value="0">
+          </div>
+
+          <div class="field full">
+            <label>الوصف</label>
+            <input name="description">
+          </div>
+
+          ${isM
+            ?'<div class="field full"><label>صورة</label><input name="image" type="file" accept="image/*"></div>'
+            :""}
+        </div>
+
+        <p id="catalogMsg" class="muted"></p>
+        <button class="btn" type="submit">حفظ</button>
+        <button type="button" class="btn alt" id="cancelCatalogEdit">إلغاء</button>
+      </form>
+    </div>
+
+    <div class="tablewrap" style="margin-top:18px">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>الاسم</th>
+            <th>السعر</th>
+            <th>الحالة</th>
+            <th>إجراء</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${arr.map(x=>`
+            <tr>
+              <td>${esc(x.name)}</td>
+              <td>${money(x.price)}</td>
+              <td>${x.is_active?"نشط":"موقوف"}</td>
+              <td>
+                <button class="btn alt small"
+                  onclick="editItem('${table}','${x.id}')">تعديل</button>
+
+                <button class="btn alt small"
+                  onclick="toggleItem('${table}','${x.id}',${!x.is_active})">
+                  ${x.is_active?"إيقاف":"تفعيل"}
+                </button>
+
+                <button class="btn danger small"
+                  onclick="deleteItem('${table}','${x.id}')">حذف</button>
+              </td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  if(editingCatalog?.table===table){
+    const x=arr.find(v=>String(v.id)===String(editingCatalog.id));
+
+    if(x){
+      const form=$("#catalogForm");
+      form.elements.name.value=x.name||"";
+      form.elements.price.value=Number(x.price)||0;
+      form.elements.description.value=x.description||"";
+
+      form.querySelector('button[type="submit"]').textContent="حفظ التعديل";
+    }
+  }
+
+  $("#cancelCatalogEdit").onclick=()=>{
+    editingCatalog=null;
+    renderCatalog(p,table);
+  };
+
+  $("#catalogForm").onsubmit=async e=>{
+    e.preventDefault();
+
+    const f=new FormData(e.currentTarget);
+    const submit=e.currentTarget.querySelector('button[type="submit"]');
+
+    submit.disabled=true;
+
+    try{
+      let image_url=null;
+
+      if(isM&&f.get("image")?.size){
+        image_url=await uploadFile(f.get("image"));
+      }
+
+      const row={
+        name:String(f.get("name")||"").trim(),
+        description:String(f.get("description")||""),
+        price:Number(f.get("price")||0)
+      };
+
+      if(isM&&image_url){
+        row.image_url=image_url;
+      }
+
+      let result;
+
+      if(editingCatalog?.table===table){
+        result=await db.from(table)
+          .update(row)
+          .eq("id",editingCatalog.id);
+      }else{
+        row.is_active=true;
+        row.sort_order=arr.length;
+
+        result=await db.from(table).insert(row);
+      }
+
+      if(result.error)throw result.error;
+
+      editingCatalog=null;
+      await loadAdmin();
+
+    }catch(err){
+      say($("#catalogMsg"),"خطأ: "+err.message);
+    }finally{
+      submit.disabled=false;
+    }
+  };
+}
+
+function editItem(t,id){
+  editingCatalog={table:t,id};
+  switchTab(t);
+}
+
+async function toggleItem(t,id,val){
+  const {error}=await db.from(t)
+    .update({is_active:val})
+    .eq("id",id);
+
+  if(error)alert(error.message);
+  else await loadAdmin();
+}
+
+async function deleteItem(t,id){
+  if(!confirm("متأكد من الحذف؟"))return;
+
+  const {error}=await db.from(t).delete().eq("id",id);
+
+  if(error){
+    alert(error.message);
+  }else{
+    editingCatalog=null;
+    await loadAdmin();
+  }
+}
+
+/* إدارة معرض السبح */
+function renderGalleryAdmin(p){
+  p.innerHTML=`
+    <div class="formbox">
+      <h3>${editingGalleryId?"تعديل السبحة":"إضافة سبحة للمعرض"}</h3>
+
+      <p class="muted">
+        ارفع صورة مربعة مقاس 1000×1000 أو 1024×1024 بكسل.
+      </p>
+
+      <form id="galleryForm">
+        <div class="fields">
+          <div class="field">
+            <label>اسم السبحة *</label>
+            <input name="name" required maxlength="120">
+          </div>
+
+          <div class="field">
+            <label>السعر *</label>
+            <input name="price" type="number" min="0" step="0.01" required>
+          </div>
+
+          <div class="field full">
+            <label>الوصف</label>
+            <textarea name="description" maxlength="600"></textarea>
+          </div>
+
+          <div class="field full">
+            <label>صورة مربعة *</label>
+            <input name="image" type="file" accept="image/*">
+          </div>
+        </div>
+
+        <p id="galleryMsg" class="muted"></p>
+
+        <button class="btn" type="submit">حفظ السبحة</button>
+        <button type="button" class="btn alt" id="cancelGalleryEdit">
+          إلغاء التعديل
+        </button>
+      </form>
+    </div>
+
+    <div class="tablewrap" style="margin-top:18px">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>الصورة</th>
+            <th>السبحة</th>
+            <th>السعر</th>
+            <th>الحالة</th>
+            <th>إجراء</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${galleryItems.map(x=>`
+            <tr>
+              <td>
+                <img src="${esc(x.image_url)}" width="58" height="58"
+                  style="object-fit:contain">
+              </td>
+              <td>${esc(x.name)}</td>
+              <td>${money(x.price)}</td>
+              <td>${x.is_active?"نشطة":"موقوفة"}</td>
+              <td>
+                <button class="btn alt small"
+                  onclick="editGalleryItem('${x.id}')">تعديل</button>
+
+                <button class="btn alt small"
+                  onclick="toggleGalleryItem('${x.id}',${!x.is_active})">
+                  ${x.is_active?"إيقاف":"تفعيل"}
+                </button>
+
+                <button class="btn danger small"
+                  onclick="deleteGalleryItem('${x.id}')">حذف</button>
+              </td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  if(editingGalleryId){
+    const x=galleryItems.find(v=>
+      String(v.id)===String(editingGalleryId)
+    );
+
+    if(x){
+      $("#galleryForm").elements.name.value=x.name||"";
+      $("#galleryForm").elements.price.value=x.price??0;
+      $("#galleryForm").elements.description.value=x.description||"";
+
+      $("#galleryForm").querySelector('button[type="submit"]')
+        .textContent="حفظ التعديل";
+    }
+  }
+
+  $("#cancelGalleryEdit").onclick=()=>{
+    editingGalleryId=null;
+    renderGalleryAdmin(p);
+  };
+
+  $("#galleryForm").onsubmit=async e=>{
+    e.preventDefault();
+
+    const f=new FormData(e.currentTarget);
+    const file=f.get("image");
+    const btn=e.currentTarget.querySelector('button[type="submit"]');
+
+    btn.disabled=true;
+
+    try{
+      const old=editingGalleryId
+        ?galleryItems.find(x=>String(x.id)===String(editingGalleryId))
+        :null;
+
+      let image_url=old?.image_url||null;
+
+      if(file&&file.size){
+        await validateSquareImage(file);
+        image_url=await uploadFile(file);
+      }
+
+      if(!image_url){
+        throw new Error("ارفع صورة بمقاس 1000×1000 أو 1024×1024.");
+      }
+
+      const row={
+        name:String(f.get("name")||"").trim(),
+        description:String(f.get("description")||""),
+        price:Number(f.get("price")),
+        image_url,
+        is_active:old?old.is_active:true,
+        sort_order:old?old.sort_order:galleryItems.length
+      };
+
+      const result=editingGalleryId
+        ?await db.from("gallery_items").update(row).eq("id",editingGalleryId)
+        :await db.from("gallery_items").insert(row);
+
+      if(result.error)throw result.error;
+
+      editingGalleryId=null;
+
+      await loadGalleryAdmin();
+      await loadPublic();
+      renderPanel();
+
+    }catch(err){
+      say($("#galleryMsg"),"تعذر الحفظ: "+err.message);
+    }finally{
+      btn.disabled=false;
+    }
+  };
+}
+
+function editGalleryItem(id){
+  editingGalleryId=id;
+  switchTab("gallery");
+}
+
+async function toggleGalleryItem(id,is_active){
+  const {error}=await db.from("gallery_items")
+    .update({is_active})
+    .eq("id",id);
+
+  if(error){
+    alert(error.message);
+  }else{
+    await loadGalleryAdmin();
+    await loadPublic();
+    renderPanel();
+  }
+}
+
+async function deleteGalleryItem(id){
+  if(!confirm("متأكد إنك عايز تحذف السبحة من المعرض؟"))return;
+
+  const {error}=await db.from("gallery_items")
+    .delete()
+    .eq("id",id);
+
+  if(error){
+    alert(error.message);
+  }else{
+    editingGalleryId=null;
+    await loadGalleryAdmin();
+    await loadPublic();
+    renderPanel();
+  }
+}
+
+/* إدارة الطلبات والعمولات */
+function renderOrders(p){
+  p.innerHTML=`
+    <div class="notice">
+      تقدر تراجع بيانات كل طلب وتحدد عمولة التصنيع حسب نوع الخامة.
+      اكتب العمولة واحفظها من نفس الطلب.
+    </div>
+
+    <div class="tablewrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>العميل</th>
+            <th>الهاتف</th>
+            <th>الدولة</th>
+            <th>الخامة</th>
+            <th>مصدر الخامة</th>
+            <th>المقاس</th>
+            <th>الكمية</th>
+            <th>العمولة</th>
+            <th>الدفع</th>
+            <th>الحالة</th>
+            <th>تحديث</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${orders.map(o=>`
+            <tr>
+              <td>${esc(o.customer_name)}</td>
+              <td>${esc(o.phone)}</td>
+              <td>${esc(o.country||"غير محدد")}</td>
+              <td>${esc(o.material_name)}</td>
+              <td>${esc(o.material_source||"من الورشة")}</td>
+              <td>${esc(o.size_name)}</td>
+              <td>${esc(o.quantity)}</td>
+
+              <td>
+                <input
+                  class="table-input"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  value="${Number(o.commission_amount)||0}"
+                  id="commission-${esc(o.id)}"
+                >
+                <button class="btn alt small"
+                  onclick="updateCommission('${o.id}')">
+                  حفظ
+                </button>
+              </td>
+
+              <td>
+                ${esc(o.payment_method||"")}
+                <br>
+                <small>${esc(o.payment_status||"")}</small>
+                ${o.payment_proof_url
+                  ?`<br><a target="_blank" rel="noopener"
+                    href="${esc(o.payment_proof_url)}">إثبات الدفع</a>`
+                  :""}
+              </td>
+
+              <td>${esc(o.status)}</td>
+
+              <td>
+                <select onchange="updateOrder('${o.id}',this.value)">
+                  ${["جديد","قيد التجهيز","تم الشحن","تم التسليم","ملغي"].map(s=>
+                    `<option ${o.status===s?"selected":""}>${s}</option>`
+                  ).join("")}
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="11">
+                <small class="muted">
+                  المدينة / المحافظة: ${esc(o.governorate)}
+                  — العنوان: ${esc(o.address)}
+                  — التفاصيل: ${esc(o.details||"لا يوجد")}
+                </small>
+              </td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+async function updateCommission(id){
+  const input=document.getElementById("commission-"+id);
+  const amount=Number(input?.value);
+
+  if(!Number.isFinite(amount)||amount<0){
+    alert("اكتب قيمة عمولة صحيحة.");
+    return;
+  }
+
+  const {error}=await db.from("orders")
+    .update({commission_amount:amount})
+    .eq("id",id);
+
+  if(error){
+    alert("تعذر حفظ العمولة: "+error.message);
+    return;
+  }
+
+  await loadOrders();
+  renderPanel();
+  alert("تم حفظ العمولة.");
+}
+
+async function updateOrder(id,status){
+  const {error}=await db.from("orders")
+    .update({status})
+    .eq("id",id);
+
+  if(error){
+    alert(error.message);
+  }else{
+    await loadOrders();
+    renderPanel();
+  }
+}
+
+/* إعدادات الموقع */
+function renderSettings(p){
+  p.innerHTML=`
+    <div class="formbox">
+      <h3>تعديل محتوى الموقع</h3>
+      <p class="muted">
+        عدّل النصوص وبيانات التواصل والخلفية، ثم احفظ التغييرات.
+      </p>
+
+      <form id="settingsForm">
+        <div class="fields">
+
+          ${Object.entries({
+            eyebrow:"الجملة الصغيرة أعلى الصفحة",
+            heroTitle:"العنوان الرئيسي",
+            heroText:"وصف الصفحة الرئيسية",
+            productsTitle:"عنوان قسم الخامات",
+            productsText:"وصف قسم الخامات",
+            orderTitle:"عنوان الطلب",
+            orderText:"وصف الطلب",
+            footerText:"نص أسفل الموقع"
+          }).map(([k,label])=>`
+            <div class="field full">
+              <label>${label}</label>
+              ${k.includes("Text")||k==="footerText"
+                ?`<textarea name="${k}" rows="2">${esc(siteCopy[k])}</textarea>`
+                :`<input name="${k}" value="${esc(siteCopy[k])}">`
+              }
+            </div>
+          `).join("")}
+
+          <div class="field full">
+            <label>رقم واتساب مع كود الدولة</label>
+            <input name="whatsapp"
+              value="${esc(siteSettings.whatsapp)}"
+              placeholder="201xxxxxxxxx">
+          </div>
+
+          <div class="field full">
+            <label>رابط صورة خلفية الصفحة الرئيسية</label>
+            <input name="heroImage"
+              value="${esc(siteSettings.hero_image)}"
+              placeholder="https://...">
+          </div>
+
+          <div class="field full">
+            <label>أو ارفع صورة خلفية جديدة</label>
+            <input name="heroImageFile" type="file" accept="image/*">
+          </div>
+
+        </div>
+
+        <button class="btn" style="margin-top:14px" type="submit">
+          حفظ المحتوى
+        </button>
+
+        <span id="settingsMsg" class="muted" style="margin-right:10px"></span>
+      </form>
+    </div>
+  `;
+
+  $("#settingsForm").onsubmit=async e=>{
+    e.preventDefault();
+
+    const f=new FormData(e.currentTarget);
+    const btn=e.currentTarget.querySelector("button[type='submit']");
+
+    btn.disabled=true;
+    say($("#settingsMsg"),"جاري الحفظ...");
+
+    try{
+      for(const k of Object.keys(defaultCopy)){
+        const value=String(f.get(k)||"");
+
+        const {error}=await db.from("app_settings").upsert({
+          setting_key:"copy_"+k,
+          setting_value:value
+        },{onConflict:"setting_key"});
+
+        if(error)throw error;
+        siteCopy[k]=value;
+      }
+
+      const wa=String(f.get("whatsapp")||"").trim();
+
+      const {error:waError}=await db.from("app_settings").upsert({
+        setting_key:"whatsapp",
+        setting_value:wa
+      },{onConflict:"setting_key"});
+
+      if(waError)throw waError;
+      siteSettings.whatsapp=wa;
+
+      let heroImage=String(f.get("heroImage")||"").trim();
+      const heroFile=f.get("heroImageFile");
+
+      if(heroFile&&heroFile.size){
+        heroImage=await uploadFile(heroFile);
+      }
+
+      const {error:heroError}=await db.from("app_settings").upsert({
+        setting_key:"hero_image",
+        setting_value:heroImage
+      },{onConflict:"setting_key"});
+
+      if(heroError)throw heroError;
+
+      siteSettings.hero_image=heroImage;
+
+      applyCopy();
+      applyHeroImage(heroImage);
+      applyWhatsapp(wa);
+
+      say($("#settingsMsg"),"تم حفظ التعديلات بنجاح.");
+
+    }catch(err){
+      say($("#settingsMsg"),"خطأ في الحفظ: "+err.message);
+    }finally{
+      btn.disabled=false;
+    }
+  };
+}
+
+/* متابعة حالة تسجيل الدخول */
+db.auth.onAuthStateChange((event,session)=>{
+  if(event==="SIGNED_OUT"&&!$("#admin").classList.contains("hidden")){
+    $("#dashboard").classList.add("hidden");
+    $("#loginView").classList.remove("hidden");
+  }
+});
+
+/* تشغيل الموقع */
+loadPublic().catch(err=>console.error("Public load:",err));
+</script>
+</body>
+</html>
